@@ -8,28 +8,23 @@ public class SliceTrigger : MonoBehaviour
     [SerializeField] private float minCuttingSpeedThreshold;
     private Transform parent;
 
-    // Awake is called when the script instance is being loaded.
-    protected void Awake()
-    {
-        parent = transform.parent;
-        var bounds = GetComponent<BoxCollider>().bounds;
-    }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Blade") && GetVelocitySum(other.attachedRigidbody) > minCuttingSpeedThreshold)
         {
+            parent = transform.parent;
             Transform foodTransform = transform.parent;
             GameObject firstHalf = new GameObject();
             firstHalf.name = "FirstHalf";
             GameObject secondHalf = new GameObject();
             secondHalf.name = "SecondHalf";
             firstHalf.transform.parent = secondHalf.transform.parent = foodTransform.parent;
-            Transform[] children = new Transform[parent.childCount];
+            Transform[] children = new Transform[transform.parent.childCount];
             //Fill the array of children
             for (int i = 0; i < parent.childCount; i++)
             {
-                children[i] = parent.GetChild(i);
+                children[i] = transform.parent.GetChild(i);
             }
 
             //Get this trigger's sibling index
@@ -59,10 +54,8 @@ public class SliceTrigger : MonoBehaviour
         //Calculate the food velocity in the blade local space
         Vector3 foodVelocityInBladeLocal = bladeRigidbody.transform.InverseTransformVector(parentRigidbody.velocity);
         float bladeForce = bladeRigidbody.velocity.z * bladeRigidbody.mass;
-        print("BladeForce: " + bladeForce);
         float foodForce = foodVelocityInBladeLocal.z * parentRigidbody.mass;
-        print("FoodForce: " + bladeForce);
-        float impactForce = Mathf.Abs(bladeForce - foodForce);
+        float impactForce = Mathf.Abs(bladeForce + foodForce);
         return impactForce;
     }
 }
