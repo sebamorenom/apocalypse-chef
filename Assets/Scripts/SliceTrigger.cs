@@ -19,12 +19,12 @@ public class SliceTrigger : MonoBehaviour
     {
         if (other.CompareTag("Blade") && GetVelocitySum(other.attachedRigidbody) > minCuttingSpeedThreshold)
         {
-            var parent = transform.parent;
+            Transform foodTransform = transform.parent;
             GameObject firstHalf = new GameObject();
             firstHalf.name = "FirstHalf";
             GameObject secondHalf = new GameObject();
             secondHalf.name = "SecondHalf";
-            firstHalf.transform.parent = secondHalf.transform.parent = parent.parent;
+            firstHalf.transform.parent = secondHalf.transform.parent = foodTransform.parent;
             Transform[] children = new Transform[parent.childCount];
             //Fill the array of children
             for (int i = 0; i < parent.childCount; i++)
@@ -55,8 +55,14 @@ public class SliceTrigger : MonoBehaviour
     private float GetVelocitySum(Rigidbody bladeRigidbody)
     {
         Rigidbody parentRigidbody = transform.parent.GetComponent<Rigidbody>();
-        Vector3 bladeDirection = bladeRigidbody.transform.forward;
-        float parentSpeedBladeDirection = Vector3.Project(parentRigidbody.velocity, -bladeDirection).magnitude;
-        return bladeRigidbody.velocity.magnitude + parentSpeedBladeDirection;
+        Vector3 bladeLocalSpeed = bladeRigidbody.transform.InverseTransformVector(bladeRigidbody.velocity);
+        //Calculate the food velocity in the blade local space
+        Vector3 foodVelocityInBladeLocal = bladeRigidbody.transform.InverseTransformVector(parentRigidbody.velocity);
+        float bladeForce = bladeRigidbody.velocity.z * bladeRigidbody.mass;
+        print("BladeForce: " + bladeForce);
+        float foodForce = foodVelocityInBladeLocal.z * parentRigidbody.mass;
+        print("FoodForce: " + bladeForce);
+        float impactForce = Mathf.Abs(bladeForce - foodForce);
+        return impactForce;
     }
 }
