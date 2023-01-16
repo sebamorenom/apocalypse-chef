@@ -16,10 +16,10 @@ public class SliceTrigger : MonoBehaviour
         {
             parent = transform.parent;
             Transform foodTransform = transform.parent;
-            GameObject firstHalf = new GameObject();
-            firstHalf.name = "FirstHalf";
-            GameObject secondHalf = new GameObject();
-            secondHalf.name = "SecondHalf";
+
+            GameObject firstHalf = new GameObject("FirstHalf");
+            GameObject secondHalf = new GameObject("SecondHalf");
+
             firstHalf.transform.parent = secondHalf.transform.parent = foodTransform.parent;
             Transform[] children = new Transform[transform.parent.childCount];
             //Fill the array of children
