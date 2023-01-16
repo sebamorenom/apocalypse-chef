@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -17,10 +18,6 @@ public class SliceTrigger : MonoBehaviour
             parent = transform.parent;
             Transform foodTransform = transform.parent;
 
-            GameObject firstHalf = new GameObject("FirstHalf");
-            GameObject secondHalf = new GameObject("SecondHalf");
-
-            firstHalf.transform.parent = secondHalf.transform.parent = foodTransform.parent;
             Transform[] children = new Transform[transform.parent.childCount];
             //Fill the array of children
             for (int i = 0; i < parent.childCount; i++)
@@ -28,28 +25,51 @@ public class SliceTrigger : MonoBehaviour
                 children[i] = transform.parent.GetChild(i);
             }
 
+            float parentMass = parent.GetComponent<Rigidbody>().mass;
+            float massPerPiece = parentMass / (children.Length - (children.Length / 2));
+
             //Get this trigger's sibling index
             int triggerIndex = transform.GetSiblingIndex();
             //Get the number of children for both halves
             int firstHalfChildrenCount = triggerIndex - (triggerIndex / 2);
             int secondHalfChildrenCount = (children.Length - triggerIndex) - (children.Length - triggerIndex) / 2;
-            //Fill firstHalf's children
-            for (int i = 0; i < triggerIndex; i++)
+            //Create halves
+            if (firstHalfChildrenCount > 1)
             {
-                children[i].parent = firstHalf.transform;
+                GameObject firstHalf = new GameObject("FirstHalf");
+                firstHalf.transform.parent = foodTransform.parent;
+                //Fill firstHalf's children
+                for (int i = 0; i < triggerIndex; i++)
+                {
+                    children[i].parent = firstHalf.transform;
+                }
+
+                firstHalf.AddComponent<Rigidbody>().mass = massPerPiece * firstHalfChildrenCount;
+            }
+            else
+            {
+                children[0].parent = parent.parent;
+                children[0].AddComponent<Rigidbody>();
             }
 
-            //Fill secondHalf's children
-            for (int i = triggerIndex + 1; i < children.Length; i++)
+            if (secondHalfChildrenCount > 1)
             {
-                children[i].parent = secondHalf.transform;
+                GameObject secondHalf = new GameObject("SecondHalf");
+                secondHalf.transform.parent = foodTransform.parent;
+                //Fill secondHalf's children
+                for (int i = triggerIndex + 1; i < children.Length; i++)
+                {
+                    children[i].parent = secondHalf.transform;
+                }
+
+                secondHalf.AddComponent<Rigidbody>().mass = massPerPiece * secondHalfChildrenCount;
+            }
+            else
+            {
+                children[triggerIndex + 1].parent = parent.parent;
+                children[triggerIndex + 1].AddComponent<Rigidbody>();
             }
 
-            //Distributing masses
-            float parentMass = parent.GetComponent<Rigidbody>().mass;
-            float massPerPiece = parentMass / (children.Length - (children.Length / 2));
-            firstHalf.AddComponent<Rigidbody>().mass = massPerPiece * firstHalfChildrenCount;
-            secondHalf.AddComponent<Rigidbody>().mass = massPerPiece * secondHalfChildrenCount;
             Destroy(parent.gameObject);
         }
     }
