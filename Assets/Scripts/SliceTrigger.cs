@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autohand;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -38,40 +39,63 @@ public class SliceTrigger : MonoBehaviour
             {
                 GameObject firstHalf = new GameObject("FirstHalf");
                 firstHalf.transform.parent = foodTransform.parent;
+                firstHalf.transform.position = GetMiddleOfPieces(children, 0, triggerIndex);
                 //Fill firstHalf's children
                 for (int i = 0; i < triggerIndex; i++)
                 {
                     children[i].parent = firstHalf.transform;
                 }
-
-                firstHalf.AddComponent<Rigidbody>().mass = massPerPiece * firstHalfChildrenCount;
+                firstHalf.AddComponent<Rigidbody>();
+                firstHalf.AddComponent<Grabbable>();
+                var halfGrabbable = firstHalf.GetComponent<Grabbable>();
+                halfGrabbable.enabled = true;
+                halfGrabbable.body = firstHalf.GetComponent<Rigidbody>();
+                firstHalf.GetComponent<Rigidbody>().mass = massPerPiece * firstHalfChildrenCount;
             }
             else
             {
-                children[0].parent = parent.parent;
-                children[0].AddComponent<Rigidbody>();
+
+                var piece = children[0];
+                piece.parent = parent.parent;
+                MakeGrabbable(massPerPiece, piece);
             }
 
             if (secondHalfChildrenCount > 1)
             {
                 GameObject secondHalf = new GameObject("SecondHalf");
                 secondHalf.transform.parent = foodTransform.parent;
+                secondHalf.transform.position = GetMiddleOfPieces(children, triggerIndex + 1, children.Length);
                 //Fill secondHalf's children
                 for (int i = triggerIndex + 1; i < children.Length; i++)
                 {
                     children[i].parent = secondHalf.transform;
                 }
-
-                secondHalf.AddComponent<Rigidbody>().mass = massPerPiece * secondHalfChildrenCount;
+                secondHalf.AddComponent<Rigidbody>();
+                secondHalf.AddComponent<Grabbable>();
+                var halfGrabbable = secondHalf.GetComponent<Grabbable>();
+                halfGrabbable.enabled = true;
+                halfGrabbable.body = secondHalf.GetComponent<Rigidbody>();
+                secondHalf.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                secondHalf.GetComponent<Rigidbody>().mass = massPerPiece * secondHalfChildrenCount;
             }
             else
             {
-                children[triggerIndex + 1].parent = parent.parent;
-                children[triggerIndex + 1].AddComponent<Rigidbody>();
+                var piece = children[triggerIndex + 1];
+                piece.parent = parent.parent;
+                MakeGrabbable(massPerPiece, piece);
             }
 
             Destroy(parent.gameObject);
         }
+    }
+
+    private static void MakeGrabbable(float massPerPiece, Transform piece)
+    {
+        piece.AddComponent<Rigidbody>();
+        piece.GetComponent<Rigidbody>().mass = massPerPiece;
+        piece.AddComponent<Grabbable>();
+        piece.GetComponent<Grabbable>().enabled = true;
+        piece.GetComponent<Grabbable>().body = piece.GetComponent<Rigidbody>();
     }
 
     private float GetVelocitySum(Rigidbody bladeRigidbody)
@@ -85,5 +109,17 @@ public class SliceTrigger : MonoBehaviour
         float impactForce = Mathf.Abs(bladeForce + foodForce);
         print(impactForce);
         return impactForce;
+    }
+
+    private Vector3 GetMiddleOfPieces(Transform[] pieces, int fromInclusiveIndex, int toExclusiveIndex)
+    {
+        Vector3 middle = Vector3.zero;
+        int numPieces = toExclusiveIndex - fromInclusiveIndex;
+        for (int i = fromInclusiveIndex; i < toExclusiveIndex; i++)
+        {
+            middle += pieces[i].position;
+        }
+
+        return middle / numPieces;
     }
 }
