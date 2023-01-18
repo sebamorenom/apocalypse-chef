@@ -10,7 +10,10 @@ public class Ingredient : MonoBehaviour, ICook
     public bool canBeRoasted;
 
     [Header("Cooking Time")] [Range(0, 10f)]
-    public float fryingTime, microwavingTime, roastingTime;
+    public float fryingTime;
+
+    [Range(0, 10f)] public float microwavingTime;
+    [Range(0, 10f)] public float roastingTime;
 
 
     public void Cook(string toolIdentifier)

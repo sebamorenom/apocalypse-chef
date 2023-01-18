@@ -1150,9 +1150,9 @@ GameObject:
   - component: {fileID: 751833654}
   - component: {fileID: 751833653}
   - component: {fileID: 751833652}
+  - component: {fileID: 751833649}
   - component: {fileID: 751833651}
   - component: {fileID: 751833650}
-  - component: {fileID: 751833649}
   m_Layer: 0
   m_Name: PlateTest
   m_TagString: Untagged
@@ -1173,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   separationAcrossIngredients: 0
+  plateCollider: {fileID: 751833651}
 --- !u!54 &751833650
 Rigidbody:
   m_ObjectHideFlags: 0
