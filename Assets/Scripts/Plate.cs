@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using UnityEngine;
 
 public class Plate : MonoBehaviour
@@ -41,14 +42,16 @@ public class Plate : MonoBehaviour
             otherTransform.position = placementPosition;
             otherTransform.rotation = placementTransform.rotation;
             otherTransform.parent = placementTransform;
-            DisableIngredient(otherRigidbody);
+            DisableAndMakeGrabbable(otherRigidbody);
         }
     }
 
-    private static void DisableIngredient(Rigidbody otherRigidbody)
+    private void DisableAndMakeGrabbable(Rigidbody otherRigidbody)
     {
-        otherRigidbody.isKinematic = false;
+        Destroy(otherRigidbody);
+        otherRigidbody.GetComponent<GrabbableChild>().grabParent = GetComponent<Grabbable>();
+        /*otherRigidbody.isKinematic = false;
         otherRigidbody.useGravity = false;
-        otherRigidbody.detectCollisions = false;
+        otherRigidbody.detectCollisions = false;*/
     }
 }
