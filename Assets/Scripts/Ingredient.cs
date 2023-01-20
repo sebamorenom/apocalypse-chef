@@ -10,6 +10,7 @@ public class Ingredient : MonoBehaviour, ICook
     [Header("Cooking Type")] public bool canBeFried;
     public bool canBeMicrowaved;
     public bool canBeRoasted;
+    private SkinnedMeshRenderer skMRenderer;
 
     [Header("Cooking Time")] [Range(0, 10f)]
     public float fryingTime;
@@ -17,6 +18,11 @@ public class Ingredient : MonoBehaviour, ICook
     [Range(0, 10f)] public float microwavingTime;
     [Range(0, 10f)] public float roastingTime;
 
+
+    private void Start()
+    {
+        skMRenderer = GetComponent<SkinnedMeshRenderer>();
+    }
 
     public void Cook(string toolIdentifier)
     {
