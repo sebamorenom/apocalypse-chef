@@ -11,6 +11,8 @@ public class Ingredient : MonoBehaviour, ICook
     public bool canBeMicrowaved;
     public bool canBeRoasted;
     private SkinnedMeshRenderer skMRenderer;
+    public string cookingState;
+    public float cookingTime;
 
     [Header("Cooking Time")] [Range(0, 10f)]
     public float fryingTime;
@@ -21,24 +23,68 @@ public class Ingredient : MonoBehaviour, ICook
 
     private void Start()
     {
-        skMRenderer = GetComponent<SkinnedMeshRenderer>();
+        //skMRenderer = GetComponent<SkinnedMeshRenderer>();
     }
 
-    public void Cook(string toolIdentifier)
+    public IEnumerator Cook(string toolIdentifier)
     {
-        if (toolIdentifier == "Pan" && canBeFried)
+        if (toolIdentifier == "Pan")
         {
-            print("Is being fried");
+            if ((cookingState == "" ^ cookingState == "Pan") && canBeFried)
+            {
+                //float cookingPercent = skMRenderer.GetBlendShapeWeight(0);
+                if (cookingTime == 0)
+                {
+                    cookingState = "Pan";
+                }
+
+                while (cookingTime < fryingTime)
+                {
+                    //skMRenderer.SetBlendShapeWeight(0, cookingPercent + 1 / fryingTime);
+                    cookingTime += Time.deltaTime;
+                    yield return null;
+                }
+
+                print("Fried");
+            }
         }
 
-        if (toolIdentifier == "Microwave" && canBeMicrowaved)
+        if (toolIdentifier == "Microwave")
         {
-            print("Is being microwaved");
+            if ((cookingState == "" ^ cookingState == "Microwave") && canBeMicrowaved)
+            {
+                //float cookingPercent = skMRenderer.GetBlendShapeWeight(1);
+                if (cookingTime == 0)
+                {
+                    cookingState = "Microwave";
+                }
+
+                while (cookingTime < microwavingTime)
+                {
+                    //skMRenderer.SetBlendShapeWeight(0, cookingPercent + 1 / microwavingTime);
+                    cookingTime += Time.deltaTime;
+                    yield return null;
+                }
+            }
         }
 
-        if (toolIdentifier == "Oven" && canBeRoasted)
+        if (toolIdentifier == "Oven")
         {
-            print("Is being roasted");
+            if ((cookingState == "" ^ cookingState == "Oven") && canBeRoasted)
+            {
+                //float cookingPercent = skMRenderer.GetBlendShapeWeight(0);
+                if (cookingTime == 0)
+                {
+                    cookingState = "Oven";
+                }
+
+                while (cookingTime < roastingTime)
+                {
+                    //skMRenderer.SetBlendShapeWeight(0, cookingPercent + 1 / roastingTime);
+                    cookingTime += Time.deltaTime;
+                    yield return null;
+                }
+            }
         }
     }
 }

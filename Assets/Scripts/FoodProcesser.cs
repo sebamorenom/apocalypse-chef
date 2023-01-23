@@ -9,7 +9,7 @@ public class FoodProcesser : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        
     }
 
     public static GameObject ChangeFood(Ingredient ing1, Ingredient ing2)
