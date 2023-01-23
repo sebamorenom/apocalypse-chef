@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Ingredient : MonoBehaviour, ICook
+public class Ingredient : Weapon, ICook
 {
     [SerializeField] private string ingredientIdentifier;
     [Header("Cooking Type")] public bool canBeFried;
@@ -86,5 +86,10 @@ public class Ingredient : MonoBehaviour, ICook
                 }
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        IDamageable damageable;
     }
 }
