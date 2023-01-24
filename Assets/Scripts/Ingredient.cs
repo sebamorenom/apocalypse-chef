@@ -20,10 +20,13 @@ public class Ingredient : Weapon, ICook
     [Range(0, 10f)] public float microwavingTime;
     [Range(0, 10f)] public float roastingTime;
 
+    [Header("Food Effects")] private FoodEffect foodEffect;
+
 
     private void Start()
     {
         //skMRenderer = GetComponent<SkinnedMeshRenderer>();
+        onHit.AddListener(foodEffect.OnHit);
     }
 
     public IEnumerator Cook(string toolIdentifier)
@@ -86,6 +89,10 @@ public class Ingredient : Weapon, ICook
                 }
             }
         }
+    }
+
+    private void Test()
+    {
     }
 
     private void OnCollisionEnter(Collision collision)

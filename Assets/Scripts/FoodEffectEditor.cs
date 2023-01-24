@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 [CustomEditor(typeof(FoodEffect))]
-public class EffectEditor : Editor
+public class FoodEffectEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -19,10 +19,13 @@ public class EffectEditor : Editor
             EditorGUI.indentLevel++;
             customInspector.explosionRadius =
                 EditorGUILayout.FloatField("Explosive Radius", customInspector.explosionRadius);
+            customInspector.explosionForce =
+                EditorGUILayout.FloatField("Explosion Force", customInspector.explosionForce);
             customInspector.explosionDamage =
                 EditorGUILayout.FloatField("Explosive Damage", customInspector.explosionDamage);
             customInspector.explosionVFX =
-                EditorGUILayout.ObjectField("Explosion VFX", customInspector.explosionVFX, typeof(VisualEffect), true)
+                EditorGUILayout.ObjectField("Explosion VFX", customInspector.explosionVFX, typeof(VisualEffect),
+                        true)
                     as VisualEffect;
             EditorGUI.indentLevel--;
         }
@@ -36,11 +39,26 @@ public class EffectEditor : Editor
             EditorGUI.indentLevel--;
         }
 
+        customInspector.isNoisy = EditorGUILayout.Toggle("Is Noisy?", customInspector.isNoisy);
         if (customInspector.isNoisy)
         {
             EditorGUI.indentLevel++;
             customInspector.noiseRadius = EditorGUILayout.FloatField("Noise radius", customInspector.noiseRadius);
             EditorGUI.indentLevel--;
+        }
+
+        customInspector.isFlammable = EditorGUILayout.Toggle("Is Flammable?", customInspector.isFlammable);
+        if (customInspector.isFlammable)
+        {
+            EditorGUI.indentLevel++;
+            customInspector.flammableRadius =
+                EditorGUILayout.FloatField("Flammable Volume", customInspector.flammableRadius);
+            EditorGUI.indentLevel--;
+        }
+
+        if (GUILayout.Button("Save current configuration"))
+        {
+            customInspector.ApplyEffects();
         }
     }
 }
