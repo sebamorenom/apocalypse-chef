@@ -6,6 +6,8 @@ using UnityEngine.VFX;
 [CreateAssetMenu(menuName = "FoodEffect")]
 public class FoodEffect : ScriptableObject
 {
+    [SerializeField]
+    private string effectName;
     [HideInInspector] public bool isExplosive;
     [HideInInspector] public float explosionRadius;
     [HideInInspector] public float explosionForce;
@@ -14,12 +16,15 @@ public class FoodEffect : ScriptableObject
 
     [HideInInspector] public bool isSticky;
     [HideInInspector] public float slownessPercent;
+    [HideInInspector] public VisualEffect stickyVFX;
 
     [HideInInspector] public bool isNoisy;
     [HideInInspector] public float noiseRadius;
+    [HideInInspector] public VisualEffect noiseVFX;
 
     [HideInInspector] public bool isFlammable;
     [HideInInspector] public float flammableRadius;
+    [HideInInspector] public VisualEffect flammableVFX;
 
     [HideInInspector] public Transform fTransform;
     [HideInInspector] public Collider fCollider;

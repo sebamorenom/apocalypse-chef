@@ -36,6 +36,8 @@ public class FoodEffectEditor : Editor
             EditorGUI.indentLevel++;
             customInspector.slownessPercent =
                 EditorGUILayout.Slider("Slowness Percent", customInspector.slownessPercent, 0f, 100f);
+            customInspector.stickyVFX = EditorGUILayout.ObjectField("Sticky VFX", customInspector.stickyVFX, typeof(VisualEffect), true) as VisualEffect;
+
             EditorGUI.indentLevel--;
         }
 
@@ -44,6 +46,7 @@ public class FoodEffectEditor : Editor
         {
             EditorGUI.indentLevel++;
             customInspector.noiseRadius = EditorGUILayout.FloatField("Noise radius", customInspector.noiseRadius);
+            customInspector.noiseVFX = EditorGUILayout.ObjectField("Noise VFX", customInspector.noiseVFX, typeof(VisualEffect), true) as VisualEffect;
             EditorGUI.indentLevel--;
         }
 
@@ -53,6 +56,7 @@ public class FoodEffectEditor : Editor
             EditorGUI.indentLevel++;
             customInspector.flammableRadius =
                 EditorGUILayout.FloatField("Flammable Volume", customInspector.flammableRadius);
+            customInspector.flammableVFX = EditorGUILayout.ObjectField("Flammable VFX", customInspector.flammableVFX, typeof(VisualEffect), true) as VisualEffect;
             EditorGUI.indentLevel--;
         }
 
