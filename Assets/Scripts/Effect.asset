@@ -12,8 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3593b25da47de204f90204d29d73a0e8, type: 3}
   m_Name: Effect
   m_EditorClassIdentifier: 
+  effectName: Test
   isExplosive: 0
-  isSticky: 0
-  isNoisy: 0
-  explosiveRadius: 0
+  explosionRadius: 0
+  explosionForce: 0
   explosionDamage: 0
+  explosionVFX: {fileID: 0}
+  isSticky: 1
+  slownessPercent: 0
+  stickyVFX: {fileID: 0}
+  isNoisy: 0
+  noiseRadius: 0
+  noiseVFX: {fileID: 0}
+  isFlammable: 0
+  flammableRadius: 0
+  flammableVFX: {fileID: 0}
+  fTransform: {fileID: 0}
+  fCollider: {fileID: 0}

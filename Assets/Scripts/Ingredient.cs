@@ -25,8 +25,7 @@ public class Ingredient : Weapon, ICook
 
     private void Start()
     {
-        //skMRenderer = GetComponent<SkinnedMeshRenderer>();
-        onHit.AddListener(foodEffect.OnHit);
+        //skMRenderer = GetComponent<SkinnedMeshRenderer>()
     }
 
     public IEnumerator Cook(string toolIdentifier)
