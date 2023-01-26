@@ -3,19 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FoodProcesser))]
 public class CookingTool : MonoBehaviour
 {
     [SerializeField] public string toolIdentifier;
-    private List<Ingredient> cookingIngredients;
-    private List<Coroutine> cookingCoroutines;
+    public List<Ingredient> cookingIngredients = new List<Ingredient>(2);
+    private List<Coroutine> cookingCoroutines = new List<Coroutine>(2);
+    private FoodProcesser fProcesser;
+
+    private void Start()
+    {
+        fProcesser = GetComponent<FoodProcesser>();
+        cookingIngredients.Capacity = 2;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         ICook cookable;
         if (other.TryGetComponent<ICook>(out cookable))
         {
-            print("In cooking trigger");
+            //print("In cooking trigger");
             AddIngredientsToLists(other, cookable);
+            if (cookingIngredients.Count >= 2)
+            {
+                cookingIngredients.TrimExcess();
+                //print("Trying to change food");
+                Instantiate(fProcesser.ChangeFood(cookingIngredients[0], cookingIngredients[1]));
+                Destroy(RemoveIngredientsFromLists(0));
+                Destroy(RemoveIngredientsFromLists(0));
+            }
         }
     }
 
@@ -30,6 +46,7 @@ public class CookingTool : MonoBehaviour
             RemoveIngredientsFromLists(index);
         }
     }
+
     private void AddIngredientsToLists(Collider other, ICook cookable)
     {
         cookingIngredients.Add(other.GetComponent<Ingredient>());
@@ -37,9 +54,11 @@ public class CookingTool : MonoBehaviour
     }
 
 
-    private void RemoveIngredientsFromLists(int index)
+    private GameObject RemoveIngredientsFromLists(int index)
     {
+        GameObject auxGameObj = cookingIngredients[index].gameObject;
         cookingIngredients.RemoveAt(index);
         cookingCoroutines.RemoveAt(index);
+        return auxGameObj;
     }
 }

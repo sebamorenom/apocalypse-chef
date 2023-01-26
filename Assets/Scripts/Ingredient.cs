@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [Serializable]
 public class Ingredient : Weapon, ICook
 {
-    [SerializeField] private string ingredientIdentifier;
+    [Header("Cut parameters")] public GameObject cutIngredient;
+
+    public VisualEffect cutVFX;
+
     [Header("Cooking Type")] public bool canBeFried;
     public bool canBeMicrowaved;
     public bool canBeRoasted;
     private SkinnedMeshRenderer skMRenderer;
     public string cookingState;
     public float cookingTime;
+    public bool isCut;
 
     [Header("Cooking Time")] [Range(0, 10f)]
     public float fryingTime;
@@ -20,12 +27,21 @@ public class Ingredient : Weapon, ICook
     [Range(0, 10f)] public float microwavingTime;
     [Range(0, 10f)] public float roastingTime;
 
-    [Header("Food Effects")] private FoodEffect foodEffect;
 
+    [Header("Food Effects")] public FoodEffect foodEffect;
+
+
+    private Transform _transform;
+    private Rigidbody _rb;
+    private Grabbable _grab;
 
     private void Start()
     {
         //skMRenderer = GetComponent<SkinnedMeshRenderer>()
+        if (foodEffect != null) onHit += foodEffect.onHit;
+        _transform = transform;
+        _rb = GetComponent<Rigidbody>();
+        _grab = GetComponent<Grabbable>();
     }
 
     public IEnumerator Cook(string toolIdentifier)
@@ -94,8 +110,19 @@ public class Ingredient : Weapon, ICook
     {
     }
 
+    public void Cut()
+    {
+        Instantiate(cutIngredient, transform.position, Quaternion.identity);
+        cutVFX?.Play();
+        //yield return WaitUntil();
+        Destroy((this));
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        IDamageable damageable;
+        if (_rb.velocity.magnitude >= minSpeedOnHitThreshold)
+        {
+            if (onHit != null) onHit.Invoke();
+        }
     }
 }

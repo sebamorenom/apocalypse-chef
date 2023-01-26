@@ -18,33 +18,35 @@ public struct Recipe
 public class RecipeBook : ScriptableObject
 {
     public Recipe[] recipes;
-    private Dictionary<Ingredient[], GameObject> recipeList;
+    public Dictionary<string[], GameObject> recipeList;
 
     public void BuildDictionary()
     {
-        recipeList = new Dictionary<Ingredient[], GameObject>();
-        for (int i = 0; i < recipes.Length; i++)
+        if (recipeList == null)
         {
-            Ingredient[] ingInRecipe = new Ingredient[2];
-            for (int j = 0; j < 2; j++)
+            recipeList = new Dictionary<String[], GameObject>();
+            for (int i = 0; i < recipes.Length; i++)
             {
-                Ingredient ing;
-                if (!recipes[i].ingredients[j].IsUnityNull() &&
-                    recipes[i].ingredients[j].TryGetComponent<Ingredient>(out ing))
-                    ingInRecipe[i] = ing;
-            }
+                string[] ingInRecipe = new string[2];
+                for (int j = 0; j < 2; j++)
+                {
+                    Ingredient ing;
+                    if (!recipes[i].ingredients[j].IsUnityNull())
+                        ingInRecipe[i] = recipes[i].ingredients[j].GetComponent<Ingredient>().identifier;
+                }
 
-            if (recipes[i].ingredients.Length != 2 || !CheckIngredients(recipes[i]))
-            {
-                throw new SystemException("Recipe " + i + " does not have the correct amount of ingredients (2)");
-            }
+                if (recipes[i].ingredients.Length != 2 || !CheckIngredients(recipes[i]))
+                {
+                    throw new SystemException("Recipe " + i + " does not have the correct amount of ingredients (2)");
+                }
 
-            if (recipes[i].result.IsUnityNull())
-            {
-                throw new SystemException("Recipe " + i + " does not have a resulting GameObject");
-            }
+                if (recipes[i].result.IsUnityNull())
+                {
+                    throw new SystemException("Recipe " + i + " does not have a resulting GameObject");
+                }
 
-            recipeList.TryAdd(ingInRecipe, recipes[i].result);
+                recipeList.TryAdd(ingInRecipe, recipes[i].result);
+            }
         }
 
         Debug.Log("Dictionary built: " + recipeList.Count + " recipes.");
@@ -61,11 +63,11 @@ public class RecipeBook : ScriptableObject
         return true;
     }
 
-    public GameObject GetResulting(Ingredient ing0, Ingredient ing1)
+    public GameObject GetResulting(string ing0, string ing1)
     {
-        Ingredient[] ingredients = new Ingredient[2];
-        Ingredient[] ingredientsReverse = new Ingredient[2];
-        ingredients[0] = ingredientsReverse[1] = ing1;
+        string[] ingredients = new string[2];
+        string[] ingredientsReverse = new string[2];
+        ingredients[0] = ingredientsReverse[1] = ing0;
         ingredients[1] = ingredientsReverse[0] = ing1;
         GameObject resulting;
 

@@ -14,7 +14,8 @@ public class CuttingHelper : MonoBehaviour
         if (other.CompareTag("Blade"))
         {
             Rigidbody otherRigidbody = other.attachedRigidbody;
-            if (otherRigidbody.velocity.magnitude > cuttingBoxThreshold)
+            if (otherRigidbody.velocity.magnitude > cuttingBoxThreshold &&
+                Vector3.Dot(other.transform.forward, transform.up) < -0.6f)
             {
                 health = Mathf.Max(health - 20f, 0f);
             }

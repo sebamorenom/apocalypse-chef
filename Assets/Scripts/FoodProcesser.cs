@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class FoodProcesser : MonoBehaviour
 {
-    public static RecipeBook recipeBook;
+    [SerializeField] public RecipeBook recipeBook;
 
     private void Start()
     {
-        
+        if (recipeBook.recipeList == null)
+        {
+            recipeBook.BuildDictionary();
+        }
     }
 
-    public static GameObject ChangeFood(Ingredient ing1, Ingredient ing2)
+    public GameObject ChangeFood(Ingredient ing1, Ingredient ing2)
     {
-        return recipeBook.GetResulting(ing1, ing2);
+        print("Changing food");
+        return recipeBook.GetResulting(ing1.identifier, ing2.identifier);
     }
 }
