@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -18,21 +19,25 @@ public struct Recipe
 public class RecipeBook : ScriptableObject
 {
     public Recipe[] recipes;
-    public Dictionary<string[], GameObject> recipeList;
+    public Dictionary<string, GameObject> recipeList;
 
     public void BuildDictionary()
     {
         if (recipeList == null)
         {
-            recipeList = new Dictionary<String[], GameObject>();
+            recipeList = new Dictionary<string, GameObject>();
             for (int i = 0; i < recipes.Length; i++)
             {
-                string[] ingInRecipe = new string[2];
+                string ingInRecipe = "";
                 for (int j = 0; j < 2; j++)
                 {
                     Ingredient ing;
                     if (!recipes[i].ingredients[j].IsUnityNull())
-                        ingInRecipe[i] = recipes[i].ingredients[j].GetComponent<Ingredient>().identifier;
+                        ingInRecipe += recipes[i].ingredients[j].GetComponent<Ingredient>().foodIdentifier;
+                    if (j == 0)
+                    {
+                        ingInRecipe += "+";
+                    }
                 }
 
                 if (recipes[i].ingredients.Length != 2 || !CheckIngredients(recipes[i]))
@@ -45,6 +50,7 @@ public class RecipeBook : ScriptableObject
                     throw new SystemException("Recipe " + i + " does not have a resulting GameObject");
                 }
 
+                Debug.Log(ingInRecipe);
                 recipeList.TryAdd(ingInRecipe, recipes[i].result);
             }
         }
@@ -65,15 +71,15 @@ public class RecipeBook : ScriptableObject
 
     public GameObject GetResulting(string ing0, string ing1)
     {
-        string[] ingredients = new string[2];
-        string[] ingredientsReverse = new string[2];
-        ingredients[0] = ingredientsReverse[1] = ing0;
-        ingredients[1] = ingredientsReverse[0] = ing1;
+        string ingredients = ing0 + "+" + ing1;
+        string ingredientsReverse = ing1 + "+" + ing0;
         GameObject resulting;
 
+        Debug.Log("Ingredients: " + ingredients + "\n" + "Ingredients in Reverse: " + ingredientsReverse);
         if (recipeList.TryGetValue(ingredients, out resulting) ||
             recipeList.TryGetValue(ingredientsReverse, out resulting))
         {
+            Debug.Log("Food changed");
             return resulting;
         }
 

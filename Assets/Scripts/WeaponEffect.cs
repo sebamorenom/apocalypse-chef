@@ -6,8 +6,8 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.VFX;
 
-[CreateAssetMenu(menuName = "FoodEffect")]
-public class FoodEffect : ScriptableObject
+[CreateAssetMenu(menuName = "WeaponEffect")]
+public class WeaponEffect : ScriptableObject
 {
     [SerializeField] private string effectName;
     [HideInInspector] public bool isExplosive;

@@ -28,7 +28,8 @@ public class CookingTool : MonoBehaviour
             {
                 cookingIngredients.TrimExcess();
                 //print("Trying to change food");
-                Instantiate(fProcesser.ChangeFood(cookingIngredients[0], cookingIngredients[1]));
+                GameObject resulting = fProcesser.ChangeFood(cookingIngredients[0], cookingIngredients[1]);
+                Instantiate(resulting, transform.position, Quaternion.identity);
                 Destroy(RemoveIngredientsFromLists(0));
                 Destroy(RemoveIngredientsFromLists(0));
             }
@@ -49,8 +50,17 @@ public class CookingTool : MonoBehaviour
 
     private void AddIngredientsToLists(Collider other, ICook cookable)
     {
-        cookingIngredients.Add(other.GetComponent<Ingredient>());
-        cookingCoroutines.Add(StartCoroutine(cookable.Cook(toolIdentifier)));
+        if (cookingIngredients.Count == 2)
+        {
+            cookingIngredients.RemoveAt(1);
+        }
+        var foodToInsert = other.GetComponent<Ingredient>();
+        if (!foodToInsert.isCooked)
+        {
+            cookingCoroutines.Add(StartCoroutine(cookable.Cook(toolIdentifier)));
+        }
+
+        cookingIngredients.Insert(0, other.GetComponent<Ingredient>());
     }
 
 

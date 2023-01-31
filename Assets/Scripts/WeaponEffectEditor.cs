@@ -5,13 +5,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.VFX;
 
-[CustomEditor(typeof(FoodEffect))]
-public class FoodEffectEditor : Editor
+[CustomEditor(typeof(WeaponEffect))]
+public class WeaponEffectEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        FoodEffect customInspector = (FoodEffect)target;
+        WeaponEffect customInspector = (WeaponEffect)target;
         customInspector.isExplosive = EditorGUILayout.Toggle("Is Explosive?", customInspector.isExplosive);
 
         if (customInspector.isExplosive)
