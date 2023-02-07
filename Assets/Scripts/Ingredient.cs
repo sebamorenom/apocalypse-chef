@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
@@ -20,7 +20,6 @@ public class Ingredient : MonoBehaviour, ICook
     private SkinnedMeshRenderer skMRenderer;
     public string cookingState;
     public float cookingTime;
-    public bool isCut;
 
     [Header("Cooking Time")] [Range(0, 10f)]
     public float fryingTime;
@@ -29,10 +28,12 @@ public class Ingredient : MonoBehaviour, ICook
     [Range(0, 10f)] public float roastingTime;
     [HideInInspector] public bool isCooked;
 
+    private IEnumerator cookingCoroutine;
 
     private Transform _transform;
     private Rigidbody _rb;
     private Grabbable _grab;
+
 
     private void Start()
     {
@@ -43,7 +44,17 @@ public class Ingredient : MonoBehaviour, ICook
         _grab = GetComponent<Grabbable>();
     }
 
-    public IEnumerator Cook(string toolIdentifier)
+    public void Cook(string toolIdentifier)
+    {
+        if (cookingCoroutine == null)
+        {
+            cookingCoroutine = StartCooking(toolIdentifier);
+        }
+
+        StartCoroutine(cookingCoroutine);
+    }
+
+    public IEnumerator StartCooking(string toolIdentifier)
     {
         if (toolIdentifier == "Pan")
         {
@@ -62,6 +73,7 @@ public class Ingredient : MonoBehaviour, ICook
                     yield return null;
                 }
 
+                isCooked = true;
                 print("Fried");
             }
         }
@@ -82,6 +94,8 @@ public class Ingredient : MonoBehaviour, ICook
                     cookingTime += Time.deltaTime;
                     yield return null;
                 }
+
+                isCooked = true;
             }
         }
 
@@ -101,14 +115,27 @@ public class Ingredient : MonoBehaviour, ICook
                     cookingTime += Time.deltaTime;
                     yield return null;
                 }
+
+                isCooked = true;
             }
         }
 
         isCooked = true;
     }
 
-    private void Test()
+    public void StopCooking()
     {
+        StopCoroutine(cookingCoroutine);
+    }
+
+    public string GetFoodIdentifier()
+    {
+        if (isCooked)
+        {
+            return cookingState + " " + foodIdentifier;
+        }
+
+        return foodIdentifier;
     }
 
     public void Cut()

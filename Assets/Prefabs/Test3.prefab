@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2911691770285982606}
   m_Layer: 0
   m_Name: Test3
-  m_TagString: Untagged
+  m_TagString: Ingredient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,12 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  identifier: uioqweoijasd
-  damage: 0
-  minSpeedOnHitThreshold: 0
-  minSpeedOnTravelThreshold: 0
-  thrown: 0
+  foodIdentifier: Capsule
   cutIngredient: {fileID: 0}
+  cuttingHealth: 0
   cutVFX: {fileID: 0}
   canBeFried: 0
   canBeMicrowaved: 0
@@ -145,7 +142,7 @@ MonoBehaviour:
   fryingTime: 0
   microwavingTime: 0
   roastingTime: 0
-  foodEffect: {fileID: 0}
+  isCooked: 0
 --- !u!114 &2911691770285982606
 MonoBehaviour:
   m_ObjectHideFlags: 0

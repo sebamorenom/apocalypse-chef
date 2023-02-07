@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Plate : MonoBehaviour
 {
     [SerializeField] private float separationAcrossIngredients;
     [SerializeField] private Collider plateCollider;
+    [SerializeField] private Collider placementTrigger;
+
+    [SerializeField] private List<string> foodStacked;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,16 +46,28 @@ public class Plate : MonoBehaviour
             otherTransform.position = placementPosition;
             otherTransform.rotation = placementTransform.rotation;
             otherTransform.parent = placementTransform;
+            Vector3 newPlacementMaxBound = new Vector3(placementTrigger.bounds.max.x,
+                other.bounds.max.y + 0.5f,
+                placementTrigger.bounds.max.z);
+            placementTrigger.bounds.SetMinMax(placementTrigger.bounds.min, newPlacementMaxBound);
             DisableAndMakeGrabbable(otherRigidbody);
+            foodStacked.Insert(0, other.GetComponent<Ingredient>().foodIdentifier);
         }
     }
 
     private void DisableAndMakeGrabbable(Rigidbody otherRigidbody)
     {
         Destroy(otherRigidbody);
-        otherRigidbody.GetComponent<GrabbableChild>().grabParent = GetComponent<Grabbable>();
+        GrabbableChild otherGrabbChild = otherRigidbody.AddComponent<GrabbableChild>();
+        otherGrabbChild.grabParent = GetComponent<Grabbable>();
+        Destroy(otherRigidbody.GetComponent<Ingredient>());
         /*otherRigidbody.isKinematic = false;
         otherRigidbody.useGravity = false;
         otherRigidbody.detectCollisions = false;*/
+    }
+
+    public string[] GetFoodOnPlate()
+    {
+        return foodStacked.ToArray();
     }
 }

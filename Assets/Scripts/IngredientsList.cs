@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Ingredients List")]
 public class IngredientsList : ScriptableObject
 {
-    [SerializeField] private string[] ingredientList;
+    [SerializeField] private Ingredient[] ingredientList;
 
-    public string GetRandomIngredient()
+    public Ingredient GetRandomIngredient()
     {
         return ingredientList[Random.Range(0, ingredientList.Length)];
     }

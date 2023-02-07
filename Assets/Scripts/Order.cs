@@ -1,23 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Order : MonoBehaviour
+[CreateAssetMenu(menuName = "Order")]
+public class Order : ScriptableObject
 {
-    public string[] orderIngredients;
+    [SerializeField] private GameSettings settings;
+    [HideInInspector] public TextMeshProUGUI text;
+    public string[] orderIngredients = new string[3];
+    public IngredientsList ingList;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// This method goes through a list of the ingredients of the order and presents them in a text format
+    /// </summary>
+    /// <returns>
+    /// A string containing the identifiers of the ingredients that this order is made of, in the specific order they are placed
+    /// </returns>
+    public string ToShow()
     {
+        string toShow = "";
+        for (int i = 0; i < orderIngredients.Length; i++)
+        {
+            toShow += "-";
+            toShow += orderIngredients[i];
+            if (i != orderIngredients.Length - 1)
+            {
+                toShow += "\n";
+            }
+        }
+
+        return toShow;
     }
 
-    public Order(int numIngredients)
+    public void Fill()
     {
-        orderIngredients = new string[numIngredients];
-    }
+        orderIngredients = new string[3];
+        var i = 0;
+        while (i < orderIngredients.Length)
+        {
+            orderIngredients[i++] = ingList.GetRandomIngredient().foodIdentifier;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        text.text = ToShow();
+        Debug.Log(text.text);
     }
 }

@@ -8,7 +8,6 @@ public class CookingTool : MonoBehaviour
 {
     [SerializeField] public string toolIdentifier;
     public List<Ingredient> cookingIngredients = new List<Ingredient>(2);
-    private List<Coroutine> cookingCoroutines = new List<Coroutine>(2);
     private FoodProcesser fProcesser;
 
     private void Start()
@@ -43,7 +42,6 @@ public class CookingTool : MonoBehaviour
         {
             print("In cooking trigger");
             int index = cookingIngredients.IndexOf(other.GetComponent<Ingredient>());
-            StopCoroutine(cookingCoroutines[index]);
             RemoveIngredientsFromLists(index);
         }
     }
@@ -54,10 +52,11 @@ public class CookingTool : MonoBehaviour
         {
             cookingIngredients.RemoveAt(1);
         }
+
         var foodToInsert = other.GetComponent<Ingredient>();
         if (!foodToInsert.isCooked)
         {
-            cookingCoroutines.Add(StartCoroutine(cookable.Cook(toolIdentifier)));
+            cookable.Cook(toolIdentifier);
         }
 
         cookingIngredients.Insert(0, other.GetComponent<Ingredient>());
@@ -68,7 +67,6 @@ public class CookingTool : MonoBehaviour
     {
         GameObject auxGameObj = cookingIngredients[index].gameObject;
         cookingIngredients.RemoveAt(index);
-        cookingCoroutines.RemoveAt(index);
         return auxGameObj;
     }
 }

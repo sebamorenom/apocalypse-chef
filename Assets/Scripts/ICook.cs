@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface ICook
 {
-    public IEnumerator Cook(string toolIdentifier);
+    public void Cook(string toolIdentifier);
+    public IEnumerator StartCooking(string toolIdentifier);
+
+    public void StopCooking();
 }
