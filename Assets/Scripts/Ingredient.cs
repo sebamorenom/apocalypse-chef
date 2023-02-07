@@ -21,7 +21,8 @@ public class Ingredient : MonoBehaviour, ICook
     public string cookingState;
     public float cookingTime;
 
-    [Header("Cooking Time")] [Range(0, 10f)]
+    [Header("Cooking Time")]
+    [Range(0, 10f)]
     public float fryingTime;
 
     [Range(0, 10f)] public float microwavingTime;
@@ -31,7 +32,7 @@ public class Ingredient : MonoBehaviour, ICook
     private IEnumerator cookingCoroutine;
 
     private Transform _transform;
-    private Rigidbody _rb;
+    public Rigidbody rb;
     private Grabbable _grab;
 
 
@@ -40,7 +41,7 @@ public class Ingredient : MonoBehaviour, ICook
         //skMRenderer = GetComponent<SkinnedMeshRenderer>()
 
         _transform = transform;
-        _rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         _grab = GetComponent<Grabbable>();
     }
 

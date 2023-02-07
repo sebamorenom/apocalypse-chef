@@ -57,6 +57,7 @@ public class Plate : MonoBehaviour
 
     private void DisableAndMakeGrabbable(Rigidbody otherRigidbody)
     {
+        Destroy(otherRigidbody.GetComponent<Grabbable>());
         Destroy(otherRigidbody);
         GrabbableChild otherGrabbChild = otherRigidbody.AddComponent<GrabbableChild>();
         otherGrabbChild.grabParent = GetComponent<Grabbable>();
