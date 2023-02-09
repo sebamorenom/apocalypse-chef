@@ -77,15 +77,15 @@ public class OrderShower : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (checking)
+        //if (checking)
+        //{
+        Plate tryPlate;
+        if (other.TryGetComponent<Plate>(out tryPlate))
         {
-            Plate tryPlate;
-            if (other.TryGetComponent<Plate>(out tryPlate))
-            {
-                CheckCompletion(tryPlate);
-            }
-
-            Destroy(other.gameObject);
+            CheckCompletion(tryPlate);
         }
+
+        Destroy(other.gameObject);
+        //}
     }
 }
