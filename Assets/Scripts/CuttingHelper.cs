@@ -32,7 +32,7 @@ public class CuttingHelper : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Blade") && GetVelocitySum(other.attachedRigidbody) > minCuttingSpeedThreshold)
+        if (other.CompareTag("Blade") && -_transform.InverseTransformVector(other.attachedRigidbody.velocity).y > minCuttingSpeedThreshold)
         {
             if (foodToCut != null)
             {
