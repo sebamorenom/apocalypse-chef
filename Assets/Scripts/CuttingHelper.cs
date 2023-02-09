@@ -32,7 +32,8 @@ public class CuttingHelper : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Blade") && -_transform.InverseTransformVector(other.attachedRigidbody.velocity).y > minCuttingSpeedThreshold)
+        if (other.CompareTag("Blade") && -_transform.InverseTransformVector(other.attachedRigidbody.velocity).y >
+            minCuttingSpeedThreshold)
         {
             if (foodToCut != null)
             {
@@ -66,13 +67,15 @@ public class CuttingHelper : MonoBehaviour
         //other.transform.position = transform.position;
         other.attachedRigidbody.velocity = Vector3.zero;
         other.attachedRigidbody.isKinematic = true;
-        other.enabled = false;
+        //other.enabled = false;
+        other.gameObject.layer = LayerMask.NameToLayer("FoodToCut");
     }
 
     private void TakeOut(Collider other)
     {
         other.attachedRigidbody.isKinematic = false;
         other.enabled = true;
+        other.gameObject.layer = LayerMask.NameToLayer("Food");
         foodToCut = null;
     }
 
