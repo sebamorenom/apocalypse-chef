@@ -9,10 +9,18 @@ using Vector3 = UnityEngine.Vector3;
 
 public class CuttingHelper : MonoBehaviour
 {
-    [SerializeField] private float cuttingBoxThreshold;
+    [SerializeField] private float minCuttingSpeedThreshold;
     [SerializeField] [Range(0, 1f)] private float precisionForCut = 0.7f;
     private Ingredient foodToCut;
-    private int cuttingDir = -1;
+
+    private Rigidbody _rb;
+    private Transform _transform;
+
+    private void Start()
+    {
+        _transform = transform;
+        _rb = GetComponent<Rigidbody>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,12 +29,41 @@ public class CuttingHelper : MonoBehaviour
         {
             foodToCut = tryIng;
             PrepareToCut(other);
+            return;
         }
+
+        if (other.CompareTag("Blade") && GetVelocitySum(other.attachedRigidbody) > minCuttingSpeedThreshold)
+        {
+            if (foodToCut != null)
+            {
+                foodToCut.cuttingHealth = Mathf.Max(foodToCut.cuttingHealth - 20f, 0f);
+                if (foodToCut.cuttingHealth == 0)
+                {
+                    Instantiate(foodToCut.cutIngredient, transform.position, Quaternion.identity);
+                    Destroy(foodToCut.gameObject);
+                    foodToCut = null;
+                }
+            }
+        }
+    }
+
+    private float GetVelocitySum(Rigidbody bladeRigidbody)
+    {
+        Rigidbody parentRigidbody = transform.parent.GetComponent<Rigidbody>();
+        //Calculate the food velocity in the blade local space
+        Vector3 bladeSpeedInCuttingLocal = _transform.InverseTransformVector(bladeRigidbody.velocity);
+        //Calculate the CuttingHelper velocity in its own local space
+        Vector3 cuttingSpeedLocal = _transform.InverseTransformVector(_rb.velocity);
+        float bladeForce = bladeSpeedInCuttingLocal.y * bladeRigidbody.mass;
+        float cuttingHelperForce = cuttingSpeedLocal.y * _rb.mass;
+        float impactForce = Mathf.Abs(cuttingHelperForce - bladeForce);
+        print(impactForce);
+        return impactForce;
     }
 
     private void PrepareToCut(Collider other)
     {
-        other.transform.position = transform.position;
+        //other.transform.position = transform.position;
         other.attachedRigidbody.velocity = Vector3.zero;
         other.attachedRigidbody.isKinematic = true;
         other.enabled = false;
@@ -41,23 +78,6 @@ public class CuttingHelper : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Blade") && foodToCut != null)
-        {
-            Rigidbody otherRigidbody = other.attachedRigidbody;
-            var dotWithBlade = Vector3.Dot(other.transform.forward, transform.up);
-            if (otherRigidbody.velocity.magnitude > cuttingBoxThreshold &&
-                Mathf.Abs(dotWithBlade) > precisionForCut && Math.Sign(dotWithBlade) != cuttingDir)
-            {
-                foodToCut.cuttingHealth = Mathf.Max(foodToCut.cuttingHealth - 20f, 0f);
-                cuttingDir *= -1;
-                if (foodToCut.cuttingHealth == 0)
-                {
-                    Instantiate(foodToCut.cutIngredient, transform.position, Quaternion.identity);
-                    Destroy(foodToCut.gameObject);
-                    foodToCut = null;
-                }
-            }
-        }
     }
 
     private void OnTriggerExit(Collider other)
