@@ -10,8 +10,18 @@ public class Plate : MonoBehaviour
     [SerializeField] private float separationAcrossIngredients;
     [SerializeField] private Collider plateCollider;
     [SerializeField] private Collider placementTrigger;
-
+    [SerializeField] [Range(0, 10f)] private float triggerHeight;
     [SerializeField] private List<string> foodStacked;
+    private Bounds triggerBounds;
+    private Transform _transform;
+
+    private void Start()
+    {
+        _transform = transform;
+        triggerBounds = placementTrigger.bounds;
+        placementTrigger.bounds.SetMinMax(triggerBounds.min,
+            new Vector3(triggerBounds.max.x, triggerBounds.min.y + triggerHeight, triggerBounds.max.z));
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,10 +30,11 @@ public class Plate : MonoBehaviour
             var otherTransform = other.transform;
             var otherRigidbody = other.attachedRigidbody;
             otherRigidbody.isKinematic = true;
-            var placementTransform = transform.GetChild(0);
+            var placementTransform = _transform;
             Vector3 placementPosition;
             float previousObjectHalfHeight;
-            if (placementTransform.childCount == 0)
+
+            if (placementTransform.childCount == 1)
             {
                 previousObjectHalfHeight = (plateCollider.bounds.max.y - plateCollider.bounds.min.y) / 2;
                 placementPosition = new Vector3(placementTransform.position.x,
@@ -46,10 +57,16 @@ public class Plate : MonoBehaviour
             otherTransform.position = placementPosition;
             otherTransform.rotation = placementTransform.rotation;
             otherTransform.parent = placementTransform;
-            Vector3 newPlacementMaxBound = new Vector3(placementTrigger.bounds.max.x,
+
+            /*Vector3 newPlacementMaxBound = new Vector3(placementTrigger.bounds.max.x,
                 other.bounds.max.y + 0.5f,
                 placementTrigger.bounds.max.z);
-            placementTrigger.bounds.SetMinMax(placementTrigger.bounds.min, newPlacementMaxBound);
+                */
+            var placementTriggerHeight =
+                new Vector3(0, placementTrigger.bounds.max.y - placementTrigger.bounds.min.y, 0);
+            placementTrigger.transform.position = placementPosition + yOffset;
+            //MoveTriggerBounds(other);
+            //placementTrigger.bounds.SetMinMax(placementTrigger.bounds.min, newPlacementMaxBound);
             DisableAndMakeGrabbable(otherRigidbody);
             foodStacked.Insert(0, other.GetComponent<Ingredient>().foodIdentifier);
         }
@@ -67,8 +84,16 @@ public class Plate : MonoBehaviour
         otherRigidbody.detectCollisions = false;*/
     }
 
+    private void MoveTriggerBounds(Collider foodColl)
+    {
+        var newMin = new Vector3(triggerBounds.min.x, foodColl.bounds.max.y, triggerBounds.min.z);
+        placementTrigger.bounds.SetMinMax(newMin,
+            new Vector3(triggerBounds.max.x, newMin.y + triggerHeight, triggerBounds.max.z));
+    }
+
     public string[] GetFoodOnPlate()
     {
         return foodStacked.ToArray();
     }
+
 }

@@ -10,7 +10,9 @@ using Vector3 = UnityEngine.Vector3;
 public class CuttingHelper : MonoBehaviour
 {
     [SerializeField] private float cuttingBoxThreshold;
+    [SerializeField] [Range(0, 1f)] private float precisionForCut = 0.7f;
     private Ingredient foodToCut;
+    private int cuttingDir = -1;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,10 +44,12 @@ public class CuttingHelper : MonoBehaviour
         if (other.CompareTag("Blade") && foodToCut != null)
         {
             Rigidbody otherRigidbody = other.attachedRigidbody;
+            var dotWithBlade = Vector3.Dot(other.transform.forward, transform.up);
             if (otherRigidbody.velocity.magnitude > cuttingBoxThreshold &&
-                Vector3.Dot(other.transform.forward, transform.up) < -0.6f)
+                Mathf.Abs(dotWithBlade) > precisionForCut && Math.Sign(dotWithBlade) == cuttingDir)
             {
                 foodToCut.cuttingHealth = Mathf.Max(foodToCut.cuttingHealth - 20f, 0f);
+                cuttingDir *= -1;
                 if (foodToCut.cuttingHealth == 0)
                 {
                     Instantiate(foodToCut.cutIngredient, transform.position, Quaternion.identity);

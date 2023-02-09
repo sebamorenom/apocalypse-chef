@@ -12,6 +12,8 @@ public class OrderShower : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] orderText;
     [SerializeField] private Order[] orderList;
 
+    private bool checking;
+
     private void Start()
     {
         for (int i = 0; i < orderList.Length; i++)
@@ -73,12 +75,17 @@ public class OrderShower : MonoBehaviour
         return toText;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        Plate tryPlate;
-        if (other.TryGetComponent<Plate>(out tryPlate))
+        if (checking)
         {
-            CheckCompletion(tryPlate);
+            Plate tryPlate;
+            if (other.TryGetComponent<Plate>(out tryPlate))
+            {
+                CheckCompletion(tryPlate);
+            }
+
+            Destroy(other.gameObject);
         }
     }
 }
