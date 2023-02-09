@@ -46,7 +46,7 @@ public class CuttingHelper : MonoBehaviour
             Rigidbody otherRigidbody = other.attachedRigidbody;
             var dotWithBlade = Vector3.Dot(other.transform.forward, transform.up);
             if (otherRigidbody.velocity.magnitude > cuttingBoxThreshold &&
-                Mathf.Abs(dotWithBlade) > precisionForCut && Math.Sign(dotWithBlade) == cuttingDir)
+                Mathf.Abs(dotWithBlade) > precisionForCut && Math.Sign(dotWithBlade) != cuttingDir)
             {
                 foodToCut.cuttingHealth = Mathf.Max(foodToCut.cuttingHealth - 20f, 0f);
                 cuttingDir *= -1;
