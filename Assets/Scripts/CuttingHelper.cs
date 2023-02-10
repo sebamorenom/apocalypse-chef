@@ -104,13 +104,4 @@ public class CuttingHelper : MonoBehaviour
             tryIng.ActivateCuttingMode();
         }
     }
-
-    private void OnCollisionExit(Collision other)
-    {
-        Ingredient tryIng;
-        if (other.collider.TryGetComponent(out tryIng))
-        {
-            tryIng.DeactivateCuttingMode();
-        }
-    }
 }
