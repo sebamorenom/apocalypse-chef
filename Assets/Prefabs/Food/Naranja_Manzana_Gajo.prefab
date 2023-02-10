@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 2856461431920555907}
   - component: {fileID: 18234026731668297}
   - component: {fileID: 1693725515670101953}
-  - component: {fileID: 1693725515670101954}
   - component: {fileID: 1693725515670101955}
+  - component: {fileID: 6220199443643890006}
+  - component: {fileID: 3434301641623256243}
   m_Layer: 0
   m_Name: Naranja_Manzana_Gajo
-  m_TagString: Untagged
+  m_TagString: Ingredient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,20 +103,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1693725515670101954
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963635065045197468}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.0034265793
-  m_Height: 0.02215859
-  m_Direction: 0
-  m_Center: {x: -0.00018126357, y: 0.0000000018381493, z: -0.00020872982}
 --- !u!114 &1693725515670101955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +128,7 @@ MonoBehaviour:
   parentOnGrab: 1
   throwPower: 1
   jointBreakForce: 3500
-  showAdvancedSettings: 0
+  showAdvancedSettings: 1
   handType: 0
   grabType: 0
   useGentleGrab: 0
@@ -149,7 +136,7 @@ MonoBehaviour:
   pullApartBreakOnly: 1
   customGrabJoint: {fileID: 0}
   ignoreReleaseTime: 0.5
-  grabPriorityWeight: 1
+  grabPriorityWeight: 3
   heldPositionOffset: {x: 0, y: 0, z: 0}
   heldRotationOffset: {x: 0, y: 0, z: 0}
   jointedBodies: []
@@ -178,3 +165,44 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &6220199443643890006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963635065045197468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: Gajo
+  cutIngredient: {fileID: 0}
+  cuttingHealth: 9999999
+  cutVFX: {fileID: 0}
+  minCuttingThreshold: 1000
+  canBeFried: 0
+  canBeMicrowaved: 0
+  canBeRoasted: 0
+  cookingState: 
+  cookingTime: 0
+  fryingTime: 0
+  microwavingTime: 0
+  roastingTime: 0
+  isCooked: 0
+  rb: {fileID: 0}
+  cuttingMode: 0
+--- !u!65 &3434301641623256243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963635065045197468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02215859, y: 0.007160914, z: 0.014252816}
+  m_Center: {x: -0.00018126378, y: 3.4924597e-10, z: 0.00091212476}

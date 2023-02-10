@@ -27,6 +27,7 @@ public class Plate : MonoBehaviour
     {
         if (other.CompareTag("Ingredient"))
         {
+            other.GetComponent<Grabbable>().isGrabbable = false;
             var otherTransform = other.transform;
             var otherRigidbody = other.attachedRigidbody;
             otherRigidbody.isKinematic = true;
