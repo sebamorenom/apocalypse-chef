@@ -22,11 +22,11 @@ public class CuttingHelper : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         Ingredient tryIng;
 
-        if (other.GetComponent<Ingredient>() != null) //*other.TryGetComponent<Ingredient>(out tryIng)*/)
+        if (other.TryGetComponent<Ingredient>(out tryIng) && tryIng != foodToCut)
         {
             foodToCut = other.GetComponent<Ingredient>();
             PrepareToCut(other);
@@ -93,6 +93,24 @@ public class CuttingHelper : MonoBehaviour
             {
                 TakeOut(other);
             }
+        }
+    }*/
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Ingredient tryIng;
+        if (collision.collider.TryGetComponent(out tryIng))
+        {
+            tryIng.ActivateCuttingMode();
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        Ingredient tryIng;
+        if (other.collider.TryGetComponent(out tryIng))
+        {
+            tryIng.DeactivateCuttingMode();
         }
     }
 }

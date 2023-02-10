@@ -13,6 +13,7 @@ public class Ingredient : MonoBehaviour, ICook
     [Header("Cut parameters")] public GameObject cutIngredient;
     public float cuttingHealth;
     public VisualEffect cutVFX;
+    public float minCuttingThreshold;
 
     [Header("Cooking Type")] public bool canBeFried;
     public bool canBeMicrowaved;
@@ -21,8 +22,7 @@ public class Ingredient : MonoBehaviour, ICook
     public string cookingState;
     public float cookingTime;
 
-    [Header("Cooking Time")]
-    [Range(0, 10f)]
+    [Header("Cooking Time")] [Range(0, 10f)]
     public float fryingTime;
 
     [Range(0, 10f)] public float microwavingTime;
@@ -34,7 +34,8 @@ public class Ingredient : MonoBehaviour, ICook
     private Transform _transform;
     public Rigidbody rb;
     private Grabbable _grab;
-
+    private Collider[] _colliders;
+    public bool cuttingMode;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class Ingredient : MonoBehaviour, ICook
         _transform = transform;
         rb = GetComponent<Rigidbody>();
         _grab = GetComponent<Grabbable>();
+        _colliders = GetComponents<Collider>();
     }
 
     public void Cook(string toolIdentifier)
@@ -124,6 +126,21 @@ public class Ingredient : MonoBehaviour, ICook
         isCooked = true;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (cuttingMode)
+        {
+            if (other.CompareTag("Blade") && other.attachedRigidbody.velocity.magnitude > minCuttingThreshold)
+            {
+                cuttingHealth = Mathf.Max(cuttingHealth - 20f, 0);
+                if (cuttingHealth == 0)
+                {
+                    Instantiate(cutIngredient, _transform.position, _transform.rotation);
+                }
+            }
+        }
+    }
+
     public void StopCooking()
     {
         StopCoroutine(cookingCoroutine);
@@ -145,5 +162,36 @@ public class Ingredient : MonoBehaviour, ICook
         cutVFX?.Play();
         //yield return WaitUntil();
         Destroy((this));
+    }
+
+    public void ActivateCuttingMode()
+    {
+        if (cuttingMode == false)
+        {
+            foreach (var coll in _colliders)
+            {
+                coll.isTrigger = true;
+            }
+
+            rb.isKinematic = true;
+        }
+    }
+
+    public void DeactivateCuttingMode()
+    {
+        if (cuttingMode == true)
+        {
+            foreach (var coll in _colliders)
+            {
+                coll.isTrigger = false;
+            }
+
+            rb.isKinematic = false;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawCube(transform.position, Vector3.one);
     }
 }
