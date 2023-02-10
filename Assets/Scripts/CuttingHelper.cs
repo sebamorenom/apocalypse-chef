@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -25,17 +25,18 @@ public class CuttingHelper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Ingredient tryIng;
-        if (other.TryGetComponent<Ingredient>(out tryIng))
+
+        if (other.GetComponent<Ingredient>() != null) //*other.TryGetComponent<Ingredient>(out tryIng)*/)
         {
-            foodToCut = tryIng;
+            foodToCut = other.GetComponent<Ingredient>();
             PrepareToCut(other);
             return;
         }
 
-        if (other.CompareTag("Blade") && -_transform.InverseTransformVector(other.attachedRigidbody.velocity).y >
-            minCuttingSpeedThreshold)
+        if (foodToCut != null)
         {
-            if (foodToCut != null)
+            if (other.CompareTag("Blade") && -_transform.InverseTransformVector(other.attachedRigidbody.velocity).y >
+                minCuttingSpeedThreshold)
             {
                 foodToCut.cuttingHealth = Mathf.Max(foodToCut.cuttingHealth - 20f, 0f);
                 if (foodToCut.cuttingHealth == 0)
