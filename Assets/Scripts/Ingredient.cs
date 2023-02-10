@@ -127,7 +127,7 @@ public class Ingredient : MonoBehaviour, ICook
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+	{
         if (cuttingMode)
         {
             if (other.CompareTag("Blade") && other.attachedRigidbody.velocity.magnitude > minCuttingThreshold)
@@ -136,7 +136,8 @@ public class Ingredient : MonoBehaviour, ICook
                 cuttingHealth = Mathf.Max(cuttingHealth - 20f, 0);
                 if (cuttingHealth == 0)
                 {
-                    Instantiate(cutIngredient, _transform.position, _transform.rotation);
+	                Instantiate(cutIngredient, _transform.position, _transform.rotation);
+	                Destroy(gameObject);
                 }
             }
         }
@@ -183,7 +184,8 @@ public class Ingredient : MonoBehaviour, ICook
                 coll.isTrigger = true;
             }
 
-            rb.isKinematic = true;
+	        rb.isKinematic = true;
+	        cuttingMode=true;
         }
     }
 
