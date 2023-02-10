@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &602248979672960666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3324725168165489578}
+  - component: {fileID: 2645888203365956413}
+  - component: {fileID: 343937941282616617}
+  m_Layer: 0
+  m_Name: RoastingTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3324725168165489578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602248979672960666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0003, z: 0}
+  m_LocalScale: {x: 0.4762069, y: 0.33834007, z: 0.3636}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8775644017282263286}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2645888203365956413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602248979672960666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22dc0f707bc80c042b3997c5c97e7e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolIdentifier: Oven
+  cookingIngredients: []
+--- !u!65 &343937941282616617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602248979672960666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.9384218, z: 1}
+  m_Center: {x: 0, y: -0.030789517, z: 0}
 --- !u!1 &8775644017282263287
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +90,7 @@ Transform:
   m_Children:
   - {fileID: 9098362789075016389}
   - {fileID: 9098362789599607969}
+  - {fileID: 3324725168165489578}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,7 +186,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7971492607158903666, guid: 685301ea9b9185f43af1dd76bb606039, type: 3}
+    - {fileID: 7971492607158903665, guid: 685301ea9b9185f43af1dd76bb606039, type: 3}
+    - {fileID: 7971492607158903664, guid: 685301ea9b9185f43af1dd76bb606039, type: 3}
+    - {fileID: 7971492607158903671, guid: 685301ea9b9185f43af1dd76bb606039, type: 3}
+    - {fileID: 7971492607158903670, guid: 685301ea9b9185f43af1dd76bb606039, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 685301ea9b9185f43af1dd76bb606039, type: 3}
 --- !u!4 &9098362789075016389 stripped
 Transform:
@@ -248,22 +314,22 @@ PrefabInstance:
     - target: {fileID: 2673364522302055934, guid: d5312556887b359419657c48eb97854f,
         type: 3}
       propertyPath: m_Size.z
-      value: 0.00011056676
+      value: 0.000741957
       objectReference: {fileID: 0}
     - target: {fileID: 2673364522302055934, guid: d5312556887b359419657c48eb97854f,
         type: 3}
       propertyPath: m_Center.x
-      value: 1.9147112e-18
+      value: 1.9658462e-18
       objectReference: {fileID: 0}
     - target: {fileID: 2673364522302055934, guid: d5312556887b359419657c48eb97854f,
         type: 3}
       propertyPath: m_Center.y
-      value: -3.3790404e-17
+      value: -1.3957207e-17
       objectReference: {fileID: 0}
     - target: {fileID: 2673364522302055934, guid: d5312556887b359419657c48eb97854f,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.002444711
+      value: -0.0021290123
       objectReference: {fileID: 0}
     - target: {fileID: 3015400810655847555, guid: d5312556887b359419657c48eb97854f,
         type: 3}

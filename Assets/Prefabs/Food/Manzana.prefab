@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8799298409706092678}
   - component: {fileID: 8799298409706092677}
   - component: {fileID: 8799298409706092676}
+  - component: {fileID: 366336419346529824}
   m_Layer: 0
   m_Name: Manzana
   m_TagString: Untagged
@@ -178,3 +179,32 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &366336419346529824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564732245934196179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: Apple
+  cutIngredient: {fileID: 1963635065045197468, guid: 4256e2a4ca0021e4c9fae26169790cf0,
+    type: 3}
+  cuttingHealth: 100
+  cutVFX: {fileID: 0}
+  minCuttingThreshold: 3
+  canBeFried: 0
+  canBeMicrowaved: 0
+  canBeRoasted: 0
+  cookingState: 
+  cookingTime: 0
+  fryingTime: 0
+  microwavingTime: 0
+  roastingTime: 0
+  isCooked: 0
+  rb: {fileID: 0}
+  cuttingMode: 0

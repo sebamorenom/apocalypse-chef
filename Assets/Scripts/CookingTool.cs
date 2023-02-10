@@ -1,9 +1,8 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(FoodProcesser))]
 public class CookingTool : MonoBehaviour
 {
     [SerializeField] public string toolIdentifier;

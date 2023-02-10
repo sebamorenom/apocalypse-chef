@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8583696114036502965}
   - component: {fileID: 8583696114036502966}
   - component: {fileID: 8583696114036502964}
+  - component: {fileID: 2824434736142942979}
   m_Layer: 0
   m_Name: Muslo de pollo
   m_TagString: Untagged
@@ -193,3 +194,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &2824434736142942979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8925575852851645672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: ChickenWing
+  cutIngredient: {fileID: 0}
+  cuttingHealth: 0
+  cutVFX: {fileID: 0}
+  minCuttingThreshold: 0
+  canBeFried: 1
+  canBeMicrowaved: 0
+  canBeRoasted: 0
+  cookingState: 
+  cookingTime: 0
+  fryingTime: 6.69
+  microwavingTime: 0
+  roastingTime: 0
+  isCooked: 0
+  rb: {fileID: 0}
+  cuttingMode: 0
