@@ -83,9 +83,9 @@ public class OrderShower : MonoBehaviour
         if (other.TryGetComponent<Plate>(out tryPlate))
         {
             CheckCompletion(tryPlate);
+            Destroy(other.gameObject);
         }
 
-        Destroy(other.gameObject);
         //}
     }
 }
