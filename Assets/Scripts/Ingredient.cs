@@ -132,12 +132,22 @@ public class Ingredient : MonoBehaviour, ICook
         {
             if (other.CompareTag("Blade") && other.attachedRigidbody.velocity.magnitude > minCuttingThreshold)
             {
+                Debug.Log("Corte");
                 cuttingHealth = Mathf.Max(cuttingHealth - 20f, 0);
                 if (cuttingHealth == 0)
                 {
                     Instantiate(cutIngredient, _transform.position, _transform.rotation);
                 }
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        CuttingHelper tryCHelper;
+        if (other.TryGetComponent(out tryCHelper))
+        {
+            DeactivateCuttingMode();
         }
     }
 
