@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
+using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -11,7 +12,7 @@ public class Ingredient : MonoBehaviour, ICook
 {
     [Header("Ingredient parameters")] public string foodIdentifier;
     [Header("Cut parameters")] public GameObject cutIngredient;
-    public float cuttingHealth;
+    [ReadOnly] Health cuttingHealth;
     public VisualEffect cutVFX;
     public float minCuttingThreshold;
 
@@ -45,6 +46,7 @@ public class Ingredient : MonoBehaviour, ICook
         rb = GetComponent<Rigidbody>();
         _grab = GetComponent<Grabbable>();
         _colliders = GetComponents<Collider>();
+        cuttingHealth = GetComponent<Health>();
     }
 
     public void Cook(string toolIdentifier)
@@ -133,8 +135,8 @@ public class Ingredient : MonoBehaviour, ICook
             if (other.CompareTag("Blade") && other.attachedRigidbody.velocity.magnitude > minCuttingThreshold)
             {
                 Debug.Log("Corte");
-                cuttingHealth = Mathf.Max(cuttingHealth - 20f, 0);
-                if (cuttingHealth == 0)
+                cuttingHealth.Hurt(20);
+                if (cuttingHealth.currentHealth == 0)
                 {
                     Instantiate(cutIngredient, _transform.position, _transform.rotation);
                     Destroy(gameObject);

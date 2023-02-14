@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
+[Serializable]
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
-    [ReadOnly] private float currentHealth;
+    [ReadOnly] public float currentHealth;
     [SerializeField] public bool dead;
 
     private void Start()
@@ -15,9 +16,11 @@ public class Health : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
     }
 
-    public void Hurt(float damage)
+    public float Hurt(float damage)
     {
         Mathf.Max(currentHealth - damage, 0);
         if (currentHealth == 0) dead = true;
+
+        return currentHealth;
     }
 }
