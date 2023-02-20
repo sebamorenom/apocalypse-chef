@@ -11,15 +11,16 @@ public delegate void OnTravel();
 
 public class Weapon : MonoBehaviour
 {
-    public string weaponIdentifier;
     public float damage;
     [SerializeField] protected float minSpeedOnHitThreshold;
     [SerializeField] protected float minSpeedOnTravelThreshold;
     public bool thrown;
     public WeaponEffect wEffect;
 
-
+    private Transform _transform;
     private Rigidbody _rb;
+    private Collider _collider;
+
 
     public OnHit onHit;
 
@@ -27,8 +28,18 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        if (wEffect != null) onHit += wEffect.onHit;
+        _transform = transform;
+        _collider = GetComponent<Collider>();
         _rb = GetComponent<Rigidbody>();
+
+        if (wEffect != null)
+        {
+            wEffect = Instantiate(wEffect);
+            wEffect.Fill(_transform, _collider, this);
+            wEffect.ApplyEffects();
+            onHit += wEffect.onHit;
+            if (wEffect != null) Debug.Log(onHit.GetInvocationList().Length);
+        }
     }
 
     // Start is called before the first frame update
@@ -41,7 +52,28 @@ public class Weapon : MonoBehaviour
     {
         if (_rb.velocity.magnitude >= minSpeedOnHitThreshold)
         {
-            if (onHit != null) onHit.Invoke();
+            if (collision.gameObject.TryGetComponent<IDamageable>(out var tryIDamageable))
+            {
+                tryIDamageable.Hurt(damage);
+            }
+
+            if (onHit != null)
+            {
+                //Debug.Log("OnHit Invocation Size: " + onHit.GetInvocationList().Length);
+                onHit.Invoke();
+                //Debug.Log("OnHit");
+            }
+        }
+
+        thrown = false;
+    }
+
+    public void CheckThrow()
+    {
+        if (_rb.velocity.magnitude >= minSpeedOnTravelThreshold)
+        {
+            thrown = true;
+            onTravel.Invoke();
         }
     }
 }

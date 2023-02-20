@@ -6,13 +6,14 @@ using UnityEngine;
 public class CookingTool : MonoBehaviour
 {
     [SerializeField] public string toolIdentifier;
+    [SerializeField] private int maxFoodItems;
     public List<Ingredient> cookingIngredients = new List<Ingredient>(2);
     private FoodProcesser fProcesser;
 
     private void Start()
     {
         fProcesser = GetComponent<FoodProcesser>();
-        cookingIngredients.Capacity = 2;
+        cookingIngredients.Capacity = maxFoodItems;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,7 @@ public class CookingTool : MonoBehaviour
         {
             //print("In cooking trigger");
             AddIngredientsToLists(other, cookable);
-            if (cookingIngredients.Count >= 2)
+            if (cookingIngredients.Count >= maxFoodItems)
             {
                 cookingIngredients.TrimExcess();
                 //print("Trying to change food");
@@ -40,6 +41,7 @@ public class CookingTool : MonoBehaviour
         if (other.TryGetComponent<ICook>(out cookable))
         {
             print("In cooking trigger");
+            cookable.StopCooking();
             int index = cookingIngredients.IndexOf(other.GetComponent<Ingredient>());
             RemoveIngredientsFromLists(index);
         }

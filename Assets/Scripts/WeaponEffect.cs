@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -30,18 +31,34 @@ public class WeaponEffect : ScriptableObject
     [HideInInspector] public float flammableRadius;
     [HideInInspector] public VisualEffect flammableVFX;
 
-    public bool testing;
+    [HideInInspector] public bool destroyOnHit;
+
+
+    [HideInInspector] public bool isBoomerang;
+    [HideInInspector] public float minDotYToLaunch = 0.5f;
+    [HideInInspector] public float timeToReturn;
+    [HideInInspector] public AnimationCurve parabolaZ;
+    [HideInInspector] public AnimationCurve parabolaX;
+
+    [Header("AudioClips")] [HideInInspector]
+    public AudioClip onThrowClip;
+
+    [HideInInspector] public AudioClip onDestroyClip;
+    [HideInInspector] public AudioClip onHandClip;
 
     [HideInInspector] public Transform fTransform;
     [HideInInspector] public Collider fCollider;
+    [HideInInspector] public MonoBehaviour mono;
 
     public OnHit onHit;
+    public OnTravel onTravel;
 
 
-    public void Fill(Transform foodTransform, Collider foodCollider)
+    public void Fill(Transform foodTransform, Collider foodCollider, MonoBehaviour monoBehaviour)
     {
         fTransform = foodTransform;
         fCollider = foodCollider;
+        mono = monoBehaviour;
     }
 
     public void Explode()
@@ -58,6 +75,7 @@ public class WeaponEffect : ScriptableObject
 
             if (entity.TryGetComponent<Rigidbody>(out tryRb))
             {
+                Debug.Log("Pushed");
                 tryRb.AddExplosionForce(explosionForce, fTransform.position, explosionRadius);
             }
         }
@@ -85,7 +103,7 @@ public class WeaponEffect : ScriptableObject
 
     public void Noise()
     {
-        StartNoise();
+        mono.StartCoroutine(StartNoise());
     }
 
     public IEnumerator StartNoise()
@@ -107,9 +125,40 @@ public class WeaponEffect : ScriptableObject
         }
     }
 
-    public void Testing()
+    public void ReturnToHand()
     {
-        Debug.Log("Testing");
+        mono.StartCoroutine(StartReturningToHand());
+    }
+
+    private IEnumerator StartReturningToHand()
+    {
+        Vector3 basePosition = fTransform.position;
+        Quaternion baseRotation = fTransform.rotation;
+        Vector3 baseRotationEuler = baseRotation.eulerAngles;
+        Quaternion finalRotation = Quaternion.Euler(baseRotationEuler + (Vector3.up * 180f));
+        Rigidbody fRb = fTransform.GetComponent<Rigidbody>();
+        Vector3 onThrowLocalVelocity = fTransform.InverseTransformDirection(fRb.velocity);
+        float initTime = Time.fixedTime;
+        if (Mathf.Abs(Vector3.Dot(onThrowLocalVelocity, Vector3.up)) > minDotYToLaunch)
+        {
+            while (Time.fixedTime <= initTime + timeToReturn)
+            {
+                Vector3 positionOffset = new Vector3(
+                    parabolaX.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalVelocity.x, 0f,
+                    parabolaZ.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalVelocity.z);
+                fTransform.rotation = Quaternion.Slerp(fTransform.rotation, finalRotation,
+                    (Time.fixedTime - initTime) / timeToReturn);
+                fTransform.position = new Vector3(basePosition.x + positionOffset.x, basePosition.y + positionOffset.y,
+                    basePosition.z + positionOffset.z);
+                yield return null;
+            }
+        }
+    }
+
+    public void DestroyOnHit()
+    {
+        mono.StopAllCoroutines();
+        Destroy(fCollider.gameObject);
     }
 
     public void ApplyEffects()
@@ -136,6 +185,10 @@ public class WeaponEffect : ScriptableObject
             onHit += Flammable;
         }
 
+        if (destroyOnHit)
+        {
+            onHit += DestroyOnHit;
+        }
 
         var invocationListLength = 0;
         if (onHit != null)
@@ -143,6 +196,11 @@ public class WeaponEffect : ScriptableObject
             invocationListLength = onHit.GetInvocationList().Length;
         }
 
-        Debug.Log(invocationListLength);
+        Debug.Log("OnHitEffectsCount: " + invocationListLength);
+
+        if (isBoomerang)
+        {
+            onTravel += ReturnToHand;
+        }
     }
 }

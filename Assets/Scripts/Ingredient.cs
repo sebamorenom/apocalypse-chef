@@ -74,7 +74,7 @@ public class Ingredient : MonoBehaviour, ICook
                 while (cookingTime < fryingTime)
                 {
                     //skMRenderer.SetBlendShapeWeight(0, cookingPercent + 1 / fryingTime);
-                    cookingTime += Time.deltaTime;
+                    cookingTime += Time.fixedDeltaTime;
                     yield return null;
                 }
 
@@ -96,7 +96,7 @@ public class Ingredient : MonoBehaviour, ICook
                 while (cookingTime < microwavingTime)
                 {
                     //skMRenderer.SetBlendShapeWeight(0, cookingPercent + 1 / microwavingTime);
-                    cookingTime += Time.deltaTime;
+                    cookingTime += Time.fixedDeltaTime;
                     yield return null;
                 }
 
@@ -117,7 +117,7 @@ public class Ingredient : MonoBehaviour, ICook
                 while (cookingTime < roastingTime)
                 {
                     //skMRenderer.SetBlendShapeWeight(0, cookingPercent + 1 / roastingTime);
-                    cookingTime += Time.deltaTime;
+                    cookingTime += Time.fixedDeltaTime;
                     yield return null;
                 }
 
