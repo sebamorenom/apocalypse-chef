@@ -113,8 +113,8 @@ Material:
     - _FlatRimEdgeSmoothness: 0.5
     - _FlatRimLightAlign: 0
     - _FlatRimSize: 0.682
-    - _FlatSpecularEdgeSmoothness: 0
-    - _FlatSpecularSize: 0.25
+    - _FlatSpecularEdgeSmoothness: 1
+    - _FlatSpecularSize: 0.304
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -139,7 +139,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 1
-    - _SelfShadingSize: 0
+    - _SelfShadingSize: 0.064
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 1
@@ -156,10 +156,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
-    - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailMapColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0.084905684, g: 0.028845703, b: 0, a: 0.85056}
-    - _FlatSpecularColor: {r: 0.09305898, g: 0.03189604, b: 0.02415763, a: 0.85056}
+    - _FlatSpecularColor: {r: 0.09305898, g: 0.016807375, b: 0.010960094, a: 0.85056}
     - _LightAttenuation: {r: 0, g: 1, b: 0, a: 0}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -172,7 +172,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__GradientRampTex{"mode":0,"colorKeys":[{"color":{"r":0.698113203048706,"g":0.6172884106636047,"b":0.5631007552146912,"a":1.0},"time":0.0},{"color":{"r":0.650943398475647,"g":0.2734059691429138,"b":0.19958171248435975,"a":1.0},"time":0.3794155716896057},{"color":{"r":0.4905660152435303,"g":0.29151272773742678,"b":0.14578141272068025,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_Name: z__GradientRampTex{"mode":0,"colorKeys":[{"color":{"r":0.698113203048706,"g":0.6172884106636047,"b":0.5631007552146912,"a":1.0},"time":0.0},{"color":{"r":0.6736143827438355,"g":0.4386845827102661,"b":0.37429821491241457,"a":1.0},"time":0.19705501198768617},{"color":{"r":0.650943398475647,"g":0.2734059691429138,"b":0.19958171248435975,"a":1.0},"time":0.3794155716896057},{"color":{"r":0.5870970487594605,"g":0.28061428666114809,"b":0.1781637817621231,"a":1.0},"time":0.6264743804931641},{"color":{"r":0.5688557624816895,"g":0.28267374634742739,"b":0.1720445454120636,"a":1.0},"time":0.697062611579895},{"color":{"r":0.4905660152435303,"g":0.29151272773742678,"b":0.14578141272068025,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
