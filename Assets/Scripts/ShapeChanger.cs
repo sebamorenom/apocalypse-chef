@@ -6,9 +6,12 @@ public class ShapeChanger : MonoBehaviour
 {
     [SerializeField] public bool changeProgressively;
     [SerializeField] private float timeToChangeShape;
+    [SerializeField] private bool changeDamage;
+    [SerializeField] private float damageModifier;
     private SkinnedMeshRenderer _skMeshRenderer;
     private Mesh _mesh;
     private int _blendShapeCount;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +25,15 @@ public class ShapeChanger : MonoBehaviour
     {
         if (index < _blendShapeCount && index >= 0)
         {
+            if (changeDamage)
+                GetComponent<Weapon>().ChangeDamage(damageModifier);
             if (!changeProgressively)
                 _skMeshRenderer.SetBlendShapeWeight(index, 1f);
             else
                 StartCoroutine(StartChangingShape(index));
         }
     }
+
 
     private IEnumerator StartChangingShape(int index)
     {

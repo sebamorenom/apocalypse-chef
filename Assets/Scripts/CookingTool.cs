@@ -7,30 +7,46 @@ public class CookingTool : MonoBehaviour
 {
     [SerializeField] public string toolIdentifier;
     [SerializeField] private int maxFoodItems;
-    public List<Ingredient> cookingIngredients = new List<Ingredient>(2);
+    public List<Ingredient> cookingIngredients;
     private FoodProcesser fProcesser;
 
     private void Start()
     {
         fProcesser = GetComponent<FoodProcesser>();
-        cookingIngredients.Capacity = maxFoodItems;
+        cookingIngredients = new List<Ingredient>(maxFoodItems);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Grill"))
+        {
+            foreach (var ingredient in cookingIngredients)
+            {
+                if (!ingredient.isCooked)
+                {
+                    ingredient.Cook(toolIdentifier);
+                }
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Grill"))
+        {
+            foreach (var ingredient in cookingIngredients)
+            {
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        ICook cookable;
-        if (other.TryGetComponent<ICook>(out cookable))
+        if (other.TryGetComponent<ICook>(out ICook cookable))
         {
-            //print("In cooking trigger");
-            AddIngredientsToLists(other, cookable);
-            if (cookingIngredients.Count >= maxFoodItems)
+            if (cookingIngredients.Count < maxFoodItems)
             {
-                cookingIngredients.TrimExcess();
-                //print("Trying to change food");
-                GameObject resulting = fProcesser.ChangeFood(cookingIngredients[0], cookingIngredients[1]);
-                Instantiate(resulting, transform.position, Quaternion.identity);
-                Destroy(RemoveIngredientsFromLists(0));
-                Destroy(RemoveIngredientsFromLists(0));
+                AddIngredientsToLists(other);
             }
         }
     }
@@ -40,34 +56,21 @@ public class CookingTool : MonoBehaviour
         ICook cookable;
         if (other.TryGetComponent<ICook>(out cookable))
         {
-            print("In cooking trigger");
             cookable.StopCooking();
             int index = cookingIngredients.IndexOf(other.GetComponent<Ingredient>());
             RemoveIngredientsFromLists(index);
         }
     }
 
-    private void AddIngredientsToLists(Collider other, ICook cookable)
+    private void AddIngredientsToLists(Collider other)
     {
-        if (cookingIngredients.Count == 2)
-        {
-            cookingIngredients.RemoveAt(1);
-        }
-
         var foodToInsert = other.GetComponent<Ingredient>();
-        if (!foodToInsert.isCooked)
-        {
-            cookable.Cook(toolIdentifier);
-        }
-
-        cookingIngredients.Insert(0, other.GetComponent<Ingredient>());
+        cookingIngredients.Insert(0, foodToInsert);
     }
 
 
-    private GameObject RemoveIngredientsFromLists(int index)
+    private void RemoveIngredientsFromLists(int index)
     {
-        GameObject auxGameObj = cookingIngredients[index].gameObject;
         cookingIngredients.RemoveAt(index);
-        return auxGameObj;
     }
 }

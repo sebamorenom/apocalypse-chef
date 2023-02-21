@@ -95,8 +95,8 @@ public class WeaponEffectEditor : Editor
                 EditorGUI.indentLevel++;
                 customInspector.minDotYToLaunch =
                     EditorGUILayout.FloatField("Minimum Dot Y to launch", customInspector.minDotYToLaunch);
-                customInspector.timeToReturn =
-                    EditorGUILayout.FloatField("Time to return", customInspector.timeToReturn);
+                customInspector.projectileVelocity =
+                    EditorGUILayout.CurveField("Projectile Velocity", customInspector.projectileVelocity);
                 customInspector.parabolaX =
                     EditorGUILayout.CurveField("Parabola X", customInspector.parabolaX);
                 customInspector.parabolaZ = EditorGUILayout.CurveField("Parabola Z", customInspector.parabolaZ);

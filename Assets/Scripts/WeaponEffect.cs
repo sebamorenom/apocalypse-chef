@@ -35,10 +35,11 @@ public class WeaponEffect : ScriptableObject
 
 
     [HideInInspector] public bool isBoomerang;
+    [HideInInspector] public float minStrengthToThrow = 1f;
     [HideInInspector] public float minDotYToLaunch = 0.5f;
-    [HideInInspector] public float timeToReturn;
     [HideInInspector] public AnimationCurve parabolaZ;
     [HideInInspector] public AnimationCurve parabolaX;
+    [HideInInspector] public AnimationCurve projectileVelocity;
 
     [Header("AudioClips")] [HideInInspector]
     public AudioClip onThrowClip;
@@ -137,19 +138,27 @@ public class WeaponEffect : ScriptableObject
         Vector3 baseRotationEuler = baseRotation.eulerAngles;
         Quaternion finalRotation = Quaternion.Euler(baseRotationEuler + (Vector3.up * 180f));
         Rigidbody fRb = fTransform.GetComponent<Rigidbody>();
+        Vector3 fRbVelocity = fRb.velocity;
+        float fRbVelocityMag = fRbVelocity.magnitude;
         Vector3 onThrowLocalVelocity = fTransform.InverseTransformDirection(fRb.velocity);
+        Vector3 onThrowLocalDir = onThrowLocalVelocity.normalized;
+        float timeToReturn = fRbVelocityMag;
         float initTime = Time.fixedTime;
-        if (Mathf.Abs(Vector3.Dot(onThrowLocalVelocity, Vector3.up)) > minDotYToLaunch)
+
+        if (Mathf.Abs(Vector3.Dot(fTransform.up, Vector3.up)) > minDotYToLaunch &&
+            fRbVelocityMag >= minStrengthToThrow)
         {
             while (Time.fixedTime <= initTime + timeToReturn)
             {
                 Vector3 positionOffset = new Vector3(
-                    parabolaX.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalVelocity.x, 0f,
-                    parabolaZ.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalVelocity.z);
+                    parabolaX.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalDir.x, 0f,
+                    parabolaZ.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalDir.z);
+                var dir = positionOffset - fTransform.position;
+                fRb.velocity = dir * projectileVelocity.Evaluate(Time.fixedTime - initTime / timeToReturn);
                 fTransform.rotation = Quaternion.Slerp(fTransform.rotation, finalRotation,
                     (Time.fixedTime - initTime) / timeToReturn);
-                fTransform.position = new Vector3(basePosition.x + positionOffset.x, basePosition.y + positionOffset.y,
-                    basePosition.z + positionOffset.z);
+                /*fTransform.position = new Vector3(basePosition.x + positionOffset.x, basePosition.y + positionOffset.y,
+                basePosition.z + positionOffset.z);*/
                 yield return null;
             }
         }

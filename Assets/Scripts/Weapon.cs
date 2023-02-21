@@ -23,7 +23,6 @@ public class Weapon : MonoBehaviour
 
 
     public OnHit onHit;
-
     public OnTravel onTravel;
 
     private void Start()
