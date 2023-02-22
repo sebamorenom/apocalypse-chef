@@ -36,9 +36,9 @@ public class WeaponEffect : ScriptableObject
     [HideInInspector] public bool isBoomerang;
     [HideInInspector] public float minStrengthToThrow = 1f;
     [HideInInspector] public float minDotYToLaunch = 0.5f;
-    [HideInInspector] public AnimationCurve parabolaZ;
-    [HideInInspector] public AnimationCurve parabolaX;
-    [HideInInspector] public AnimationCurve projectileVelocity;
+    [HideInInspector] public AnimationCurve parabolaZ = new AnimationCurve();
+    [HideInInspector] public AnimationCurve parabolaX = new AnimationCurve();
+    [HideInInspector] public AnimationCurve projectileVelocity = new AnimationCurve();
 
     [Header("AudioClips")] [HideInInspector]
     public AudioClip onThrowClip;
@@ -156,11 +156,11 @@ public class WeaponEffect : ScriptableObject
         if (Mathf.Abs(Vector3.Dot(fTransform.up, Vector3.up)) > minDotYToLaunch &&
             fRb.velocity.magnitude >= minStrengthToThrow)
         {
-            while (Time.fixedTime <= initTime + 2f)
+            while (Time.fixedTime <= initTime + 4f)
             {
-                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(Time.fixedTime - initTime / 2f));
-                zPosOffset = zDirLocal * (localVelocity.z * parabolaZ.Evaluate(Time.fixedTime - initTime / 2f));
-                posOffset = (xPosOffset + zPosOffset) * projectileVelocity.Evaluate(Time.fixedTime - initTime / 2f);
+                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(Time.fixedTime - initTime / 4f));
+                zPosOffset = zDirLocal * (localVelocity.z * parabolaZ.Evaluate(Time.fixedTime - initTime / 4f));
+                posOffset = (xPosOffset + zPosOffset) * projectileVelocity.Evaluate(Time.fixedTime - initTime / 4f);
                 fRb.velocity = posOffset;
                 yield return null;
             }
