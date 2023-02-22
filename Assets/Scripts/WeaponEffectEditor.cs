@@ -17,7 +17,7 @@ public class WeaponEffectEditor : Editor
         DrawDefaultInspector();
         WeaponEffect customInspector = (WeaponEffect)target;
 
-        EditorGUILayout.LabelField("Effect List");
+        EditorGUILayout.LabelField("Effect List", EditorStyles.whiteLargeLabel);
 
         showOnHitEffects = EditorGUILayout.Foldout(showOnHitEffects, "OnHitEffects", true);
         if (showOnHitEffects)
@@ -86,7 +86,8 @@ public class WeaponEffectEditor : Editor
             EditorGUI.indentLevel--;
         }
 
-        showOnTravelEffects = EditorGUILayout.Foldout(showOnTravelEffects, "OnTravelEffects", true);
+        showOnTravelEffects =
+            EditorGUILayout.Foldout(showOnTravelEffects, "OnTravelEffects", true);
         if (showOnTravelEffects)
         {
             customInspector.isBoomerang = EditorGUILayout.Toggle("Is boomerang?", customInspector.isBoomerang);
@@ -105,7 +106,7 @@ public class WeaponEffectEditor : Editor
         }
 
 
-        showAudioClips = EditorGUILayout.Foldout(showAudioClips, "Audio clips", true);
+        showAudioClips = EditorGUILayout.Foldout(showAudioClips, "Audio Clips", true);
         if (showAudioClips)
         {
             customInspector.onThrowClip =

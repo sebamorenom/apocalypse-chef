@@ -10,7 +10,6 @@ using UnityEngine.VFX;
 [CreateAssetMenu(menuName = "WeaponEffect")]
 public class WeaponEffect : ScriptableObject
 {
-    [SerializeField] private string effectName;
     [HideInInspector] public bool isExplosive;
     [HideInInspector] public float explosionRadius;
     [HideInInspector] public float explosionForce;
@@ -48,6 +47,7 @@ public class WeaponEffect : ScriptableObject
     [HideInInspector] public AudioClip onHandClip;
 
     [HideInInspector] public Transform fTransform;
+    [HideInInspector] private Rigidbody fRb;
     [HideInInspector] public Collider fCollider;
     [HideInInspector] public MonoBehaviour mono;
 
@@ -59,6 +59,7 @@ public class WeaponEffect : ScriptableObject
     {
         fTransform = foodTransform;
         fCollider = foodCollider;
+        fRb = fCollider.attachedRigidbody;
         mono = monoBehaviour;
     }
 
@@ -131,34 +132,36 @@ public class WeaponEffect : ScriptableObject
         mono.StartCoroutine(StartReturningToHand());
     }
 
+
+    private Vector3 basePosition;
+    private float initTime;
+    private Vector3 posOffset;
+    private Vector3 dir;
+    private Vector3 zDirLocal;
+    private Vector3 xDirLocal;
+    private Vector3 zPosOffset;
+    private Vector3 xPosOffset;
+    private Vector3 localVelocity;
+    private Vector3 localDir;
+
     private IEnumerator StartReturningToHand()
     {
-        Vector3 basePosition = fTransform.position;
-        Quaternion baseRotation = fTransform.rotation;
-        Vector3 baseRotationEuler = baseRotation.eulerAngles;
-        Quaternion finalRotation = Quaternion.Euler(baseRotationEuler + (Vector3.up * 180f));
-        Rigidbody fRb = fTransform.GetComponent<Rigidbody>();
-        Vector3 fRbVelocity = fRb.velocity;
-        float fRbVelocityMag = fRbVelocity.magnitude;
-        Vector3 onThrowLocalVelocity = fTransform.InverseTransformDirection(fRb.velocity);
-        Vector3 onThrowLocalDir = onThrowLocalVelocity.normalized;
-        float timeToReturn = fRbVelocityMag;
-        float initTime = Time.fixedTime;
-
+        //float timeToReturn = fRbVelocityMag;
+        initTime = Time.fixedTime;
+        basePosition = fTransform.position;
+        localVelocity = fTransform.InverseTransformVector(fRb.velocity);
+        localDir = localVelocity.normalized;
+        xDirLocal = fTransform.InverseTransformDirection(fTransform.right).normalized;
+        zDirLocal = fTransform.InverseTransformVector(fTransform.forward).normalized;
         if (Mathf.Abs(Vector3.Dot(fTransform.up, Vector3.up)) > minDotYToLaunch &&
-            fRbVelocityMag >= minStrengthToThrow)
+            fRb.velocity.magnitude >= minStrengthToThrow)
         {
-            while (Time.fixedTime <= initTime + timeToReturn)
+            while (Time.fixedTime <= initTime + 2f)
             {
-                Vector3 positionOffset = new Vector3(
-                    parabolaX.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalDir.x, 0f,
-                    parabolaZ.Evaluate((Time.fixedTime - initTime) / timeToReturn) * onThrowLocalDir.z);
-                var dir = positionOffset - fTransform.position;
-                fRb.velocity = dir * projectileVelocity.Evaluate(Time.fixedTime - initTime / timeToReturn);
-                fTransform.rotation = Quaternion.Slerp(fTransform.rotation, finalRotation,
-                    (Time.fixedTime - initTime) / timeToReturn);
-                /*fTransform.position = new Vector3(basePosition.x + positionOffset.x, basePosition.y + positionOffset.y,
-                basePosition.z + positionOffset.z);*/
+                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(Time.fixedTime - initTime / 2f));
+                zPosOffset = zDirLocal * (localVelocity.z * parabolaZ.Evaluate(Time.fixedTime - initTime / 2f));
+                posOffset = (xPosOffset + zPosOffset) * projectileVelocity.Evaluate(Time.fixedTime - initTime / 2f);
+                fRb.velocity = posOffset;
                 yield return null;
             }
         }

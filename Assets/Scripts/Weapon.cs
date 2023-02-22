@@ -37,6 +37,7 @@ public class Weapon : MonoBehaviour
             wEffect.Fill(_transform, _collider, this);
             wEffect.ApplyEffects();
             onHit += wEffect.onHit;
+            onTravel += wEffect.onTravel;
             if (wEffect != null) Debug.Log(onHit.GetInvocationList().Length);
         }
     }

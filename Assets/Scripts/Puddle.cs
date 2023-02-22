@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class Puddle : MonoBehaviour
 {
-    [SerializeField] public bool isSlowing;
-    [Range(0f, 1f)] public float speedPercent;
+    [HideInInspector] public bool isSlowing;
+    [HideInInspector] public float speedPercent;
 
-    [SerializeField] public bool isSlippery;
-    [SerializeField] public float slippingForce;
+    [HideInInspector] public bool isSlippery;
+    [HideInInspector] public float slippingForce;
 
-    [SerializeField] public bool isFlammable;
-    [SerializeField] public float flameDamage;
-    
-    
+    [HideInInspector] public bool isFlammable;
+    [HideInInspector] public float flameDamage;
+
 
     private void OnTriggerEnter(Collider other)
     {
