@@ -158,8 +158,10 @@ public class WeaponEffect : ScriptableObject
         {
             while (Time.fixedTime <= initTime + 4f)
             {
-                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(Time.fixedTime - initTime / 4f));
-                zPosOffset = zDirLocal * (localVelocity.z * parabolaZ.Evaluate(Time.fixedTime - initTime / 4f));
+                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(Time.fixedTime - initTime / 4f) *
+                                          localVelocity.x);
+                zPosOffset = zDirLocal * (localVelocity.z * parabolaZ.Evaluate(Time.fixedTime - initTime / 4f) *
+                                          localVelocity.z);
                 posOffset = (xPosOffset + zPosOffset) * projectileVelocity.Evaluate(Time.fixedTime - initTime / 4f);
                 fRb.velocity = posOffset;
                 yield return null;
