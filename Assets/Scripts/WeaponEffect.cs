@@ -40,7 +40,8 @@ public class WeaponEffect : ScriptableObject
     [HideInInspector] public AnimationCurve parabolaX = new AnimationCurve();
     [HideInInspector] public AnimationCurve projectileVelocity = new AnimationCurve();
 
-    [Header("AudioClips")] [HideInInspector]
+    [Header("AudioClips")]
+    [HideInInspector]
     public AudioClip onThrowClip;
 
     [HideInInspector] public AudioClip onDestroyClip;
@@ -143,7 +144,7 @@ public class WeaponEffect : ScriptableObject
     private Vector3 xPosOffset;
     private Vector3 localVelocity;
     private Vector3 localDir;
-
+    private float timeSinceLaunch;
     private IEnumerator StartReturningToHand()
     {
         //float timeToReturn = fRbVelocityMag;
@@ -151,19 +152,21 @@ public class WeaponEffect : ScriptableObject
         basePosition = fTransform.position;
         localVelocity = fTransform.InverseTransformVector(fRb.velocity);
         localDir = localVelocity.normalized;
-        xDirLocal = fTransform.InverseTransformDirection(fTransform.right).normalized;
-        zDirLocal = fTransform.InverseTransformVector(fTransform.forward).normalized;
+        xDirLocal = (fTransform.right);
+        zDirLocal = (fTransform.forward);
+        timeSinceLaunch = 0f;
         if (Mathf.Abs(Vector3.Dot(fTransform.up, Vector3.up)) > minDotYToLaunch &&
             fRb.velocity.magnitude >= minStrengthToThrow)
         {
-            while (Time.fixedTime <= initTime + 4f)
+            while (timeSinceLaunch <= 4f)
             {
-                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(Time.fixedTime - initTime / 4f) *
-                                          localVelocity.x);
-                zPosOffset = zDirLocal * (localVelocity.z * parabolaZ.Evaluate(Time.fixedTime - initTime / 4f) *
-                                          localVelocity.z);
-                posOffset = (xPosOffset + zPosOffset) * projectileVelocity.Evaluate(Time.fixedTime - initTime / 4f);
+                xPosOffset = xDirLocal * (localVelocity.x * parabolaX.Evaluate(timeSinceLaunch / 4f));
+
+                zPosOffset = zDirLocal * (localVelocity.z * 4 * parabolaZ.Evaluate(timeSinceLaunch / 4f));
+                posOffset = (xPosOffset + zPosOffset) * projectileVelocity.Evaluate(timeSinceLaunch / 4f);
+                Debug.Log(timeSinceLaunch / 4f);
                 fRb.velocity = posOffset;
+                timeSinceLaunch += Time.fixedDeltaTime;
                 yield return null;
             }
         }
