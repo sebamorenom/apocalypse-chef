@@ -3,10 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CookingToolType
+{
+    Pan,
+    Oven
+};
+
 public class CookingTool : MonoBehaviour
 {
     [SerializeField] public string toolIdentifier;
     [SerializeField] private int maxFoodItems;
+    [SerializeField] private CookingToolType cookingToolType;
     public List<Ingredient> cookingIngredients;
     private FoodProcesser fProcesser;
 
@@ -18,7 +25,21 @@ public class CookingTool : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Grill"))
+        if (cookingToolType == CookingToolType.Pan)
+        {
+            if (collision.gameObject.CompareTag("Grill"))
+            {
+                foreach (var ingredient in cookingIngredients)
+                {
+                    if (!ingredient.isCooked)
+                    {
+                        ingredient.Cook(toolIdentifier);
+                    }
+                }
+            }
+        }
+
+        if (cookingToolType == CookingToolType.Oven)
         {
             foreach (var ingredient in cookingIngredients)
             {
