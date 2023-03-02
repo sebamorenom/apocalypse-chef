@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrderCreator : MonoBehaviour
 {
-    public GameSettings settings;
+    public DifficultySettings settings;
 
     public Order CreateOrder()
     {

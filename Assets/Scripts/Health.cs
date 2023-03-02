@@ -23,4 +23,20 @@ public class Health : MonoBehaviour, IDamageable
 
         return currentHealth;
     }
+    
+
+    private float startingTime;
+    private float currentTime;
+
+    public IEnumerator Burn(float damagePerTick, float timeOnFlames, float timeBetweenTicks)
+    {
+        startingTime = Time.fixedTime;
+        currentTime = startingTime;
+
+        while (currentTime <= startingTime + timeOnFlames)
+        {
+            Hurt(damagePerTick);
+            yield return new WaitForSeconds(timeBetweenTicks);
+        }
+    }
 }

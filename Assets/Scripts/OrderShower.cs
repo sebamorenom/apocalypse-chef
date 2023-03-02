@@ -11,8 +11,7 @@ public class OrderShower : MonoBehaviour
     [SerializeField] private GameObject orderGameObject;
     [SerializeField] private TextMeshProUGUI[] orderText;
     [SerializeField] private Order[] orderList;
-
-    private bool checking;
+    [SerializeField] private GameInfo gameInfo;
 
     private void Start()
     {

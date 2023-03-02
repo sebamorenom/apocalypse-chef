@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,8 +41,11 @@ public class WeaponEffect : ScriptableObject
     [HideInInspector] public AnimationCurve parabolaX = new AnimationCurve();
     [HideInInspector] public AnimationCurve projectileVelocity = new AnimationCurve();
 
-    [Header("AudioClips")]
-    [HideInInspector]
+    [HideInInspector] public bool spawnPuddle;
+    [HideInInspector] public GameObject puddleGameObject;
+    [HideInInspector] public Puddle puddleProperties;
+
+    [Header("AudioClips")] [HideInInspector]
     public AudioClip onThrowClip;
 
     [HideInInspector] public AudioClip onDestroyClip;
@@ -61,6 +65,11 @@ public class WeaponEffect : ScriptableObject
         fTransform = foodTransform;
         fCollider = foodCollider;
         fRb = fCollider.attachedRigidbody;
+        if (!puddleGameObject.IsUnityNull())
+        {
+            puddleGameObject.GetComponent<Puddle>().CopyProperties(puddleProperties);
+        }
+
         mono = monoBehaviour;
     }
 
@@ -84,25 +93,6 @@ public class WeaponEffect : ScriptableObject
         }
     }
 
-    public void Slow()
-    {
-        Collider[] affected = Physics.OverlapSphere(fTransform.position, slownessRadius);
-        NavMeshAgent tryNavMeshAgent;
-        Rigidbody tryRb;
-        foreach (Collider coll in affected)
-        {
-            if (coll.TryGetComponent<NavMeshAgent>(out tryNavMeshAgent))
-            {
-                tryNavMeshAgent.velocity *= 1 - slownessPercent;
-                continue;
-            }
-
-            if (coll.TryGetComponent<Rigidbody>(out tryRb))
-            {
-                tryRb.velocity = Vector3.zero;
-            }
-        }
-    }
 
     public void Noise()
     {
@@ -119,14 +109,6 @@ public class WeaponEffect : ScriptableObject
         Destroy(obstacle);
     }
 
-    public void Flammable()
-    {
-        Collider[] affected = Physics.OverlapSphere(fTransform.position, flammableRadius);
-        foreach (var coll in affected)
-        {
-            //coll.GetComponent<Zombie>().canBeOnFire;
-        }
-    }
 
     public void ReturnToHand()
     {
@@ -145,6 +127,7 @@ public class WeaponEffect : ScriptableObject
     private Vector3 localVelocity;
     private Vector3 localDir;
     private float timeSinceLaunch;
+
     private IEnumerator StartReturningToHand()
     {
         //float timeToReturn = fRbVelocityMag;
@@ -156,7 +139,7 @@ public class WeaponEffect : ScriptableObject
         zDirLocal = (fTransform.forward);
         timeSinceLaunch = 0f;
         if (Mathf.Abs(Vector3.Dot(fTransform.up, Vector3.up)) > minDotYToLaunch &&
-            fRb.velocity.magnitude >= minStrengthToThrow)
+            fRb.velocity.magnitude >= minStrengthToThrow && fRb.angularVelocity.y >= 9f)
         {
             while (timeSinceLaunch <= 4f)
             {
@@ -170,6 +153,12 @@ public class WeaponEffect : ScriptableObject
                 yield return null;
             }
         }
+    }
+
+    public void SpawnPuddle()
+    {
+        puddleGameObject.transform.position = fTransform.position;
+        puddleGameObject.transform.rotation = fTransform.rotation;
     }
 
     public void DestroyOnHit()
@@ -186,20 +175,13 @@ public class WeaponEffect : ScriptableObject
             onHit += Explode;
         }
 
-        if (isSticky)
-        {
-            onHit += Slow;
-        }
-
         if (isNoisy)
         {
             onHit += Noise;
         }
 
-
-        if (isFlammable)
+        if (spawnPuddle)
         {
-            onHit += Flammable;
         }
 
         if (destroyOnHit)

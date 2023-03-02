@@ -9,8 +9,11 @@ using UnityEngine.VFX;
 public class WeaponEffectEditor : Editor
 {
     private bool showOnHitEffects = false;
+    private bool showPuddleEffects = false;
     private bool showOnTravelEffects = false;
     private bool showAudioClips = false;
+
+    private Editor puddleEditor;
 
     public override void OnInspectorGUI()
     {
@@ -41,21 +44,6 @@ public class WeaponEffectEditor : Editor
                 EditorGUI.indentLevel--;
             }
 
-            customInspector.isSticky = EditorGUILayout.Toggle("Is Sticky?", customInspector.isSticky);
-            if (customInspector.isSticky)
-            {
-                EditorGUI.indentLevel++;
-                customInspector.slownessPercent =
-                    EditorGUILayout.Slider("Slowness Percent", customInspector.slownessPercent, 0f, 100f);
-                customInspector.slownessRadius =
-                    EditorGUILayout.FloatField("Slowness Radius", customInspector.slownessRadius);
-                customInspector.stickyVFX =
-                    EditorGUILayout.ObjectField("Sticky VFX", customInspector.stickyVFX, typeof(VisualEffect), true) as
-                        VisualEffect;
-
-                EditorGUI.indentLevel--;
-            }
-
             customInspector.isNoisy = EditorGUILayout.Toggle("Is Noisy?", customInspector.isNoisy);
             if (customInspector.isNoisy)
             {
@@ -69,16 +57,36 @@ public class WeaponEffectEditor : Editor
                 EditorGUI.indentLevel--;
             }
 
-            customInspector.isFlammable = EditorGUILayout.Toggle("Is Flammable?", customInspector.isFlammable);
-            if (customInspector.isFlammable)
+            customInspector.spawnPuddle = EditorGUILayout.Toggle("Spawn Puddle", customInspector.spawnPuddle);
+            if (customInspector.spawnPuddle)
             {
                 EditorGUI.indentLevel++;
-                customInspector.flammableRadius =
-                    EditorGUILayout.FloatField("Flammable Volume", customInspector.flammableRadius);
-                customInspector.flammableVFX =
-                    EditorGUILayout.ObjectField("Flammable VFX", customInspector.flammableVFX, typeof(VisualEffect),
-                            true)
-                        as VisualEffect;
+                showPuddleEffects = EditorGUILayout.Foldout(showPuddleEffects, "Show Puddle effects", true);
+                {
+                    if (showPuddleEffects)
+                    {
+                        customInspector.puddleGameObject =
+                            EditorGUILayout.ObjectField("Puddle to spawn", customInspector.puddleGameObject,
+                                typeof(GameObject), false) as GameObject;
+                        if (!customInspector.puddleGameObject.IsUnityNull() &&
+                            customInspector.puddleGameObject.TryGetComponent<Puddle>(out var puddle))
+                        {
+                            customInspector.puddleProperties = customInspector.puddleGameObject.GetComponent<Puddle>();
+                            {
+                                if (!customInspector.puddleProperties.IsUnityNull())
+                                {
+                                    customInspector.puddleProperties = EditorGUILayout.ObjectField("Puddle properties",
+                                        customInspector.puddleGameObject.GetComponent<Puddle>(), typeof(Puddle),
+                                        false) as Puddle;
+                                    puddleEditor = Editor.CreateEditor(customInspector.puddleProperties);
+                                    var root = puddleEditor.CreateInspectorGUI();
+                                    puddleEditor.OnInspectorGUI();
+                                    Repaint();
+                                }
+                            }
+                        }
+                    }
+                }
                 EditorGUI.indentLevel--;
             }
 

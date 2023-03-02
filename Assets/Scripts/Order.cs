@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Order")]
 public class Order : ScriptableObject
 {
-    [SerializeField] private GameSettings settings;
+    [SerializeField] private DifficultySettings settings;
     [HideInInspector] public TextMeshProUGUI text;
     public string[] orderIngredients = new string[3];
     public IngredientsList ingList;
