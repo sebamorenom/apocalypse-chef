@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class OrderShower : MonoBehaviour
 {
-    [SerializeField] private OrderCreator orderCreator;
     [SerializeField] private GameObject orderGameObject;
     [SerializeField] private TextMeshProUGUI[] orderText;
     [SerializeField] private Order[] orderList;
@@ -31,6 +30,7 @@ public class OrderShower : MonoBehaviour
             Debug.Log(GetAsText(order));
             if (foodOnPlateString == GetAsText(order))
             {
+                gameInfo.currentDayScore++;
                 order.Fill();
             }
         }
@@ -72,6 +72,11 @@ public class OrderShower : MonoBehaviour
         }
 
         return toText;
+    }
+
+    public int GetOrderPoints()
+    {
+        return 0;
     }
 
     private void OnTriggerStay(Collider other)

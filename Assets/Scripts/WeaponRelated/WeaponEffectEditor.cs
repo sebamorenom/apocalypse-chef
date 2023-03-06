@@ -104,6 +104,8 @@ public class WeaponEffectEditor : Editor
                 EditorGUI.indentLevel++;
                 customInspector.minDotYToLaunch =
                     EditorGUILayout.FloatField("Minimum Dot Y to launch", customInspector.minDotYToLaunch);
+                customInspector.minAngularYVelocity = EditorGUILayout.FloatField("Minimum Angular Y Velocity",
+                    customInspector.minAngularYVelocity);
                 customInspector.projectileVelocity =
                     EditorGUILayout.CurveField("Projectile Velocity", customInspector.projectileVelocity);
                 customInspector.parabolaX =

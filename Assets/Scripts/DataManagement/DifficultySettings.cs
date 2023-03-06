@@ -18,15 +18,9 @@ public class DifficultySettings : ScriptableObject
 
     [SerializeField] public float pointScalingModifier;
 
-
-    public float[] GetScoreThresholds()
-    {
-        return null;
-    }
-
     private void OnValidate()
     {
-        if (scoreThresholds.Length < 3)
+        if (scoreThresholds.Length != 5)
         {
             Debug.LogError("There needs to be 5 score thresholds, one for each of the stars");
         }

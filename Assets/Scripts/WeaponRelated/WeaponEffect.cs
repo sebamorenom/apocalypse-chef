@@ -36,6 +36,7 @@ public class WeaponEffect : ScriptableObject
 
     [HideInInspector] public bool isBoomerang;
     [HideInInspector] public float minStrengthToThrow = 1f;
+    [HideInInspector] public float minAngularYVelocity = 5f;
     [HideInInspector] public float minDotYToLaunch = 0.5f;
     [HideInInspector] public AnimationCurve parabolaZ = new AnimationCurve();
     [HideInInspector] public AnimationCurve parabolaX = new AnimationCurve();
@@ -139,7 +140,7 @@ public class WeaponEffect : ScriptableObject
         zDirLocal = (fTransform.forward);
         timeSinceLaunch = 0f;
         if (Mathf.Abs(Vector3.Dot(fTransform.up, Vector3.up)) > minDotYToLaunch &&
-            fRb.velocity.magnitude >= minStrengthToThrow && fRb.angularVelocity.y >= 9f)
+            fRb.velocity.magnitude >= minStrengthToThrow && fRb.angularVelocity.y >= minAngularYVelocity)
         {
             while (timeSinceLaunch <= 4f)
             {
