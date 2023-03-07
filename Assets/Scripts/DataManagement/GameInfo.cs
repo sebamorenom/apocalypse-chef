@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -18,8 +19,8 @@ public class GameInfo : ScriptableObject
 {
     [SerializeField] public int id;
 
-    [SerializeField] public Transform[] objectivesTransform;
-    [SerializeField] public Health[] objectivesHealth;
+    [DoNotSerialize] [ReadOnly] public Transform[] objectivesTransform;
+    [DoNotSerialize] [ReadOnly] public Health[] objectivesHealth;
 
     [SerializeField] public int currentLevel;
 
@@ -59,13 +60,12 @@ public class GameInfo : ScriptableObject
     public void ResizeObjectivesArray()
     {
         objectivesTransform = objectivesTransform.Where(x => !x.IsUnityNull()).ToArray();
+        objectivesHealth = objectivesHealth.Where(x => !x.IsUnityNull()).ToArray();
     }
 
     private void OnValidate()
     {
-        for (int i = 0; i < objectivesTransform.Length; i++)
-        {
-            objectivesHealth[i] = objectivesTransform[i].GetComponent<Health>();
-        }
+        objectivesTransform = new Transform[3];
+        objectivesHealth = new Health[3];
     }
 }

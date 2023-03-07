@@ -42,7 +42,8 @@ public class ZombieAI : MonoBehaviour
         _transform = transform;
         _ownHealth = GetComponent<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
+        TryGetComponent<Animator>(out _animator);
+        Initiate();
     }
 
     public void Initiate()
@@ -57,7 +58,7 @@ public class ZombieAI : MonoBehaviour
         _randomInt = Random.Range(0, gameInfo.objectivesTransform.Length);
         objective = gameInfo.objectivesTransform[_randomInt];
         objectiveHealth = gameInfo.objectivesHealth[_randomInt];
-        _animator.SetTrigger(AiStates.Think);
+        _animator?.SetTrigger(AiStates.Think);
     }
 
     private IEnumerator Think()
@@ -66,7 +67,7 @@ public class ZombieAI : MonoBehaviour
         {
             if (!objective.IsUnityNull())
             {
-                if (!distracted && Random.value > 1 - reTargettingProbability)
+                if (!distracted && Random.value > reTargettingProbability)
                 {
                     RandomObjective();
                     yield return new WaitForSeconds(thinkingTime);
@@ -102,13 +103,13 @@ public class ZombieAI : MonoBehaviour
     private void Move()
     {
         _navMeshAgent.destination = objective.position;
-        _animator.SetTrigger(AiStates.Move);
+        _animator?.SetTrigger(AiStates.Move);
     }
 
     private void Attack()
     {
         objectiveHealth.Hurt(attackDamage);
-        _animator.SetTrigger(AiStates.Attack);
+        _animator?.SetTrigger(AiStates.Attack);
     }
 
     public void Distract(Transform distractionTransform)
