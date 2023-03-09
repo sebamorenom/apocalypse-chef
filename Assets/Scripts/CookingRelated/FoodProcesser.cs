@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FoodProcesser : MonoBehaviour
@@ -10,7 +9,7 @@ public class FoodProcesser : MonoBehaviour
 
     private void Start()
     {
-        if (recipeBook.recipeList.IsUnityNull())
+        if (recipeBook.recipeList!=null)
         {
             recipeBook.BuildDictionary();
         }

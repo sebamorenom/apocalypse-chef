@@ -11,86 +11,24 @@ public enum CookingToolType
 
 public class CookingTool : MonoBehaviour
 {
-    [SerializeField] public string toolIdentifier;
-    [SerializeField] private int maxFoodItems;
-    [SerializeField] private CookingToolType cookingToolType;
+    [SerializeField] protected string toolIdentifier;
+    [SerializeField] protected int maxFoodItems;
+    [SerializeField] protected CookingToolType cookingToolType;
     public List<Ingredient> cookingIngredients;
-    private FoodProcesser fProcesser;
 
-    private void Start()
+    protected Ingredient foodToInsert;
+
+    protected void AddIngredientsToList(Collider other)
     {
-        fProcesser = GetComponent<FoodProcesser>();
-        cookingIngredients = new List<Ingredient>(maxFoodItems);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (cookingToolType == CookingToolType.Pan)
+        if (cookingIngredients.Count <= maxFoodItems)
         {
-            if (collision.gameObject.CompareTag("Grill"))
-            {
-                foreach (var ingredient in cookingIngredients)
-                {
-                    if (!ingredient.isCooked)
-                    {
-                        ingredient.Cook(toolIdentifier);
-                    }
-                }
-            }
-        }
-
-        if (cookingToolType == CookingToolType.Oven)
-        {
-            foreach (var ingredient in cookingIngredients)
-            {
-                if (!ingredient.isCooked)
-                {
-                    ingredient.Cook(toolIdentifier);
-                }
-            }
+            foodToInsert = other.GetComponent<Ingredient>();
+            cookingIngredients.Insert(0, foodToInsert);
         }
     }
 
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Grill"))
-        {
-            foreach (var ingredient in cookingIngredients)
-            {
-            }
-        }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<ICook>(out ICook cookable))
-        {
-            if (cookingIngredients.Count < maxFoodItems)
-            {
-                AddIngredientsToLists(other);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        ICook cookable;
-        if (other.TryGetComponent<ICook>(out cookable))
-        {
-            cookable.StopCooking();
-            int index = cookingIngredients.IndexOf(other.GetComponent<Ingredient>());
-            RemoveIngredientsFromLists(index);
-        }
-    }
-
-    private void AddIngredientsToLists(Collider other)
-    {
-        var foodToInsert = other.GetComponent<Ingredient>();
-        cookingIngredients.Insert(0, foodToInsert);
-    }
-
-
-    private void RemoveIngredientsFromLists(int index)
+    protected void RemoveIngredientsFromList(int index)
     {
         cookingIngredients.RemoveAt(index);
     }

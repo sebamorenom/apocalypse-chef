@@ -22,7 +22,7 @@ public class GameInfo : ScriptableObject
     [DoNotSerialize] [ReadOnly] public Transform[] objectivesTransform;
     [DoNotSerialize] [ReadOnly] public Health[] objectivesHealth;
 
-    [SerializeField] public int currentLevel;
+    [SerializeField] public int currentDay;
 
     [SerializeField] public DifficultySettings difficultySettings;
 
@@ -31,6 +31,7 @@ public class GameInfo : ScriptableObject
     [SerializeField] public int totalScore = 0;
 
     [SerializeField] public ZombieKills zombieKills = new ZombieKills();
+    [SerializeField] public FoodValues foodValues;
 
 
     public void EndDay()
@@ -51,7 +52,7 @@ public class GameInfo : ScriptableObject
 
     private void ResetFile()
     {
-        currentLevel = 0;
+        currentDay = 0;
         zombieKills.normalZombies = 0;
         zombieKills.specialZombies = 0;
         zombieKills.totalZombieKills = 0;

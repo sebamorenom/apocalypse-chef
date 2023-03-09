@@ -13,8 +13,8 @@ public class DifficultySettings : ScriptableObject
 
     [SerializeField] public float scoreThresholdScalingModifier;
 
-    [Header("AI Director fields")] [SerializeField]
-    public float startingPoints;
+    [Header("Director fields")] [SerializeField]
+    public int startingPoints;
 
     [SerializeField] public float pointScalingModifier;
 

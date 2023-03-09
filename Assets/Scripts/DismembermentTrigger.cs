@@ -20,11 +20,14 @@ public class DismembermentTrigger : MonoBehaviour
     private Transform limbPiece;
     private Rigidbody limbPieceRb;
 
+    private Transform _transform;
     // Start is called before the first frame update
 
     private void Start()
     {
-        limbPiece = transform.GetChild(0);
+        _transform = transform;
+        _transform.SetAsLastSibling();
+        limbPiece = _transform.parent.GetChild(0);
         parentWeight = transform.parent.GetComponent<Rigidbody>().mass;
     }
 

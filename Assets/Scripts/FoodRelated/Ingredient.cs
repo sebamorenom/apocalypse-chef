@@ -30,7 +30,7 @@ public class Ingredient : MonoBehaviour, ICook
     [Range(0, 10f)] public float roastingTime;
     [HideInInspector] public bool isCooked;
 
-    private IEnumerator cookingCoroutine;
+    public IEnumerator cookingCoroutine;
 
     private Transform _transform;
     public Rigidbody rb;

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class OrderShower : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class OrderShower : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] orderText;
     [SerializeField] private Order[] orderList;
     [SerializeField] private GameInfo gameInfo;
+    [SerializeField] public FoodValues foodValues;
+
+    
 
     private void Start()
     {
@@ -30,7 +35,7 @@ public class OrderShower : MonoBehaviour
             Debug.Log(GetAsText(order));
             if (foodOnPlateString == GetAsText(order))
             {
-                gameInfo.currentDayScore++;
+                gameInfo.currentDayScore += gameInfo.foodValues.GetFoodValue(plateToCheck.GetFoodOnPlate());
                 order.Fill();
             }
         }

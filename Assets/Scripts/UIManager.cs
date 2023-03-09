@@ -14,12 +14,21 @@ public class UIManager : MonoBehaviour
     [Header("Data inputs")] [SerializeField]
     private GameInfo gameInfo;
 
+    [Header("Day parameters")] public float dayDuration;
+
     private int _numStarsActive = 0;
     private static readonly int Active = Animator.StringToHash("Active");
+
+    private float timeStartOfDay;
+
+    public bool dayNeedsToEnd;
+
+    private Director _currentDir;
 
     // Start is called before the first frame update
     void Start()
     {
+        _currentDir = FindObjectOfType<Director>();
         scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
     }
 
@@ -29,6 +38,11 @@ public class UIManager : MonoBehaviour
         if (gameInfo.currentDayScore >= scoreThresholds[_numStarsActive])
         {
             _numStarsActive++;
+        }
+
+        if (Time.fixedTime - timeStartOfDay > dayDuration)
+        {
+            dayNeedsToEnd = true;
         }
     }
 
@@ -41,11 +55,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void EndDay()
+    public void ResetStars()
     {
         for (int i = 0; i < starsAnimators.Length; i++)
         {
             starsAnimators[i].SetBool(Active, false);
         }
     }
+
+    public void StartDay()
+    {
+        timeStartOfDay = Time.fixedTime;
+    }
+    
 }

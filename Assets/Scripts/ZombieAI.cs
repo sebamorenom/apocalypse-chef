@@ -18,7 +18,7 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] public float thinkingTime;
     [SerializeField] public float attackRange;
     [SerializeField] public float attackDamage;
-    [SerializeField] public float timeBetweenActions;
+    [SerializeField] public float timeBetweenActions = 0.5f;
     [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
 
 
@@ -95,7 +95,7 @@ public class ZombieAI : MonoBehaviour
                 yield return new WaitForSeconds(thinkingTime);
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBetweenActions);
         }
     }
 
