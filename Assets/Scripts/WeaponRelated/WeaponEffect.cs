@@ -23,8 +23,9 @@ public class WeaponEffect : ScriptableObject
     [HideInInspector] public VisualEffect stickyVFX;
 
     [HideInInspector] public bool isNoisy;
-    [HideInInspector] public float noiseDuration;
     [HideInInspector] public float noiseRadius;
+    [HideInInspector] public float noiseDuration;
+    [HideInInspector] public GameObject noisyObject;
     [HideInInspector] public VisualEffect noiseVFX;
 
     [HideInInspector] public bool isFlammable;
@@ -66,7 +67,7 @@ public class WeaponEffect : ScriptableObject
         fTransform = foodTransform;
         fCollider = foodCollider;
         fRb = fCollider.attachedRigidbody;
-        if (!puddleGameObject.IsUnityNull())
+        if (puddleGameObject!=null)
         {
             puddleGameObject.GetComponent<Puddle>().CopyProperties(puddleProperties);
         }
@@ -74,11 +75,12 @@ public class WeaponEffect : ScriptableObject
         mono = monoBehaviour;
     }
 
+    private IDamageable tryEnemy;
+    private Rigidbody tryRb;
+
     public void Explode()
     {
         var affected = Physics.OverlapSphere(fTransform.position, explosionRadius);
-        IDamageable tryEnemy;
-        Rigidbody tryRb;
         foreach (var entity in affected)
         {
             if (entity.TryGetComponent<IDamageable>(out tryEnemy))
@@ -100,16 +102,28 @@ public class WeaponEffect : ScriptableObject
         mono.StartCoroutine(StartNoise());
     }
 
+    private float _currentTime;
+    private float _objectiveTime;
+    private Collider[] _affectedColliders = new Collider[20];
+    private ZombieAI _tryZombieAI;
+
     public IEnumerator StartNoise()
     {
-        NavMeshObstacle obstacle = fTransform.GetComponent<NavMeshObstacle>();
-        var carving = obstacle.carving;
-        carving = true;
-        yield return new WaitForSeconds(noiseDuration);
-        carving = false;
-        Destroy(obstacle);
-    }
+        while (_currentTime < _objectiveTime)
+        {
+            Physics.OverlapSphereNonAlloc(fTransform.position, noiseRadius, _affectedColliders);
+            foreach (var coll in _affectedColliders)
+            {
+                if (coll.TryGetComponent(out _tryZombieAI))
+                {
+                    _tryZombieAI.Distract(fTransform);
+                }
+            }
 
+            _currentTime = +Time.fixedDeltaTime;
+            yield return null;
+        }
+    }
 
     public void ReturnToHand()
     {

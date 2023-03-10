@@ -65,7 +65,7 @@ public class ZombieAI : MonoBehaviour
     {
         while (!_ownHealth.dead)
         {
-            if (!objective.IsUnityNull())
+            if (objective != null)
             {
                 if (!distracted && Random.value > reTargettingProbability)
                 {
@@ -95,6 +95,7 @@ public class ZombieAI : MonoBehaviour
                 yield return new WaitForSeconds(thinkingTime);
             }
 
+            _navMeshAgent.isStopped = true;
             yield return new WaitForSeconds(timeBetweenActions);
         }
     }

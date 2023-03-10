@@ -18,12 +18,12 @@ public class Health : MonoBehaviour, IDamageable
 
     public float Hurt(float damage)
     {
-        Mathf.Max(currentHealth - damage, 0);
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
         if (currentHealth == 0) dead = true;
 
         return currentHealth;
     }
-    
+
 
     private float startingTime;
     private float currentTime;

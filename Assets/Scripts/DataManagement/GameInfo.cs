@@ -60,8 +60,8 @@ public class GameInfo : ScriptableObject
 
     public void ResizeObjectivesArray()
     {
-        objectivesTransform = objectivesTransform.Where(x => !x.IsUnityNull()).ToArray();
-        objectivesHealth = objectivesHealth.Where(x => !x.IsUnityNull()).ToArray();
+        objectivesTransform = objectivesTransform.Where(x => x!=null).ToArray();
+        objectivesHealth = objectivesHealth.Where(x => x!=null).ToArray();
     }
 
     private void OnValidate()

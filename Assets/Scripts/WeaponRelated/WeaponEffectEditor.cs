@@ -48,12 +48,11 @@ public class WeaponEffectEditor : Editor
             if (customInspector.isNoisy)
             {
                 EditorGUI.indentLevel++;
-                customInspector.noiseRadius = EditorGUILayout.FloatField("Noise radius", customInspector.noiseRadius);
-                customInspector.noiseDuration =
-                    EditorGUILayout.Slider("NoiseDuration", customInspector.noiseDuration, 1, 10);
-                customInspector.noiseVFX =
-                    EditorGUILayout.ObjectField("Noise VFX", customInspector.noiseVFX, typeof(VisualEffect), true) as
-                        VisualEffect;
+                if (customInspector.noisyObject != null)
+                {
+                    Editor.CreateEditor(customInspector.noisyObject);
+                }
+
                 EditorGUI.indentLevel--;
             }
 
@@ -68,12 +67,12 @@ public class WeaponEffectEditor : Editor
                         customInspector.puddleGameObject =
                             EditorGUILayout.ObjectField("Puddle to spawn", customInspector.puddleGameObject,
                                 typeof(GameObject), false) as GameObject;
-                        if (!customInspector.puddleGameObject.IsUnityNull() &&
+                        if (customInspector.puddleGameObject != null &&
                             customInspector.puddleGameObject.TryGetComponent<Puddle>(out var puddle))
                         {
                             customInspector.puddleProperties = customInspector.puddleGameObject.GetComponent<Puddle>();
                             {
-                                if (!customInspector.puddleProperties.IsUnityNull())
+                                if (customInspector.puddleProperties != null)
                                 {
                                     customInspector.puddleProperties = EditorGUILayout.ObjectField("Puddle properties",
                                         customInspector.puddleGameObject.GetComponent<Puddle>(), typeof(Puddle),

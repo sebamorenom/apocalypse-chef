@@ -32,7 +32,7 @@ public class RecipeBook : ScriptableObject
                 for (int j = 0; j < 2; j++)
                 {
                     Ingredient ing;
-                    if (!recipes[i].ingredients[j].IsUnityNull())
+                    if (recipes[i].ingredients[j]!=null)
                         ingInRecipe += recipes[i].ingredients[j].GetComponent<Ingredient>().foodIdentifier;
                     if (j == 0)
                     {
@@ -45,7 +45,7 @@ public class RecipeBook : ScriptableObject
                     throw new SystemException("Recipe " + i + " does not have the correct amount of ingredients (2)");
                 }
 
-                if (recipes[i].result.IsUnityNull())
+                if (recipes[i].result==null)
                 {
                     throw new SystemException("Recipe " + i + " does not have a resulting GameObject");
                 }
@@ -62,7 +62,7 @@ public class RecipeBook : ScriptableObject
     {
         for (int i = 0; i < 2; i++)
         {
-            if (recipe.ingredients[i].IsUnityNull())
+            if (recipe.ingredients[i]==null)
                 return false;
         }
 
