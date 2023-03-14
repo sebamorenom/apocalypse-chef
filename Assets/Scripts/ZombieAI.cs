@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public struct AiStates
 {
@@ -20,6 +22,7 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] public float attackRange;
     [SerializeField] public float attackDamage;
     [SerializeField] public float timeBetweenActions = 0.5f;
+    [SerializeField] public float forceToRagdoll;
     [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
 
     private float scratchTime, attackTime, danceTime;
@@ -37,6 +40,8 @@ public class ZombieAI : MonoBehaviour
     public bool distracted;
     private bool _dancing;
 
+
+    private Rigidbody _rb;
     private int _randomInt;
     private AiStates _aiStates;
     private AnimationClip[] _animClips;
@@ -47,11 +52,13 @@ public class ZombieAI : MonoBehaviour
         _transform = transform;
         _ownHealth = GetComponent<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _rb = GetComponent<Rigidbody>();
         if (TryGetComponent<Animator>(out _animator))
         {
             GetAnimationTimes();
         }
 
+        _navMeshAgent.isStopped = true;
         Invoke(nameof(Initiate), 0.5f);
     }
 
@@ -184,5 +191,26 @@ public class ZombieAI : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.impulse.magnitude > forceToRagdoll)
+        {
+            StartCoroutine(ToRagdoll());
+        }
+    }
+
+    private IEnumerator ToRagdoll()
+    {
+        _animator.enabled = false;
+        _rb.isKinematic = false;
+        while (_rb.velocity.magnitude > 1f)
+        {
+            yield return null;
+        }
+
+        _rb.isKinematic = true;
+        _animator.enabled = true;
     }
 }
