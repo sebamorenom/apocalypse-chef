@@ -19,8 +19,8 @@ public class GameInfo : ScriptableObject
 {
     [SerializeField] public int id;
 
-    [DoNotSerialize] [ReadOnly] public Transform[] objectivesTransform;
-    [DoNotSerialize] [ReadOnly] public Health[] objectivesHealth;
+    [DoNotSerialize] [ReadOnly] public List<Transform> objectivesTransform;
+    [DoNotSerialize] [ReadOnly] public List<Health> objectivesHealth;
 
     [SerializeField] public int currentDay;
 
@@ -44,6 +44,12 @@ public class GameInfo : ScriptableObject
         ResetFile();
     }
 
+    public void CreateArrays()
+    {
+        objectivesTransform = new List<Transform>();
+        objectivesHealth = new List<Health>();
+    }
+
     public void DeleteSave(GameInfo gInfo)
     {
         var path = AssetDatabase.GetAssetPath(gInfo);
@@ -58,15 +64,9 @@ public class GameInfo : ScriptableObject
         zombieKills.totalZombieKills = 0;
     }
 
-    public void ResizeObjectivesArray()
+    public void RemoveFromArrays(Transform objTransform, Health objHealth)
     {
-        objectivesTransform = objectivesTransform.Where(x => x!=null).ToArray();
-        objectivesHealth = objectivesHealth.Where(x => x!=null).ToArray();
-    }
-
-    private void OnValidate()
-    {
-        objectivesTransform = new Transform[3];
-        objectivesHealth = new Health[3];
+        objectivesTransform.Remove(objTransform);
+        objectivesHealth.Remove(objHealth);
     }
 }

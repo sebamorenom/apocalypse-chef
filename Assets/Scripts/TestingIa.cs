@@ -7,8 +7,13 @@ public class TestingIa : MonoBehaviour
     [SerializeField] private GameInfo gameInfo;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (gameInfo.objectivesTransform == null)
+        {
+            gameInfo.CreateArrays();
+        }
+
         gameInfo.objectivesTransform[0] = transform;
         gameInfo.objectivesHealth[0] = GetComponent<Health>();
     }
