@@ -23,6 +23,7 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] public float attackDamage;
     [SerializeField] public float timeBetweenActions = 0.5f;
     [SerializeField] public float forceToRagdoll;
+    private Collider _ragdollCollider;
     [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
 
     private float scratchTime, attackTime, danceTime;
@@ -46,6 +47,11 @@ public class ZombieAI : MonoBehaviour
     private AiStates _aiStates;
     private AnimationClip[] _animClips;
 
+    private bool ragdollMode;
+    private float _startRagdollTime;
+    private float _currentRagdollTime;
+    public float _ragdollDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +59,7 @@ public class ZombieAI : MonoBehaviour
         _ownHealth = GetComponent<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
+        _ragdollCollider = GetComponent<BoxCollider>();
         if (TryGetComponent<Animator>(out _animator))
         {
             GetAnimationTimes();
@@ -72,6 +79,11 @@ public class ZombieAI : MonoBehaviour
     private void RandomObjective()
     {
         _randomInt = Random.Range(0, gameInfo.objectivesTransform.Count);
+        if (gameInfo.objectivesTransform.Count == 1)
+        {
+            _randomInt = 0;
+        }
+
         objective = gameInfo.objectivesTransform[_randomInt];
         objectiveHealth = gameInfo.objectivesHealth[_randomInt];
     }
@@ -80,40 +92,43 @@ public class ZombieAI : MonoBehaviour
     {
         while (!_ownHealth.dead)
         {
-            if (objective != null)
+            if (!ragdollMode)
             {
-                if (_dancing)
+                if (objective != null)
                 {
-                    _dancing = false;
-                    Dance();
-                    yield return new WaitForSeconds(danceTime);
-                }
+                    if (_dancing)
+                    {
+                        _dancing = false;
+                        Dance();
+                        yield return new WaitForSeconds(danceTime);
+                    }
 
-                if (!distracted && Random.value > 1 - reTargettingProbability)
-                {
-                    Think();
-                    yield return new WaitForSeconds(scratchTime);
-                }
+                    if (!distracted && Random.value > 1 - reTargettingProbability)
+                    {
+                        Think();
+                        yield return new WaitForSeconds(scratchTime);
+                    }
 
-                if ((objective.position - _transform.position).magnitude > attackRange)
-                {
-                    Move();
+                    if ((objective.position - _transform.position).magnitude > attackRange)
+                    {
+                        Move();
+                    }
+                    else
+                    {
+                        Attack();
+                        yield return new WaitForSeconds(attackTime);
+                    }
                 }
                 else
                 {
-                    Attack();
-                    yield return new WaitForSeconds(attackTime);
-                }
-            }
-            else
-            {
-                if (distracted)
-                {
-                    distracted = false;
-                }
+                    if (distracted)
+                    {
+                        distracted = false;
+                    }
 
-                Think();
-                yield return new WaitForSeconds(scratchTime);
+                    Think();
+                    yield return new WaitForSeconds(scratchTime);
+                }
             }
 
             yield return new WaitForSeconds(timeBetweenActions);
@@ -195,6 +210,7 @@ public class ZombieAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.impulse.magnitude);
         if (collision.impulse.magnitude > forceToRagdoll)
         {
             StartCoroutine(ToRagdoll());
@@ -203,14 +219,23 @@ public class ZombieAI : MonoBehaviour
 
     private IEnumerator ToRagdoll()
     {
+        ragdollMode = true;
+        _ragdollCollider.enabled = false;
+        _rb.velocity = Vector3.zero;
+        _startRagdollTime = _currentRagdollTime = Time.fixedTime;
         _animator.enabled = false;
         _rb.isKinematic = false;
-        while (_rb.velocity.magnitude > 1f)
+        Debug.Log(_rb.velocity.magnitude);
+        while (_currentRagdollTime < _startRagdollTime + _ragdollDuration)
         {
+            _currentRagdollTime += Time.fixedDeltaTime;
             yield return null;
         }
 
         _rb.isKinematic = true;
         _animator.enabled = true;
+        _rb.velocity = Vector3.zero;
+        _ragdollCollider.enabled = true;
+        ragdollMode = false;
     }
 }

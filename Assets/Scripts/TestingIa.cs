@@ -14,8 +14,8 @@ public class TestingIa : MonoBehaviour
             gameInfo.CreateArrays();
         }
 
-        gameInfo.objectivesTransform[0] = transform;
-        gameInfo.objectivesHealth[0] = GetComponent<Health>();
+        gameInfo.objectivesTransform.Insert(0, transform);
+        gameInfo.objectivesHealth.Insert(0, GetComponent<Health>());
     }
 
     // Update is called once per frame
