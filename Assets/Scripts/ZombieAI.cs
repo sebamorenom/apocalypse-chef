@@ -210,19 +210,25 @@ public class ZombieAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.impulse.magnitude);
-        if (collision.impulse.magnitude > forceToRagdoll)
+        foreach (var contactPoint in collision.contacts)
         {
-            StartCoroutine(ToRagdoll());
+            if (contactPoint.otherCollider.gameObject.name == "TheFrying")
+            {
+                if (contactPoint.otherCollider.attachedRigidbody.velocity.magnitude > forceToRagdoll)
+                {
+                    StartCoroutine(ToRagdoll());
+                }
+            }
         }
     }
 
     private IEnumerator ToRagdoll()
     {
         ragdollMode = true;
-        _ragdollCollider.enabled = false;
+        //_ragdollCollider.enabled = false;
         _rb.velocity = Vector3.zero;
         _startRagdollTime = _currentRagdollTime = Time.fixedTime;
+        _navMeshAgent.enabled = false;
         _animator.enabled = false;
         _rb.isKinematic = false;
         Debug.Log(_rb.velocity.magnitude);
@@ -233,9 +239,10 @@ public class ZombieAI : MonoBehaviour
         }
 
         _rb.isKinematic = true;
+        _navMeshAgent.enabled = true;
         _animator.enabled = true;
         _rb.velocity = Vector3.zero;
-        _ragdollCollider.enabled = true;
+        //_ragdollCollider.enabled = true;
         ragdollMode = false;
     }
 }
