@@ -11,7 +11,8 @@ using UnityEngine.VFX;
 public class Ingredient : MonoBehaviour, ICook
 {
     [Header("Ingredient parameters")] public string foodIdentifier;
-    [Header("Cut parameters")] public GameObject cutIngredient;
+    [Header("Cut parameters")] public bool canBeCut;
+    public GameObject cutIngredient;
     [ReadOnly] Health cuttingHealth;
     public VisualEffect cutVFX;
     public float minCuttingThreshold;
@@ -194,7 +195,7 @@ public class Ingredient : MonoBehaviour, ICook
 
     public void DeactivateCuttingMode()
     {
-        if (cuttingMode == true)
+        if (cuttingMode && canBeCut)
         {
             foreach (var coll in _colliders)
             {

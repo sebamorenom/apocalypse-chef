@@ -6,33 +6,55 @@ using UnityEngine;
 
 public class Director : MonoBehaviour
 {
-    private GameInfo gameInfo = AssetDatabase.LoadAssetAtPath<GameInfo>(Application.dataPath + "/GameInfo/GameInfo1");
+    public static Director director;
+    private GameInfo gameInfo;
+
+    private string defaultFile = "/GameInfo/GameInfo1";
 
     public UIManager uiManager;
 
     public ZombieSpawnerManager zSpawnManager;
 
+    public bool forceDayEnd;
+
+    public delegate void StartDay();
+
     public delegate void EndDay();
 
+    public event StartDay startDay;
     public event EndDay endDay;
 
-    private void Start()
+    private void Awake()
     {
+        if (director == null)
+        {
+            director = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        defaultFile = Application.dataPath + defaultFile;
+        gameInfo = AssetDatabase.LoadAssetAtPath<GameInfo>(defaultFile);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (uiManager.dayNeedsToEnd && endDay != null)
+        /*if (uiManager.dayNeedsToEnd && endDay != null)
         {
-            endDay();
+            endDay.Invoke();
+        }*/
+
+        if (forceDayEnd)
+        {
+            endDay.Invoke();
+            forceDayEnd = false;
         }
     }
 
-    private void StartDay()
-    {
-        endDay += gameInfo.EndDay;
-    }
 
     public void SetGameInfo(GameInfo gInfo)
     {

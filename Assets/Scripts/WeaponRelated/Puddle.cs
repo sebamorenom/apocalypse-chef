@@ -31,6 +31,7 @@ public class Puddle : MonoBehaviour
     private float _spawnTime;
     private Transform _transform;
     private Rigidbody _affectedRb;
+    private ZombieAI _affectedZombieAI;
     private Health _affectedHealth;
 
 
@@ -55,6 +56,10 @@ public class Puddle : MonoBehaviour
         {
             _affectedRb.velocity *= speedPercent;
         }
+
+        if (isSlippery)
+        {
+        }
         /*
          * if(other.gameObject.TryGetComponent<NavMeshAgent>(out var triggerNMAgent))
          * {
@@ -62,8 +67,9 @@ public class Puddle : MonoBehaviour
          * }
          */
 
-        if (isSlippery)
+        if (isSlippery && other.TryGetComponent<ZombieAI>(out _affectedZombieAI))
         {
+            _affectedZombieAI.StartRagdoll();
             _affectedRb.AddForceAtPosition(_affectedRb.transform.forward * 10f,
                 _affectedRb.ClosestPointOnBounds(_transform.position),
                 ForceMode.Impulse);

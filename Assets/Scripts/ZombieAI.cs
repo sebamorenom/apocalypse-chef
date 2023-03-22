@@ -47,6 +47,9 @@ public class ZombieAI : MonoBehaviour
     private AiStates _aiStates;
     private AnimationClip[] _animClips;
 
+    private ContactPoint[] _contactPoints;
+    private Rigidbody _collidedRb;
+
     private bool ragdollMode;
     private float _startRagdollTime;
     private float _currentRagdollTime;
@@ -65,13 +68,16 @@ public class ZombieAI : MonoBehaviour
             GetAnimationTimes();
         }
 
+        _contactPoints = new ContactPoint[5];
         _navMeshAgent.isStopped = true;
+        _navMeshAgent.enabled = false;
         Invoke(nameof(Initiate), 0.5f);
     }
 
     public void Initiate()
     {
         RandomObjective();
+
         StartCoroutine(Behaviour());
     }
 
@@ -135,13 +141,12 @@ public class ZombieAI : MonoBehaviour
         }
 
         _navMeshAgent.isStopped = true;
-
-        Debug.Log("StoppedThinking");
     }
 
 
     private void Move()
     {
+        _navMeshAgent.enabled = true;
         _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = objective.position;
         _animator?.SetTrigger(AiStates.Move);
@@ -149,14 +154,24 @@ public class ZombieAI : MonoBehaviour
 
     private void Think()
     {
-        _navMeshAgent.isStopped = true;
+        if (_navMeshAgent.enabled)
+        {
+            if (!_navMeshAgent.isStopped) _navMeshAgent.isStopped = true;
+            _navMeshAgent.enabled = false;
+        }
+
         _animator.SetTrigger(AiStates.Think);
         RandomObjective();
     }
 
     private void Attack()
     {
-        _navMeshAgent.isStopped = true;
+        if (_navMeshAgent.enabled)
+        {
+            if (!_navMeshAgent.isStopped) _navMeshAgent.isStopped = true;
+            _navMeshAgent.enabled = false;
+        }
+
         _animator?.SetTrigger(AiStates.Attack);
     }
 
@@ -184,7 +199,12 @@ public class ZombieAI : MonoBehaviour
 
     private void Dance()
     {
-        _navMeshAgent.isStopped = true;
+        if (_navMeshAgent.enabled)
+        {
+            if (!_navMeshAgent.isStopped) _navMeshAgent.isStopped = true;
+            _navMeshAgent.enabled = false;
+        }
+
         _animator?.SetTrigger(AiStates.Dance);
     }
 
@@ -210,16 +230,28 @@ public class ZombieAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        foreach (var contactPoint in collision.contacts)
+        collision.GetContacts(_contactPoints);
+        foreach (var contact in _contactPoints)
         {
-            if (contactPoint.otherCollider.gameObject.name == "TheFrying")
+            if ((contact.thisCollider != null &&
+                 contact.thisCollider.gameObject.layer == LayerMask.NameToLayer("ZombieCollider") &&
+                 contact.otherCollider != null)
+               )
             {
-                if (contactPoint.otherCollider.attachedRigidbody.velocity.magnitude > forceToRagdoll)
+                _collidedRb = contact.otherCollider.attachedRigidbody;
+                if (_collidedRb != null && _collidedRb.velocity.magnitude >= forceToRagdoll)
                 {
                     StartCoroutine(ToRagdoll());
+                    contact.thisCollider.attachedRigidbody.AddForceAtPosition(_collidedRb.velocity, contact.point,
+                        ForceMode.Impulse);
                 }
             }
         }
+    }
+
+    public void StartRagdoll()
+    {
+        StartCoroutine(ToRagdoll());
     }
 
     private IEnumerator ToRagdoll()
@@ -231,11 +263,10 @@ public class ZombieAI : MonoBehaviour
         _navMeshAgent.enabled = false;
         _animator.enabled = false;
         _rb.isKinematic = false;
-        Debug.Log(_rb.velocity.magnitude);
         while (_currentRagdollTime < _startRagdollTime + _ragdollDuration)
         {
             _currentRagdollTime += Time.fixedDeltaTime;
-            yield return null;
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
 
         _rb.isKinematic = true;

@@ -67,7 +67,7 @@ public class WeaponEffect : ScriptableObject
         fTransform = foodTransform;
         fCollider = foodCollider;
         fRb = fCollider.attachedRigidbody;
-        if (puddleGameObject!=null)
+        if (puddleGameObject != null)
         {
             puddleGameObject.GetComponent<Puddle>().CopyProperties(puddleProperties);
         }
@@ -88,9 +88,14 @@ public class WeaponEffect : ScriptableObject
                 tryEnemy.Hurt(explosionDamage);
             }
 
+
+            if (entity.TryGetComponent<ZombieAI>(out _tryZombieAI))
+            {
+                _tryZombieAI.StartRagdoll();
+            }
+
             if (entity.TryGetComponent<Rigidbody>(out tryRb))
             {
-                Debug.Log("Pushed");
                 tryRb.AddExplosionForce(explosionForce, fTransform.position, explosionRadius);
             }
         }

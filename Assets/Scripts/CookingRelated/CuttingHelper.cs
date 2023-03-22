@@ -99,7 +99,7 @@ public class CuttingHelper : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Ingredient tryIng;
-        if (collision.collider.TryGetComponent(out tryIng))
+        if (collision.collider.TryGetComponent(out tryIng) && tryIng.canBeCut)
         {
             tryIng.ActivateCuttingMode();
         }

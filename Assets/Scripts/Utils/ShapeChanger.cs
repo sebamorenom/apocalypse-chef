@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public delegate void OnShapeChange();
 
 public class ShapeChanger : MonoBehaviour
 {
@@ -8,6 +11,8 @@ public class ShapeChanger : MonoBehaviour
     [SerializeField] private float timeToChangeShape;
     [SerializeField] private bool changeDamage;
     [SerializeField] private float damageModifier;
+
+    [SerializeField] public UnityEvent onShapeChange;
     private SkinnedMeshRenderer _skMeshRenderer;
     private Mesh _mesh;
     private int _blendShapeCount;
@@ -19,6 +24,7 @@ public class ShapeChanger : MonoBehaviour
         _skMeshRenderer = GetComponent<SkinnedMeshRenderer>();
         _mesh = _skMeshRenderer.sharedMesh;
         _blendShapeCount = _mesh.blendShapeCount;
+        onShapeChange = new UnityEvent();
     }
 
     public void ChangeShape(int index)
@@ -46,6 +52,11 @@ public class ShapeChanger : MonoBehaviour
             _skMeshRenderer.SetBlendShapeWeight(index, blendShapeWeight);
             currentTime += Time.fixedDeltaTime;
             yield return null;
+        }
+
+        if (onShapeChange.GetPersistentEventCount() > 0)
+        {
+            onShapeChange.Invoke();
         }
     }
 }
