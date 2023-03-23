@@ -128,9 +128,14 @@ public class WeaponEffectEditor : Editor
                 EditorGUILayout.ObjectField("OnHand AudioClip", customInspector.onHandClip, typeof(AudioClip),
                     false) as AudioClip;
         }
+
         /*if (GUILayout.Button("Save current configuration"))
         {
             customInspector.ApplyEffects();
         }*/
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(customInspector);
+        }
     }
 }

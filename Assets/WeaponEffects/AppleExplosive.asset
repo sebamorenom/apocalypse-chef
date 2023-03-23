@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3593b25da47de204f90204d29d73a0e8, type: 3}
   m_Name: AppleExplosive
   m_EditorClassIdentifier: 
-  isExplosive: 0
-  explosionRadius: 0
-  explosionForce: 0
-  explosionDamage: 0
+  isExplosive: 1
+  explosionRadius: 3
+  explosionForce: 15
+  explosionDamage: 30
   explosionVFX: {fileID: 0}
   isSticky: 0
   slownessPercent: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   isFlammable: 0
   flammableRadius: 0
   flammableVFX: {fileID: 0}
-  destroyOnHit: 0
+  destroyOnHit: 1
   isBoomerang: 0
   minStrengthToThrow: 1
   minAngularYVelocity: 5

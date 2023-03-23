@@ -11,8 +11,11 @@ public struct AiStates
 {
     public static int Move = Animator.StringToHash("Move");
     public static int Attack = Animator.StringToHash("Attack");
-    public static int Think = Animator.StringToHash("Think");
+    public static int Scratch = Animator.StringToHash("Scratch");
     public static int Dance = Animator.StringToHash("Dance");
+
+    public static int StandUpFaceUp = Animator.StringToHash("StandUp_FaceUp");
+    public static int StandUpFaceDown = Animator.StringToHash("StandUp_FaceDown");
 }
 
 public class ZombieAI : MonoBehaviour
@@ -23,10 +26,12 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] public float attackDamage;
     [SerializeField] public float timeBetweenActions = 0.5f;
     [SerializeField] public float forceToRagdoll;
-    private Collider _ragdollCollider;
+    [SerializeField] public Collider torsoCollider;
+    private Collider _animCollider;
+    private List<Collider> _ragdollColliders;
     [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
 
-    private float scratchTime, attackTime, danceTime;
+    private float moveTime, scratchTime, attackTime, danceTime, standUpFaceUpTime, standUpFaceDownTime;
 
 
     private Transform _transform;
@@ -62,7 +67,9 @@ public class ZombieAI : MonoBehaviour
         _ownHealth = GetComponent<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
-        _ragdollCollider = GetComponent<BoxCollider>();
+        _animCollider = GetComponent<Collider>();
+        _ragdollColliders = new List<Collider>();
+        GetRagdollColliders();
         if (TryGetComponent<Animator>(out _animator))
         {
             GetAnimationTimes();
@@ -105,24 +112,21 @@ public class ZombieAI : MonoBehaviour
                     if (_dancing)
                     {
                         _dancing = false;
-                        Dance();
-                        yield return new WaitForSeconds(danceTime);
+                        yield return StartCoroutine(Dance());
                     }
 
                     if (!distracted && Random.value > 1 - reTargettingProbability)
                     {
-                        Think();
-                        yield return new WaitForSeconds(scratchTime);
+                        yield return StartCoroutine(Think());
                     }
 
                     if ((objective.position - _transform.position).magnitude > attackRange)
                     {
-                        Move();
+                        yield return StartCoroutine(Move());
                     }
                     else
                     {
-                        Attack();
-                        yield return new WaitForSeconds(attackTime);
+                        yield return StartCoroutine(Attack());
                     }
                 }
                 else
@@ -132,27 +136,28 @@ public class ZombieAI : MonoBehaviour
                         distracted = false;
                     }
 
-                    Think();
-                    yield return new WaitForSeconds(scratchTime);
+                    yield return StartCoroutine(Think());
                 }
             }
 
             yield return new WaitForSeconds(timeBetweenActions);
         }
 
+        DieRagdoll();
         _navMeshAgent.isStopped = true;
     }
 
 
-    private void Move()
+    private IEnumerator Move()
     {
         _navMeshAgent.enabled = true;
         _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = objective.position;
         _animator?.SetTrigger(AiStates.Move);
+        yield return new WaitForSeconds(moveTime - 0.2f);
     }
 
-    private void Think()
+    private IEnumerator Think()
     {
         if (_navMeshAgent.enabled)
         {
@@ -160,11 +165,12 @@ public class ZombieAI : MonoBehaviour
             _navMeshAgent.enabled = false;
         }
 
-        _animator.SetTrigger(AiStates.Think);
+        _animator.SetTrigger(AiStates.Scratch);
         RandomObjective();
+        yield return new WaitForSeconds(scratchTime);
     }
 
-    private void Attack()
+    private IEnumerator Attack()
     {
         if (_navMeshAgent.enabled)
         {
@@ -173,6 +179,7 @@ public class ZombieAI : MonoBehaviour
         }
 
         _animator?.SetTrigger(AiStates.Attack);
+        yield return new WaitForSeconds(attackTime);
     }
 
     private void HurtObjective()
@@ -197,7 +204,7 @@ public class ZombieAI : MonoBehaviour
         _dancing = true;
     }
 
-    private void Dance()
+    private IEnumerator Dance()
     {
         if (_navMeshAgent.enabled)
         {
@@ -206,15 +213,19 @@ public class ZombieAI : MonoBehaviour
         }
 
         _animator?.SetTrigger(AiStates.Dance);
+        yield return new WaitForSeconds(danceTime);
     }
 
-    public void GetAnimationTimes()
+    private void GetAnimationTimes()
     {
         _animClips = _animator.runtimeAnimatorController.animationClips;
         foreach (var animClip in _animClips)
         {
             switch (animClip.name)
             {
+                case "Move":
+                    moveTime = animClip.length;
+                    break;
                 case "Scratch":
                     scratchTime = animClip.length;
                     break;
@@ -224,8 +235,41 @@ public class ZombieAI : MonoBehaviour
                 case "Dance":
                     danceTime = animClip.length;
                     break;
+                case "StandUp_FaceUp":
+                    standUpFaceUpTime = animClip.length;
+                    break;
+                case "StandUp_FaceDown":
+                    standUpFaceDownTime = animClip.length;
+                    break;
             }
         }
+    }
+
+    private void GetRagdollColliders()
+    {
+        foreach (var coll in GetComponentsInChildren<Collider>())
+        {
+            if (coll != _animCollider)
+            {
+                _ragdollColliders.Add(coll);
+            }
+        }
+    }
+
+    private Collider GetRagdollColliderClosest(Vector3 point)
+    {
+        float distance = float.MaxValue;
+        Collider closestColl = null;
+        foreach (var rColl in _ragdollColliders)
+        {
+            if ((point - rColl.ClosestPointOnBounds(point)).sqrMagnitude < distance)
+            {
+                distance = (point - rColl.ClosestPointOnBounds(point)).magnitude;
+                closestColl = rColl;
+            }
+        }
+
+        return closestColl;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -241,8 +285,10 @@ public class ZombieAI : MonoBehaviour
                 _collidedRb = contact.otherCollider.attachedRigidbody;
                 if (_collidedRb != null && _collidedRb.velocity.magnitude >= forceToRagdoll)
                 {
+                    _ownHealth.Hurt(_collidedRb.velocity.magnitude * 2);
                     StartCoroutine(ToRagdoll());
-                    contact.thisCollider.attachedRigidbody.AddForceAtPosition(_collidedRb.velocity, contact.point,
+                    GetRagdollColliderClosest(contact.point).attachedRigidbody.AddForceAtPosition(_collidedRb.velocity,
+                        contact.point,
                         ForceMode.Impulse);
                 }
             }
@@ -274,6 +320,31 @@ public class ZombieAI : MonoBehaviour
         _animator.enabled = true;
         _rb.velocity = Vector3.zero;
         //_ragdollCollider.enabled = true;
+        yield return StartCoroutine(StandUp());
         ragdollMode = false;
+    }
+
+    private void DieRagdoll()
+    {
+        ragdollMode = true;
+        //_ragdollCollider.enabled = false;
+        _rb.velocity = Vector3.zero;
+        _navMeshAgent.enabled = false;
+        _animator.enabled = false;
+        _rb.isKinematic = false;
+    }
+
+    private IEnumerator StandUp()
+    {
+        if (Vector3.Dot(torsoCollider.transform.forward, Vector3.up) >= 0)
+        {
+            _animator.Play(AiStates.StandUpFaceUp);
+            yield return new WaitForSeconds(standUpFaceUpTime);
+        }
+        else
+        {
+            _animator.Play(AiStates.StandUpFaceDown);
+            yield return new WaitForSeconds(standUpFaceDownTime);
+        }
     }
 }
