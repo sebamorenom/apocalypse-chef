@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _currentDir = FindObjectOfType<Director>();
-        scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
+        //scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
         _inPreparationTime = true;
         _timeStartOfPreparation = Time.fixedTime;
         StartCoroutine(StartTimers());
@@ -52,11 +52,11 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreInUI.text = gameInfo.currentDayScore.ToString();
+        /*scoreInUI.text = gameInfo.currentDayScore.ToString();
         if (gameInfo.currentDayScore >= scoreThresholds[_numStarsActive])
         {
             _numStarsActive++;
-        }
+        }*/
     }
 
 
@@ -99,11 +99,11 @@ public class UIManager : MonoBehaviour
         dayNeedsToEnd = true;
     }
 
-    public void ToTimeFormat(float time)
+    private void ToTimeFormat(float time)
     {
         _roundedTime = Mathf.RoundToInt(time);
         _seconds = _roundedTime % 60;
         _minutes = _roundedTime / 60;
-        timerUI.text = $"{_minutes:00}:{_seconds:00}";
+        timerUI.text = _minutes + ":" + _seconds;
     }
 }
