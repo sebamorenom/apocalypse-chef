@@ -1,3 +1,4 @@
+#if (UNITY_EDITOR)
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,6 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 [CustomEditor(typeof(Puddle))]
 public class PuddleEditor : Editor
@@ -57,3 +57,4 @@ public class PuddleEditor : Editor
         //EditorUtility.SetDirty(customInspector);
     }
 }
+#endif

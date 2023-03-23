@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class SliceTrigger : MonoBehaviour
@@ -45,6 +44,7 @@ public class SliceTrigger : MonoBehaviour
                 {
                     children[i].parent = firstHalf.transform;
                 }
+
                 firstHalf.AddComponent<Rigidbody>();
                 firstHalf.AddComponent<Grabbable>();
                 var halfGrabbable = firstHalf.GetComponent<Grabbable>();
@@ -54,7 +54,6 @@ public class SliceTrigger : MonoBehaviour
             }
             else
             {
-
                 var piece = children[0];
                 piece.parent = parent.parent;
                 MakeGrabbable(massPerPiece, piece);
@@ -70,6 +69,7 @@ public class SliceTrigger : MonoBehaviour
                 {
                     children[i].parent = secondHalf.transform;
                 }
+
                 secondHalf.AddComponent<Rigidbody>();
                 secondHalf.AddComponent<Grabbable>();
                 var halfGrabbable = secondHalf.GetComponent<Grabbable>();
