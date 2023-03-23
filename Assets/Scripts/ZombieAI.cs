@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public struct AiStates
@@ -60,6 +61,8 @@ public class ZombieAI : MonoBehaviour
     private float _currentRagdollTime;
     public float _ragdollDuration;
 
+    private IEnumerator behaviourCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +72,7 @@ public class ZombieAI : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _animCollider = GetComponent<Collider>();
         _ragdollColliders = new List<Collider>();
+        behaviourCoroutine = Behaviour();
         GetRagdollColliders();
         if (TryGetComponent<Animator>(out _animator))
         {
@@ -85,7 +89,7 @@ public class ZombieAI : MonoBehaviour
     {
         RandomObjective();
 
-        StartCoroutine(Behaviour());
+        StartCoroutine(behaviourCoroutine);
     }
 
 
@@ -99,6 +103,15 @@ public class ZombieAI : MonoBehaviour
 
         objective = gameInfo.objectivesTransform[_randomInt];
         objectiveHealth = gameInfo.objectivesHealth[_randomInt];
+    }
+
+    private void FixedUpdate()
+    {
+        if (_ownHealth.dead)
+        {
+            StopCoroutine(behaviourCoroutine);
+            DieRagdoll();
+        }
     }
 
     private IEnumerator Behaviour()
@@ -142,9 +155,6 @@ public class ZombieAI : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetweenActions);
         }
-
-        DieRagdoll();
-        _navMeshAgent.isStopped = true;
     }
 
 
@@ -285,7 +295,7 @@ public class ZombieAI : MonoBehaviour
                 _collidedRb = contact.otherCollider.attachedRigidbody;
                 if (_collidedRb != null && _collidedRb.velocity.magnitude >= forceToRagdoll)
                 {
-                    _ownHealth.Hurt(_collidedRb.velocity.magnitude * 2);
+                    _ownHealth.Hurt(_collidedRb.velocity.magnitude);
                     StartCoroutine(ToRagdoll());
                     GetRagdollColliderClosest(contact.point).attachedRigidbody.AddForceAtPosition(_collidedRb.velocity,
                         contact.point,
@@ -309,6 +319,7 @@ public class ZombieAI : MonoBehaviour
         _navMeshAgent.enabled = false;
         _animator.enabled = false;
         _rb.isKinematic = false;
+
         while (_currentRagdollTime < _startRagdollTime + _ragdollDuration)
         {
             _currentRagdollTime += Time.fixedDeltaTime;
@@ -326,12 +337,14 @@ public class ZombieAI : MonoBehaviour
 
     private void DieRagdoll()
     {
-        ragdollMode = true;
+        Debug.Log("Muerto");
+        //ragdollMode = true;
         //_ragdollCollider.enabled = false;
-        _rb.velocity = Vector3.zero;
-        _navMeshAgent.enabled = false;
         _animator.enabled = false;
         _rb.isKinematic = false;
+        _rb.velocity = Vector3.zero;
+        //_navMeshAgent.isStopped = true;
+        _navMeshAgent.enabled = false;
     }
 
     private IEnumerator StandUp()

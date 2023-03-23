@@ -39,6 +39,8 @@ public class UIManager : MonoBehaviour
 
     private int _roundedTime, _minutes, _seconds;
 
+    private string _minutesString, _secondsString;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,7 +93,7 @@ public class UIManager : MonoBehaviour
         _timeStartOfDay = _currentTime;
         while (_currentTime <= _timeStartOfDay + dayDuration)
         {
-            ToTimeFormat(_timeStartOfPreparation + dayDuration - _currentTime);
+            ToTimeFormat(_timeStartOfDay + dayDuration - _currentTime);
             _currentTime += Time.fixedDeltaTime;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
@@ -104,6 +106,8 @@ public class UIManager : MonoBehaviour
         _roundedTime = Mathf.RoundToInt(time);
         _seconds = _roundedTime % 60;
         _minutes = _roundedTime / 60;
-        timerUI.text = _minutes + ":" + _seconds;
+        _secondsString = _seconds < 10 ? "0" + _seconds.ToString() : _seconds.ToString();
+        _minutesString = _minutes < 10 ? "0" + _minutes.ToString() : _minutes.ToString();
+        timerUI.text = _minutesString + ":" + _secondsString;
     }
 }
