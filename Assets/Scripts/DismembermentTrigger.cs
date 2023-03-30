@@ -16,9 +16,10 @@ public class DismembermentTrigger : MonoBehaviour
 
     [HideInInspector] public Limb dismemberedLimb;
     [HideInInspector] public float weightPercent;
-    private float parentWeight;
-    private Transform limbPiece;
-    private Rigidbody limbPieceRb;
+    [HideInInspector] public bool forceDetach;
+    [SerializeField] private GameObject _dismemberedCopySibling;
+
+    private Rigidbody _rb;
 
     private Transform _transform;
     // Start is called before the first frame update
@@ -27,8 +28,16 @@ public class DismembermentTrigger : MonoBehaviour
     {
         _transform = transform;
         _transform.SetAsLastSibling();
-        limbPiece = _transform.parent.GetChild(0);
-        parentWeight = transform.parent.GetComponent<Rigidbody>().mass;
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (forceDetach)
+        {
+            BreakJoint();
+            forceDetach = false;
+        }
     }
 
     public void UpdateLimb()
@@ -49,9 +58,8 @@ public class DismembermentTrigger : MonoBehaviour
 
     private void BreakJoint()
     {
-        limbPiece.parent = null;
-        limbPiece.AddComponent<Rigidbody>().mass = parentWeight * weightPercent;
-        parentWeight -= parentWeight * weightPercent;
-        Destroy(gameObject);
+        _transform.localScale = Vector3.one * .000001f;
+        _dismemberedCopySibling.transform.parent = null;
+        _dismemberedCopySibling.SetActive(true);
     }
 }

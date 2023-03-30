@@ -15,7 +15,6 @@ public class OrderShower : MonoBehaviour
     [SerializeField] private GameInfo gameInfo;
     [SerializeField] public FoodValues foodValues;
 
-    
 
     private void Start()
     {
@@ -35,7 +34,7 @@ public class OrderShower : MonoBehaviour
             Debug.Log(GetAsText(order));
             if (foodOnPlateString == GetAsText(order))
             {
-                gameInfo.currentDayScore += gameInfo.foodValues.GetFoodValue(plateToCheck.GetFoodOnPlate());
+                gameInfo.currentDayScore += plateToCheck.plateValue;
                 order.Fill();
             }
         }

@@ -5,10 +5,13 @@ using System.Runtime.CompilerServices;
 using Autohand;
 using UnityEngine;
 
+
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject spawnableItem;
-    [SerializeField] private float spawnTimer;
+    [SerializeField] private float[] spawnerTimers = new float[3];
+    [SerializeField] private int[] upgradeCost = new int[2];
+    private int _currentUpgradeLevel = 0;
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;
@@ -16,6 +19,7 @@ public class Spawner : MonoBehaviour
     private Transform _transform;
 
     private float lastSpawnTime;
+    private Director _director;
 
     private void Start()
     {
@@ -23,6 +27,7 @@ public class Spawner : MonoBehaviour
         _transform = transform;
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
+        _director = FindObjectOfType<Director>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +42,8 @@ public class Spawner : MonoBehaviour
     {
         if (!itemInside && other.TryGetComponent<Hand>(out tryHand))
         {
-            if (Time.fixedTime >= lastSpawnTime + spawnTimer)
+            if (Time.fixedTime >=
+                lastSpawnTime + spawnerTimers[_currentUpgradeLevel])
             {
                 Spawn();
                 lastSpawnTime = Time.fixedTime;
@@ -51,6 +57,17 @@ public class Spawner : MonoBehaviour
         {
             itemInside = false;
         }
+    }
+
+    public bool Upgrade()
+    {
+        if (_currentUpgradeLevel < 2 && _director.currentGameInfo.currentMoney > upgradeCost[_currentUpgradeLevel])
+        {
+            _currentUpgradeLevel++;
+            return true;
+        }
+
+        return false;
     }
 
     public void Spawn()

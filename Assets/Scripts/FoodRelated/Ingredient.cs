@@ -11,6 +11,7 @@ using UnityEngine.VFX;
 public class Ingredient : MonoBehaviour, ICook
 {
     [Header("Ingredient parameters")] public string foodIdentifier;
+    public int foodValue;
     [Header("Cut parameters")] public bool canBeCut;
     public GameObject cutIngredient;
     [ReadOnly] Health cuttingHealth;

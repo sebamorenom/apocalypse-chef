@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public delegate void OnShapeChange();
-
 public class ShapeChanger : MonoBehaviour
 {
     [SerializeField] public bool changeProgressively;

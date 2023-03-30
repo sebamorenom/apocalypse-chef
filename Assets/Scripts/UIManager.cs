@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public struct ScreenAnimations
+{
+    public static int ToMainSlide = Animator.StringToHash("ToMainSlide");
+    public static int ToSecondarySlide = Animator.StringToHash("ToSecondarySlide");
+}
+
 public class UIManager : MonoBehaviour
 {
     [Header("UI fields")] [SerializeField] private TextMeshProUGUI scoreInUI;
+    [SerializeField] private Animator screenAnimator;
     [SerializeField] private Animator[] starsAnimators;
     [SerializeField] private TextMeshProUGUI timerUI;
     [SerializeField] private Color preparationTimerColor;
@@ -109,5 +116,15 @@ public class UIManager : MonoBehaviour
         _secondsString = _seconds < 10 ? "0" + _seconds.ToString() : _seconds.ToString();
         _minutesString = _minutes < 10 ? "0" + _minutes.ToString() : _minutes.ToString();
         timerUI.text = _minutesString + ":" + _secondsString;
+    }
+
+    public void ToMainSlide()
+    {
+        screenAnimator.SetTrigger(ScreenAnimations.ToMainSlide);
+    }
+
+    public void ToSecondarySlide()
+    {
+        screenAnimator.SetTrigger(ScreenAnimations.ToSecondarySlide);
     }
 }

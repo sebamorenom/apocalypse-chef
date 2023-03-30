@@ -12,6 +12,7 @@ public class Plate : MonoBehaviour
     [SerializeField] private Collider placementTrigger;
     [SerializeField] [Range(0, 10f)] private float triggerHeight;
     [SerializeField] private List<string> foodStacked;
+    public int plateValue = 0;
     private Bounds triggerBounds;
     private Transform _transform;
 
@@ -69,7 +70,9 @@ public class Plate : MonoBehaviour
             //MoveTriggerBounds(other);
             //placementTrigger.bounds.SetMinMax(placementTrigger.bounds.min, newPlacementMaxBound);
             DisableAndMakeGrabbable(otherRigidbody);
-            foodStacked.Insert(0, other.GetComponent<Ingredient>().foodIdentifier);
+            var auxIngredient = other.GetComponent<Ingredient>();
+            plateValue += auxIngredient.foodValue;
+            foodStacked.Insert(0, auxIngredient.foodIdentifier);
         }
     }
 
@@ -96,5 +99,4 @@ public class Plate : MonoBehaviour
     {
         return foodStacked.ToArray();
     }
-
 }

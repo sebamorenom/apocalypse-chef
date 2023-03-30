@@ -33,6 +33,8 @@ public class DismTriggerEditor : Editor
             customEditor.dismemberedLimb = DismembermentTrigger.Limb.Leg;
             customEditor.UpdateLimb();
         }
+
+        customEditor.forceDetach = EditorGUILayout.Toggle("Force detachment", customEditor.forceDetach);
     }
 }
 #endif

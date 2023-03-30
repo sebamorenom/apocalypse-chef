@@ -69,6 +69,8 @@ public class ZombieAI : MonoBehaviour
         _transform = transform;
         _ownHealth = GetComponent<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent.enabled = false;
+        _navMeshAgent.isStopped = true;
         _rb = GetComponent<Rigidbody>();
         _animCollider = GetComponent<Collider>();
         _ragdollColliders = new List<Collider>();
@@ -80,15 +82,12 @@ public class ZombieAI : MonoBehaviour
         }
 
         _contactPoints = new ContactPoint[5];
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.enabled = false;
         Invoke(nameof(Initiate), 0.5f);
     }
 
     public void Initiate()
     {
         RandomObjective();
-
         StartCoroutine(behaviourCoroutine);
     }
 
@@ -122,25 +121,7 @@ public class ZombieAI : MonoBehaviour
             {
                 if (objective != null)
                 {
-                    if (_dancing)
-                    {
-                        _dancing = false;
-                        yield return StartCoroutine(Dance());
-                    }
-
-                    if (!distracted && Random.value > 1 - reTargettingProbability)
-                    {
-                        yield return StartCoroutine(Think());
-                    }
-
-                    if ((objective.position - _transform.position).magnitude > attackRange)
-                    {
-                        yield return StartCoroutine(Move());
-                    }
-                    else
-                    {
-                        yield return StartCoroutine(Attack());
-                    }
+                    yield return NextAction();
                 }
                 else
                 {
@@ -152,15 +133,43 @@ public class ZombieAI : MonoBehaviour
                     yield return StartCoroutine(Think());
                 }
             }
-
-            yield return new WaitForSeconds(timeBetweenActions);
+            else
+            {
+                yield return new WaitForSeconds(timeBetweenActions);
+            }
         }
+    }
+
+    private IEnumerator NextAction()
+    {
+        if (_dancing)
+        {
+            _dancing = false;
+            return Dance();
+        }
+
+        if (!distracted && Random.value > 1 - reTargettingProbability)
+        {
+            return Think();
+        }
+
+        if ((objective.position - _transform.position).magnitude > attackRange)
+        {
+            return Move();
+        }
+
+        if (((objective.position - _transform.position).magnitude <= attackRange))
+        {
+            return Attack();
+        }
+
+        return null;
     }
 
 
     private IEnumerator Move()
     {
-        _navMeshAgent.enabled = true;
+        if (!_navMeshAgent.enabled) _navMeshAgent.enabled = true;
         _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = objective.position;
         _animator?.SetTrigger(AiStates.Move);

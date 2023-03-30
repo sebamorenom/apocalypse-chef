@@ -13,8 +13,11 @@ public struct ZombieCost
 public class ZombieSpawnerManager : MonoBehaviour
 {
     [SerializeField] public ZombieCost[] zCosts;
-    [SerializeField] public ZombieSpawner[] zSpawners;
+    [SerializeField] public List<ZombieSpawner> zSpawners;
+    [SerializeField] public int startingPoints;
+    [SerializeField] public int pointScalingModifier;
     public int totalPoints;
+
 
     public int availablePoints;
     // Start is called before the first frame update
@@ -27,9 +30,20 @@ public class ZombieSpawnerManager : MonoBehaviour
 
     private GameObject _zombieToGive;
 
+    public static ZombieSpawnerManager zombieSpawnerManager;
 
     private void Start()
     {
+        if (zombieSpawnerManager == null)
+        {
+            zombieSpawnerManager = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _startingTime = Time.fixedTime;
     }
 
@@ -42,6 +56,19 @@ public class ZombieSpawnerManager : MonoBehaviour
                 spawner.StartSpawning();
             }
         }
+    }
+
+    public void FindZombieSpawners()
+    {
+        foreach (var zomSpawner in FindObjectsOfType<ZombieSpawner>())
+        {
+            zSpawners.Add(zomSpawner);
+        }
+    }
+
+    public void RemoveZombieSpawners()
+    {
+        zSpawners.Clear();
     }
 
     public void SortZCosts()

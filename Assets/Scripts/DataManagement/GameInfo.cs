@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+[Serializable]
 public struct ZombieKills
 {
     public int normalZombies;
@@ -15,6 +16,7 @@ public struct ZombieKills
 }
 
 [CreateAssetMenu(menuName = "GameInfo")]
+[Serializable]
 public class GameInfo : ScriptableObject
 {
     [SerializeField] public int id;
@@ -24,36 +26,28 @@ public class GameInfo : ScriptableObject
 
     [SerializeField] public int currentDay;
 
-    [SerializeField] public DifficultySettings difficultySettings;
+    [SerializeField] public int currentMoney;
 
     [SerializeField] public int currentDayScore = 0;
 
     [SerializeField] public int totalScore = 0;
 
     [SerializeField] public ZombieKills zombieKills = new ZombieKills();
-    [SerializeField] public FoodValues foodValues;
+
+    [SerializeField] public int[] scoreThresholds = new int[5];
 
 
     public void EndDay()
     {
         totalScore += currentDayScore;
+        currentDayScore = 0;
     }
 
-    public void CreateSave()
-    {
-        ResetFile();
-    }
 
     public void CreateArrays()
     {
         objectivesTransform = new List<Transform>();
         objectivesHealth = new List<Health>();
-    }
-
-    public void DeleteSave(GameInfo gInfo)
-    {
-        var path = AssetDatabase.GetAssetPath(gInfo);
-        AssetDatabase.DeleteAsset(path);
     }
 
     private void ResetFile()
