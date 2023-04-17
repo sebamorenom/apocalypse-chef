@@ -7,24 +7,30 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
+[RequireComponent(typeof(SceneChanger))]
 public class Director : MonoBehaviour, ISaveable
 {
-    public static Director director;
+    [HideInInspector] public static Director director;
     private GameInfo[] gameInfos;
     public GameInfo currentGameInfo;
 
-    public UIManager uiManager;
 
+    private SceneChanger _sceneChanger;
+
+    public UIManager uiManager;
     public ZombieSpawnerManager zSpawnManager;
 
     public bool forceDayEnd;
 
     public int currentFileIndex;
 
+    public delegate void OnLoad();
+
     public delegate void StartDay();
 
     public delegate void EndDay();
 
+    public event OnLoad onLoad;
     public event StartDay startDay;
     public event EndDay endDay;
 
@@ -33,7 +39,9 @@ public class Director : MonoBehaviour, ISaveable
         if (director == null)
         {
             director = this;
+            _sceneChanger = GetComponent<SceneChanger>();
             DontDestroyOnLoad(gameObject);
+            onLoad += Save;
         }
         else
         {
@@ -44,15 +52,20 @@ public class Director : MonoBehaviour, ISaveable
     // Update is called once per frame
     void Update()
     {
-        /*if (uiManager.dayNeedsToEnd && endDay != null)
+        if (uiManager != null)
         {
-            endDay.Invoke();
-        }*/
+            zSpawnManager.CanSpawn(uiManager.canSpawnZombies);
+            if (uiManager.dayNeedsToEnd && endDay != null)
+            {
+                endDay.Invoke();
+                ToUpgradeScene();
+            }
 
-        if (forceDayEnd)
-        {
-            endDay.Invoke();
-            forceDayEnd = false;
+            if (forceDayEnd)
+            {
+                endDay.Invoke();
+                forceDayEnd = false;
+            }
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -60,44 +73,48 @@ public class Director : MonoBehaviour, ISaveable
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 1)
+        if (scene.buildIndex != 0)
         {
-            if (SaveSystem.Load(currentFileIndex))
-                return;
+            if (scene.buildIndex == 1)
+            {
+                SaveSystem.Load(currentFileIndex);
+                onLoad.Invoke();
+                StartCoroutine(PrepareZSpawnerManager());
+                LoadFields();
+            }
             else
             {
-                SaveSystem.Save(currentFileIndex);
-            }
+                if (scene.buildIndex == 2)
+                {
+                    onLoad.Invoke();
+                }
 
-            zSpawnManager.FindZombieSpawners();
+                ClearFields();
+            }
         }
         else
         {
-            if (scene.buildIndex == 2)
-            {
-                SaveSystem.Save(currentFileIndex);
-            }
-
-            zSpawnManager.RemoveZombieSpawners();
+            ClearFields();
         }
     }
 
-    public void Save(int fileSaveIndex)
+
+    private void Save()
     {
-        currentFileIndex = fileSaveIndex;
+        SaveSystem.Save(currentFileIndex);
     }
 
-    public void SetGameInfo()
+
+    private void LoadFields()
     {
-        currentGameInfo = gameInfos[currentFileIndex];
+        zSpawnManager.InitializeForDay(currentGameInfo.currentDay);
+        uiManager = FindObjectOfType<UIManager>();
     }
 
-    public void PrepareZombieSpawnManager()
+    private void ClearFields()
     {
-        zSpawnManager = FindObjectOfType<ZombieSpawnerManager>();
-        zSpawnManager.totalPoints = Mathf.CeilToInt(zSpawnManager.startingPoints *
-                                                    (zSpawnManager.pointScalingModifier *
-                                                     currentGameInfo.currentDay));
+        zSpawnManager.CanSpawn(false);
+        uiManager = null;
     }
 
     public object CaptureState()
@@ -116,6 +133,17 @@ public class Director : MonoBehaviour, ISaveable
         currentGameInfo.currentDay = dirLoadInfo.currentDay;
         currentGameInfo.totalScore = dirLoadInfo.totalScore;
     }
+
+    private IEnumerator PrepareZSpawnerManager()
+    {
+        yield return new WaitUntil(() => zSpawnManager != null);
+    }
+
+    private void ToUpgradeScene()
+    {
+        _sceneChanger.ChangeScene(2);
+    }
+
 
     [System.Serializable]
     struct DirectorSaveInfo

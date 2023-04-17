@@ -9,11 +9,12 @@ public class Fader : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeInTime;
     [SerializeField] private float fadeOutTime;
-    [SerializeField] private Director director;
     [SerializeField] private Color fadeColor;
 
     private float _changePerTickFadeIn;
     private float _changePerTickFadeOut;
+
+    [HideInInspector] public bool canFade = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -22,8 +23,6 @@ public class Fader : MonoBehaviour
         fadeColor.a = 0;
         _changePerTickFadeIn = Time.fixedDeltaTime / fadeInTime;
         _changePerTickFadeOut = Time.fixedDeltaTime / fadeOutTime;
-        director.startDay += StartFadeIn;
-        director.endDay += StartFadeOut;
     }
 
     public void StartFadeIn()
@@ -52,21 +51,37 @@ public class Fader : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
+        while (!canFade)
+        {
+            yield return null;
+        }
+
+        canFade = false;
         while (fadeColor.a != 0)
         {
             fadeColor.a = Mathf.Max(fadeColor.a - (_changePerTickFadeIn * 2), 1);
             fadeImage.color = fadeColor;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
+
+        canFade = true;
     }
 
     private IEnumerator FadeOut()
     {
+        while (!canFade)
+        {
+            yield return null;
+        }
+
+        canFade = false;
         while (fadeColor.a != 1)
         {
             fadeColor.a = Mathf.Min(fadeColor.a + (_changePerTickFadeOut * 2), 1);
             fadeImage.color = fadeColor;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
+
+        canFade = true;
     }
 }

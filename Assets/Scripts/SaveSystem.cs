@@ -40,11 +40,9 @@ public class SaveSystem : MonoBehaviour
 
             return true;
         }
-        else
-        {
-            return false;
-            Debug.LogError("Save file not found in " + path);
-        }
+
+        Debug.LogError("Save file not found in " + path);
+        return false;
     }
 
     public static void Delete(int saveFileNumber)

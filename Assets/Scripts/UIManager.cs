@@ -42,16 +42,15 @@ public class UIManager : MonoBehaviour
 
     public bool dayNeedsToEnd;
 
-    private Director _currentDir;
-
     private int _roundedTime, _minutes, _seconds;
 
     private string _minutesString, _secondsString;
+    [HideInInspector] public bool canSpawnZombies;
 
     // Start is called before the first frame update
     void Start()
     {
-        _currentDir = FindObjectOfType<Director>();
+        FindObjectOfType<Director>().uiManager = this;
         //scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
         _inPreparationTime = true;
         _timeStartOfPreparation = Time.fixedTime;
@@ -96,6 +95,7 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
 
+        canSpawnZombies = true;
         timerUI.color = dayTimerColor;
         _timeStartOfDay = _currentTime;
         while (_currentTime <= _timeStartOfDay + dayDuration)

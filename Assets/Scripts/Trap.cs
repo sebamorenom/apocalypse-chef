@@ -10,8 +10,12 @@ public class Trap : MonoBehaviour
         public static int Deactivate = Animator.StringToHash("Deactivate");
     }
 
+    [SerializeField] public string trapName;
+    [SerializeField] public float[] timer = new float[3];
+    public int currentUpgradeLevel;
     private Animator _animator;
     private AnimationClip[] _animationClips;
+
 
     private float _activatedAnimationTime;
     private float _deactivatedAnimationTime;

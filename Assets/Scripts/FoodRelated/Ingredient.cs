@@ -7,6 +7,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.VFX;
 
+
 [Serializable]
 public class Ingredient : MonoBehaviour, ICook
 {
@@ -36,7 +37,6 @@ public class Ingredient : MonoBehaviour, ICook
 
     private Transform _transform;
     public Rigidbody rb;
-    private Grabbable _grab;
     private Collider[] _colliders;
     public bool cuttingMode;
 
@@ -46,7 +46,6 @@ public class Ingredient : MonoBehaviour, ICook
 
         _transform = transform;
         rb = GetComponent<Rigidbody>();
-        _grab = GetComponent<Grabbable>();
         _colliders = GetComponents<Collider>();
         cuttingHealth = GetComponent<Health>();
     }

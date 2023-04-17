@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Autohand;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-
-public class Spawner : MonoBehaviour
+[RequireComponent(typeof(SaveableObject))]
+public class Spawner : MonoBehaviour, ISaveable
 {
+    [SerializeField] public string spawnerName;
     [SerializeField] private GameObject spawnableItem;
     [SerializeField] private float[] spawnerTimers = new float[3];
     [SerializeField] private int[] upgradeCost = new int[2];
-    private int _currentUpgradeLevel = 0;
+    public int currentUpgradeLevel = 0;
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;
@@ -43,7 +45,7 @@ public class Spawner : MonoBehaviour
         if (!itemInside && other.TryGetComponent<Hand>(out tryHand))
         {
             if (Time.fixedTime >=
-                lastSpawnTime + spawnerTimers[_currentUpgradeLevel])
+                lastSpawnTime + spawnerTimers[currentUpgradeLevel])
             {
                 Spawn();
                 lastSpawnTime = Time.fixedTime;
@@ -61,9 +63,9 @@ public class Spawner : MonoBehaviour
 
     public bool Upgrade()
     {
-        if (_currentUpgradeLevel < 2 && _director.currentGameInfo.currentMoney > upgradeCost[_currentUpgradeLevel])
+        if (currentUpgradeLevel < 2 && _director.currentGameInfo.currentMoney > upgradeCost[currentUpgradeLevel])
         {
-            _currentUpgradeLevel++;
+            currentUpgradeLevel++;
             return true;
         }
 
@@ -74,5 +76,23 @@ public class Spawner : MonoBehaviour
     {
         Instantiate(spawnableItem, _transform.position + _transform.up * halfHeight, Quaternion.identity);
         itemInside = true;
+    }
+
+    private struct UpgradeInfo
+    {
+        public int currentUpgradeLevel;
+    }
+
+    public object CaptureState()
+    {
+        UpgradeInfo upgradeInfo = new UpgradeInfo();
+        upgradeInfo.currentUpgradeLevel = currentUpgradeLevel;
+        return upgradeInfo;
+    }
+
+    public void LoadState(object state)
+    {
+        UpgradeInfo upgradeInfo = (UpgradeInfo)state;
+        currentUpgradeLevel = upgradeInfo.currentUpgradeLevel;
     }
 }
