@@ -69,7 +69,7 @@ public class ZombieAI : MonoBehaviour
         _transform = transform;
         _ownHealth = GetComponent<Health>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.enabled = false;
+        _navMeshAgent.enabled = true;
         _navMeshAgent.isStopped = true;
         _rb = GetComponent<Rigidbody>();
         _animCollider = GetComponent<Collider>();
@@ -82,7 +82,7 @@ public class ZombieAI : MonoBehaviour
         }
 
         _contactPoints = new ContactPoint[5];
-        Invoke(nameof(Initiate), 0.5f);
+        Initiate();
     }
 
     public void Initiate()

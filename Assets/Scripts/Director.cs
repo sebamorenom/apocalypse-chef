@@ -16,6 +16,7 @@ public class Director : MonoBehaviour, ISaveable
 
 
     private SceneChanger _sceneChanger;
+    private Fader _fader;
 
     public UIManager uiManager;
     public ZombieSpawnerManager zSpawnManager;
@@ -39,6 +40,7 @@ public class Director : MonoBehaviour, ISaveable
         if (director == null)
         {
             director = this;
+            _fader = GetComponent<Fader>();
             _sceneChanger = GetComponent<SceneChanger>();
             DontDestroyOnLoad(gameObject);
             onLoad += Save;
@@ -57,13 +59,11 @@ public class Director : MonoBehaviour, ISaveable
             zSpawnManager.CanSpawn(uiManager.canSpawnZombies);
             if (uiManager.dayNeedsToEnd && endDay != null)
             {
-                endDay.Invoke();
                 ToUpgradeScene();
             }
 
             if (forceDayEnd)
             {
-                endDay.Invoke();
                 forceDayEnd = false;
             }
         }
