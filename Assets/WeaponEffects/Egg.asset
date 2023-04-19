@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3593b25da47de204f90204d29d73a0e8, type: 3}
-  m_Name: Effect
+  m_Name: Egg
   m_EditorClassIdentifier: 
-  isExplosive: 1
-  explosionRadius: 3
-  explosionForce: 200
+  isExplosive: 0
+  explosionRadius: 0
+  explosionForce: 0
   explosionDamage: 0
   explosionVFX: {fileID: 0}
   isSticky: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   isFlammable: 0
   flammableRadius: 0
   flammableVFX: {fileID: 0}
-  destroyOnHit: 0
+  destroyOnHit: 1
   isBoomerang: 0
   minStrengthToThrow: 1
   minAngularYVelocity: 5
@@ -52,9 +52,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  spawnPuddle: 0
-  puddleGameObject: {fileID: 0}
-  puddleProperties: {fileID: 0}
+  spawnPuddle: 1
+  puddleGameObject: {fileID: 7969530780620285734, guid: 1c81bdfd0337f8b499599f3b49ec1292,
+    type: 3}
+  puddleProperties: {fileID: 7423340607197025185, guid: 1c81bdfd0337f8b499599f3b49ec1292,
+    type: 3}
   onThrowClip: {fileID: 0}
   onDestroyClip: {fileID: 0}
   onHandClip: {fileID: 0}

@@ -62,7 +62,8 @@ public class WeaponEffect : ScriptableObject
     public OnTravel onTravel;
 
 
-    public void Fill(Transform foodTransform, Collider foodCollider, MonoBehaviour monoBehaviour)
+    public void Fill(Transform foodTransform, Collider foodCollider,
+        MonoBehaviour monoBehaviour)
     {
         fTransform = foodTransform;
         fCollider = foodCollider;
@@ -175,10 +176,13 @@ public class WeaponEffect : ScriptableObject
         }
     }
 
+    private GameObject _instantiatedPuddle;
+
     public void SpawnPuddle()
     {
-        puddleGameObject.transform.position = fTransform.position;
-        puddleGameObject.transform.rotation = fTransform.rotation;
+        _instantiatedPuddle = Instantiate(puddleGameObject, fTransform.position, Quaternion.identity);
+        _instantiatedPuddle.transform.rotation = Quaternion.LookRotation(Vector3.up,
+            _instantiatedPuddle.transform.right);
     }
 
     public void DestroyOnHit()
@@ -202,6 +206,7 @@ public class WeaponEffect : ScriptableObject
 
         if (spawnPuddle)
         {
+            onHit += SpawnPuddle;
         }
 
         if (destroyOnHit)

@@ -41,7 +41,6 @@ public class Weapon : MonoBehaviour
 
     public bool shootingMode;
 
-
     public OnHit onHit;
     public OnTravel onTravel;
 

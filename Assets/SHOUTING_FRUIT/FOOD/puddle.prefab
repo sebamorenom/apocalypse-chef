@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5944044782431416889}
   - component: {fileID: 8473956410932479731}
   - component: {fileID: 8463004701201353112}
+  - component: {fileID: 7423340607197025185}
+  - component: {fileID: 6138273589414358900}
   m_Layer: 0
   m_Name: puddle
   m_TagString: Untagged
@@ -97,3 +99,41 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0110445395, y: 0.010605367, z: 0.00009999999}
   m_Center: {x: 0.0005670965, y: 0.00022877818, z: -0.000049999995}
+--- !u!114 &7423340607197025185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969530780620285734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ddee22b12022a40b7f6f11e97e1837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSlowing: 0
+  speedPercent: 0
+  isSlippery: 0
+  slippingForce: 0
+  isFlammable: 0
+  totalFlameDamage: 0
+  numTicks: 0
+  timeBetweenTicks: 0.5
+  timeAlive: 10
+  puddleMat: {fileID: 0}
+--- !u!54 &6138273589414358900
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969530780620285734}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -14,14 +14,14 @@ public class IngredientAnimatorManager : MonoBehaviour
 {
     public bool isScreaming;
 
-    private Animator _animator;
+    public Animator animator;
+    public AudioSource audioSource;
     private Grabbable _grabbable;
     private Weapon _weapon;
 
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
         _grabbable = GetComponent<Grabbable>();
         _weapon = GetComponent<Weapon>();
     }
@@ -37,7 +37,8 @@ public class IngredientAnimatorManager : MonoBehaviour
         {
             if (!isScreaming)
             {
-                _animator.SetTrigger(IngredientAnimatorTriggers.ToScream);
+                animator.SetTrigger(IngredientAnimatorTriggers.ToScream);
+                audioSource.Play();
                 isScreaming = true;
             }
         }
@@ -45,7 +46,8 @@ public class IngredientAnimatorManager : MonoBehaviour
         {
             if (isScreaming)
             {
-                _animator.SetTrigger(IngredientAnimatorTriggers.ToIdle);
+                animator.SetTrigger(IngredientAnimatorTriggers.ToIdle);
+                audioSource.Stop();
                 isScreaming = false;
             }
         }
