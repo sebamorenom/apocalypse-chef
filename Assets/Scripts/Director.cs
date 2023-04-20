@@ -49,6 +49,8 @@ public class Director : MonoBehaviour, ISaveable
         {
             Destroy(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -65,10 +67,9 @@ public class Director : MonoBehaviour, ISaveable
             if (forceDayEnd)
             {
                 forceDayEnd = false;
+                ToUpgradeScene();
             }
         }
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

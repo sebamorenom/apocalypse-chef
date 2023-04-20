@@ -59,14 +59,14 @@ public class Puddle : MonoBehaviour
 
         if (isSlippery)
         {
+            if (other.gameObject.TryGetComponent<ZombieAI>(out _affectedZombieAI))
+            {
+                _affectedRb = other.GetComponent<Rigidbody>();
+                _affectedRb.AddForceAtPosition(slippingForce * (_affectedRb.position - _transform.position),
+                    _transform.position, ForceMode.Impulse);
+                _affectedZombieAI.StartRagdoll();
+            }
         }
-        /*
-         * if(other.gameObject.TryGetComponent<NavMeshAgent>(out var triggerNMAgent))
-         * {
-         *      triggerNMAgent.velocity *= speedPercent
-         * }
-         */
-
         if (isSlippery && other.TryGetComponent<ZombieAI>(out _affectedZombieAI))
         {
             _affectedZombieAI.StartRagdoll();

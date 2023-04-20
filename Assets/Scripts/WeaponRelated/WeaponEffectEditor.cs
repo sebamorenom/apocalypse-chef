@@ -81,6 +81,12 @@ public class WeaponEffectEditor : Editor
                                     puddleEditor = Editor.CreateEditor(customInspector.puddleProperties);
                                     var root = puddleEditor.CreateInspectorGUI();
                                     puddleEditor.OnInspectorGUI();
+                                    if (GUILayout.Button("Save Changes"))
+                                    {
+                                        EditorUtility.SetDirty(customInspector.puddleProperties);
+                                        PrefabUtility.RecordPrefabInstancePropertyModifications(puddleEditor);
+                                    }
+
                                     Repaint();
                                 }
                             }
