@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9096391705008727620}
   - component: {fileID: 2151459017254820862}
   - component: {fileID: 2912184701985658255}
+  - component: {fileID: 6161121195303899821}
   m_Layer: 0
   m_Name: Lettuce_Leaf
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5475056622992870072}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.80180603, y: -0.00036761689, z: -0.52414525}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6161121195303899821
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475056622992870072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0017673003, y: 0.0024744016, z: 0.000008836499}
+  m_Center: {x: -5.820766e-10, y: -0.00011497553, z: -0.0000007420813}

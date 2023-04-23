@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1429086180892481039}
   - component: {fileID: 1446867287057411084}
   - component: {fileID: 5018833665836781793}
+  - component: {fileID: 6796302727227454582}
   m_Layer: 0
   m_Name: Egg_Cracked
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5317216265320902465}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.4051643, y: 0, z: -0.5046096}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15.599972, y: 15.599972, z: 15.599972}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6796302727227454582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317216265320902465}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.014072556, y: 0.017187716, z: 0.0016907792}
+  m_Center: {x: -0.0006498771, y: 0.00037199384, z: 0.0007051513}

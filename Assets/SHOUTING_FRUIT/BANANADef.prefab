@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5413045991407826722}
-  - component: {fileID: 23165715034494800}
   m_Layer: 0
   m_Name: BANANADef
   m_TagString: Untagged
@@ -25,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4635558661396589976}
   m_LocalRotation: {x: -0, y: 0.6751607, z: -0, w: 0.7376707}
-  m_LocalPosition: {x: 27.58, y: 0, z: 11.24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.144585, y: 2.144585, z: 2.144585}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34,20 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 84.933, z: 0}
---- !u!136 &23165715034494800
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4635558661396589976}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.045452584
-  m_Height: 0.34
-  m_Direction: 1
-  m_Center: {x: 0.03603957, y: 0.04, z: 0.006492071}
 --- !u!1001 &549365152940991536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68,32 +53,32 @@ PrefabInstance:
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.33668897
+      value: 0.12644424
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.336689
+      value: 0.12644424
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.33668897
+      value: 0.12644424
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.017983843
+      value: -0.0145
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.010724686
+      value: -0.0123
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0047296914
+      value: 0.0013
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
@@ -158,32 +143,32 @@ PrefabInstance:
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 127.65124
+      value: 54.94175
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 127.65123
+      value: 54.941746
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 127.6512
+      value: 54.94173
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0317
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.035
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0051
+      value: 0.00051
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}

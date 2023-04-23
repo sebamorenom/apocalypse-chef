@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7903816230475888478}
   - component: {fileID: 660821607083308446}
   - component: {fileID: 5912615848801324341}
+  - component: {fileID: 9073544334077645161}
   m_Layer: 0
   m_Name: Banana_Slices
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5047262337776174268}
-  m_LocalRotation: {x: -0.7018033, y: -0.08644206, z: -0.08644207, w: 0.7018032}
-  m_LocalPosition: {x: 0.22049613, y: 0.0000000029198917, z: -0.5187769}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 44.713543, y: 44.713543, z: 44.713547}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &660821607083308446
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9073544334077645161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047262337776174268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0023620916, y: 0.0023640597, z: 0.00021000009}
+  m_Center: {x: 0.00006779243, y: -0.00025799268, z: -2.6950426e-11}

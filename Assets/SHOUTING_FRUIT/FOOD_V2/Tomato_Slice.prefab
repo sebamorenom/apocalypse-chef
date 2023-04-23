@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8247238693782680085}
   - component: {fileID: 4987724280760861496}
   - component: {fileID: 1675741377805624151}
+  - component: {fileID: 7336772545082218739}
   m_Layer: 0
   m_Name: Tomato_Slice
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4868751374635722008}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 1.9920367, y: -0.00003295179, z: -0.40293673}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7336772545082218739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4868751374635722008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0013082707, y: 0.0013082704, z: 0.00014749724}
+  m_Center: {x: -6.1118044e-10, y: 0.0000033774988, z: -0.000000057247224}
