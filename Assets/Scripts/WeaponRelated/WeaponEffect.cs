@@ -89,12 +89,6 @@ public class WeaponEffect : ScriptableObject
                 tryEnemy.Hurt(explosionDamage);
             }
 
-
-            if (entity.TryGetComponent<ZombieAI>(out _tryZombieAI))
-            {
-                _tryZombieAI.StartRagdoll();
-            }
-
             if (entity.TryGetComponent<Rigidbody>(out tryRb))
             {
                 tryRb.AddExplosionForce(explosionForce, fTransform.position, explosionRadius);

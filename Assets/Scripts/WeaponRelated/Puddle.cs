@@ -16,9 +16,6 @@ public class Puddle : MonoBehaviour
     [HideInInspector] public bool isSlowing;
     [HideInInspector] public float speedPercent;
 
-    [HideInInspector] public bool isSlippery;
-    [HideInInspector] public float slippingForce;
-
     [HideInInspector] public bool isFlammable;
     [HideInInspector] public float totalFlameDamage;
     [HideInInspector] public int numTicks;
@@ -57,24 +54,6 @@ public class Puddle : MonoBehaviour
             _affectedRb.velocity *= speedPercent;
         }
 
-        if (isSlippery)
-        {
-            if (other.gameObject.TryGetComponent<ZombieAI>(out _affectedZombieAI))
-            {
-                _affectedRb = other.GetComponent<Rigidbody>();
-                _affectedRb.AddForceAtPosition(slippingForce * (_affectedRb.position - _transform.position),
-                    _transform.position, ForceMode.Impulse);
-                _affectedZombieAI.StartRagdoll();
-            }
-        }
-        if (isSlippery && other.TryGetComponent<ZombieAI>(out _affectedZombieAI))
-        {
-            _affectedZombieAI.StartRagdoll();
-            _affectedRb.AddForceAtPosition(_affectedRb.transform.forward * 10f,
-                _affectedRb.ClosestPointOnBounds(_transform.position),
-                ForceMode.Impulse);
-        }
-
         if (isFlammable && other.TryGetComponent<Health>(out _affectedHealth))
         {
             Burn(_affectedHealth);
@@ -100,12 +79,6 @@ public class Puddle : MonoBehaviour
         {
             isSlowing = other.isSlowing;
             speedPercent = other.speedPercent;
-        }
-
-        if (other.isSlippery)
-        {
-            isSlippery = other.isSlippery;
-            slippingForce = other.slippingForce;
         }
 
         if (other.isFlammable)

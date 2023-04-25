@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8549792716720286643}
   - component: {fileID: 5263184562227886604}
   - component: {fileID: 6797637407611352542}
+  - component: {fileID: 2222221239136726798}
+  - component: {fileID: 6384687593651270169}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2912331643308307419}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.4717114, y: 0.0051011215, z: -0.012286122}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2222221239136726798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2912331643308307419}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0017870208, y: 0.0017870214, z: 0.0015824842}
+  m_Center: {x: 1.11758706e-10, y: 0.00000734672, z: 0.00010973185}
+--- !u!136 &6384687593651270169
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2912331643308307419}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.00022206723
+  m_Height: 0.0012794199
+  m_Direction: 2
+  m_Center: {x: -0.00001478374, y: -0.00000004529953, z: 0.0013256981}

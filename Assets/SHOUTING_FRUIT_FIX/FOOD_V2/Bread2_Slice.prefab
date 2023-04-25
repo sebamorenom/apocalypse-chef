@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4439327278835074377}
   - component: {fileID: 389242592720792604}
   - component: {fileID: 6156617617150383328}
+  - component: {fileID: 7478160522518079976}
   m_Layer: 0
   m_Name: Bread2_Slice
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7775692300522054852}
-  m_LocalRotation: {x: 0.0008619606, y: 0.70710623, z: -0.0008619605, w: 0.7071063}
-  m_LocalPosition: {x: 0.8742392, y: -0.0018522362, z: -0.41554716}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.0130477, y: 0.052657694, z: 4.0130444}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &389242592720792604
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7478160522518079976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775692300522054852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.029477017, y: 0.2778063, z: 0.032165743}
+  m_Center: {x: -0.0000016121194, y: 0.0033228677, z: -0.0019447305}

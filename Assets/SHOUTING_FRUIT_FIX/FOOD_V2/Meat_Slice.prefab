@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 390340443735883788}
   - component: {fileID: 6302783977267033231}
   - component: {fileID: 1168989982564297090}
+  - component: {fileID: 1288339126414592307}
   m_Layer: 0
   m_Name: Meat_Slice
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3282847740778743853}
   m_LocalRotation: {x: 0.50000006, y: -0.49999997, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: -1.4745271, y: 0, z: -0.4462886}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -7.8062153, y: -7.8062153, z: -7.8062153}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1288339126414592307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282847740778743853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01902113, y: 0.019999998, z: 0.0009127437}
+  m_Center: {x: 2.8936492e-19, y: 1.6182455e-12, z: -0.00005429932}

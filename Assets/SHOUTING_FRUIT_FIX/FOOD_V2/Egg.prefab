@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3684253206325882568}
   - component: {fileID: 1483894133554983560}
   - component: {fileID: 456766983485592052}
+  - component: {fileID: 5878733928778332434}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177032809936590002}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.43339258, y: 0.012446695, z: -0.0000103097545}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &5878733928778332434
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177032809936590002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.00040098693
+  m_Height: 0.0012534318
+  m_Direction: 2
+  m_Center: {x: 0.00000007182359, y: -0.0000001033023, z: 0.000021513328}

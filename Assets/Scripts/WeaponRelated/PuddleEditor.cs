@@ -24,14 +24,6 @@ public class PuddleEditor : Editor
             EditorGUI.indentLevel--;
         }
 
-        customInspector.isSlippery = EditorGUILayout.Toggle("Is Slippery?", customInspector.isSlippery);
-        if (customInspector.isSlippery)
-        {
-            EditorGUI.indentLevel++;
-            customInspector.slippingForce = EditorGUILayout.FloatField("Slipping Force", customInspector.slippingForce);
-            EditorGUI.indentLevel--;
-        }
-
         customInspector.isFlammable = EditorGUILayout.Toggle("Is Flammable?", customInspector.isFlammable);
         if (customInspector.isFlammable)
         {
