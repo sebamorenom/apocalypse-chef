@@ -43,6 +43,7 @@ public class ZombieAI : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Health _ownHealth;
     private Animator _animator;
+    private Collider _coll;
 
     public Transform objective;
     public Health objectiveHealth;
@@ -51,6 +52,7 @@ public class ZombieAI : MonoBehaviour
     public bool distracted;
     private bool _dancing;
     private bool _hurt;
+    private bool _isDying;
 
 
     private Rigidbody _rb;
@@ -70,6 +72,7 @@ public class ZombieAI : MonoBehaviour
     {
         _transform = transform;
         _ownHealth = GetComponent<Health>();
+        _coll = GetComponent<Collider>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.enabled = true;
         _navMeshAgent.isStopped = true;
@@ -79,6 +82,7 @@ public class ZombieAI : MonoBehaviour
         {
             GetAnimationTimes();
         }
+
         _contactPoints = new ContactPoint[5];
         Initiate();
     }
@@ -307,7 +311,7 @@ public class ZombieAI : MonoBehaviour
                 _collidedRb = contact.otherCollider.attachedRigidbody;
                 if (_collidedRb != null && _collidedRb.velocity.magnitude >= minHitForceThreshold)
                 {
-                    _ownHealth.Hurt(_collidedRb.velocity.magnitude * 2);
+                    _ownHealth.Hurt(_collidedRb.velocity.magnitude);
                     _hurt = true;
                 }
             }
@@ -316,7 +320,15 @@ public class ZombieAI : MonoBehaviour
 
     private void Die()
     {
-        _animator?.SetTrigger(AiStates.Die);
-        Destroy(gameObject, Mathf.Max(timeBeforeDisappearance, dieTime));
+        if (!_isDying)
+        {
+            _isDying = true;
+            _navMeshAgent.isStopped = true;
+            _navMeshAgent.enabled = false;
+            _animator?.SetTrigger(AiStates.Die);
+            _coll.enabled = false;
+            _rb.isKinematic = true;
+            Destroy(gameObject, dieTime + 3);
+        }
     }
 }

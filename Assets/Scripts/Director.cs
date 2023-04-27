@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 public class Director : MonoBehaviour, ISaveable
 {
     [HideInInspector] public static Director director;
-    private GameInfo[] gameInfos;
+    [SerializeField] private GameInfo[] gameInfos;
     public GameInfo currentGameInfo;
 
 
@@ -143,6 +143,12 @@ public class Director : MonoBehaviour, ISaveable
     private void ToUpgradeScene()
     {
         _sceneChanger.ChangeScene(2);
+    }
+
+    public void SelectSaveFile(int saveIndex)
+    {
+        currentGameInfo = gameInfos[saveIndex];
+        currentFileIndex = saveIndex;
     }
 
 

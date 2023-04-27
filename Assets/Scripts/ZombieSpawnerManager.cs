@@ -28,8 +28,7 @@ public class ZombieSpawnerManager : MonoBehaviour
 
     private float _timeBeforeNextSpawn;
 
-    public int _currentAvailablePoints;
-    // Start is called before the first frame update
+    public int currentAvailablePoints;
 
     private int _pointsForZombie;
 
@@ -65,7 +64,7 @@ public class ZombieSpawnerManager : MonoBehaviour
 
     public void InitializeForDay(int day)
     {
-        _currentAvailablePoints = Mathf.RoundToInt(pointsTotal.Evaluate(Math.Clamp(day, 0, 10) / 10f) * 10);
+        currentAvailablePoints = Mathf.RoundToInt(pointsTotal.Evaluate(Math.Clamp(day, 0, 10) / 10f) * 10);
         _currentTimeBetweenSpawns = Mathf.RoundToInt(timeBetweenSpawns.Evaluate(Math.Clamp(day, 0, 10) / 10f) * 10);
     }
 
@@ -83,7 +82,7 @@ public class ZombieSpawnerManager : MonoBehaviour
     {
         Debug.Log("Zombie Spawned");
         int zombieIndex = 0;
-        while (zCosts[zombieIndex].points > _currentAvailablePoints)
+        while (zCosts[zombieIndex].points > currentAvailablePoints)
         {
             zombieIndex = Random.Range(0, zCosts.Length);
         }
@@ -95,7 +94,7 @@ public class ZombieSpawnerManager : MonoBehaviour
             _chosenSpawnPoint.transform.rotation);
 
         _timeLastSpawn = Time.fixedTime;
-        _currentAvailablePoints -= zCosts[zombieIndex].points;
+        currentAvailablePoints -= zCosts[zombieIndex].points;
 
         _timeBeforeNextSpawn = _currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
     }
