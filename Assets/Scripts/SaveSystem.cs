@@ -10,15 +10,16 @@ public class SaveSystem : MonoBehaviour
         Dictionary<string, object> saveDict = new Dictionary<string, object>();
         foreach (var savObject in FindObjectsOfType<SaveableObject>())
         {
-            saveDict[savObject.name] = savObject;
+            saveDict[savObject.name] = savObject.SaveState();
         }
 
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player" + saveFileNumber + ".zombie";
-        FileStream stream = new FileStream(path, FileMode.Create);
 
-        formatter.Serialize(stream, saveDict);
-        stream.Close();
+        string path = Application.persistentDataPath + "/player" + saveFileNumber + ".zombie";
+        using (FileStream stream = File.Open(path, FileMode.Create))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, saveDict);
+        }
     }
 
     public static bool Load(int saveFileNumber)

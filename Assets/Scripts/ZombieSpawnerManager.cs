@@ -80,22 +80,24 @@ public class ZombieSpawnerManager : MonoBehaviour
 
     public void SpawnZombie()
     {
-        Debug.Log("Zombie Spawned");
         int zombieIndex = 0;
-        while (zCosts[zombieIndex].points > currentAvailablePoints)
+        if (currentAvailablePoints >= zCosts.First().points)
         {
-            zombieIndex = Random.Range(0, zCosts.Length);
+            while (zCosts[zombieIndex].points >= currentAvailablePoints)
+            {
+                zombieIndex = Random.Range(0, zCosts.Length);
+            }
+
+            _zombieToGive = zCosts[zombieIndex].zombie;
+            _chosenSpawnPoint = zSpawnPoints[Random.Range(0, zSpawnPoints.Count - 1)];
+
+            Instantiate(_zombieToGive, _chosenSpawnPoint.transform.position,
+                _chosenSpawnPoint.transform.rotation);
+
+            _timeLastSpawn = Time.fixedTime;
+            currentAvailablePoints -= zCosts[zombieIndex].points;
+
+            _timeBeforeNextSpawn = _currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
         }
-
-        _zombieToGive = zCosts[zombieIndex].zombie;
-        _chosenSpawnPoint = zSpawnPoints[Random.Range(0, zSpawnPoints.Count - 1)];
-
-        Instantiate(_zombieToGive, _chosenSpawnPoint.transform.position,
-            _chosenSpawnPoint.transform.rotation);
-
-        _timeLastSpawn = Time.fixedTime;
-        currentAvailablePoints -= zCosts[zombieIndex].points;
-
-        _timeBeforeNextSpawn = _currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
     }
 }

@@ -14,7 +14,7 @@ public class Fader : MonoBehaviour
     private float _changePerTickFadeIn;
     private float _changePerTickFadeOut;
 
-    [HideInInspector] public bool canFade = true;
+    public bool canFade = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -59,7 +59,8 @@ public class Fader : MonoBehaviour
         canFade = false;
         while (fadeColor.a != 0)
         {
-            fadeColor.a = Mathf.Max(fadeColor.a - (_changePerTickFadeIn * 2), 1);
+            fadeColor.a = Mathf.Max(fadeColor.a - (_changePerTickFadeIn * 2), 0);
+            Debug.Log("Current alpha: " + fadeColor.a);
             fadeImage.color = fadeColor;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
@@ -67,7 +68,7 @@ public class Fader : MonoBehaviour
         canFade = true;
     }
 
-    private IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
         while (!canFade)
         {

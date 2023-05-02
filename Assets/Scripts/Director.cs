@@ -59,7 +59,7 @@ public class Director : MonoBehaviour, ISaveable
         if (uiManager != null)
         {
             zSpawnManager.CanSpawn(uiManager.canSpawnZombies);
-            if (uiManager.dayNeedsToEnd && endDay != null)
+            if (uiManager.dayNeedsToEnd)
             {
                 ToUpgradeScene();
             }

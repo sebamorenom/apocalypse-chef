@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
         {
             ToTimeFormat(_timeStartOfPreparation + preparationDuration - _currentTime);
             _currentTime += Time.fixedDeltaTime;
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
+            yield return new WaitForSeconds(Time.fixedDeltaTime * 2);
         }
 
         canSpawnZombies = true;
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
         {
             ToTimeFormat(_timeStartOfDay + dayDuration - _currentTime);
             _currentTime += Time.fixedDeltaTime;
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
+            yield return new WaitForSeconds(Time.fixedDeltaTime * 2);
         }
 
         dayNeedsToEnd = true;
