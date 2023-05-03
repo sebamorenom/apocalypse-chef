@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour, ISaveable
     [SerializeField] private GameObject spawnableItem;
     [SerializeField] private float[] spawnerTimers = new float[3];
     [SerializeField] private int[] upgradeCost = new int[2];
-    public int currentUpgradeLevel = 0;
+    public int currentUpgradeLevel;
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;

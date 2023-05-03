@@ -21,9 +21,10 @@ public class GameInfo : ScriptableObject
 {
     [SerializeField] public int id;
 
+    [Header ("AI Related")]
     [DoNotSerialize] [ReadOnly] public List<Transform> objectivesTransform;
     [DoNotSerialize] [ReadOnly] public List<Health> objectivesHealth;
-
+    [Header ("Playtime Related")]
     [SerializeField] public int currentDay;
 
     [SerializeField] public int currentMoney;
@@ -31,7 +32,7 @@ public class GameInfo : ScriptableObject
     [SerializeField] public int currentDayScore = 0;
 
     [SerializeField] public int totalScore = 0;
-
+    [Header ("Miscellaneous Info")]
     [SerializeField] public ZombieKills zombieKills = new ZombieKills();
 
     [SerializeField] public int[] scoreThresholds = new int[5];

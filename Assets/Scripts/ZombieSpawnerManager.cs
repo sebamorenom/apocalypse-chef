@@ -21,6 +21,8 @@ public class ZombieSpawnerManager : MonoBehaviour
     [SerializeField] public AnimationCurve timeBetweenSpawns;
     [SerializeField] private Vector2 timeVariation = new Vector2(0, 1);
 
+    [HideInInspector] public GameInfo currentGameInfo;
+
     private float _timeLastSpawn;
     private bool _spawningAllowed;
 
@@ -45,6 +47,14 @@ public class ZombieSpawnerManager : MonoBehaviour
         InitializeForDay(dir.currentGameInfo.currentDay);
         zSpawnPoints = new List<SpawnPoint>();
         zSpawnPoints.AddRange(GetComponentsInChildren<SpawnPoint>().ToArray());
+    }
+
+    public void SetGameInfoToZombies()
+    {
+        foreach (var zombieCost in zCosts)
+        {
+            zombieCost.zombie.GetComponent<ZombieAI>().gameInfo = currentGameInfo;
+        }
     }
 
     private void FixedUpdate()

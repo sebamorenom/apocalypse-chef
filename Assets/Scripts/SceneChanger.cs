@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Fader))]
 public class SceneChanger : MonoBehaviour
 {
-    [HideInInspector] public static SceneChanger scenechanger;
     private Fader _fader;
 
     private void Awake()

@@ -7,6 +7,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
+
+public struct UpgradeInfo
+{
+    public string upgradedObjectName;
+    public int level;
+    public int upgradeCost;
+}
+
+
 [RequireComponent(typeof(SceneChanger))]
 public class Director : MonoBehaviour, ISaveable
 {
@@ -20,6 +29,9 @@ public class Director : MonoBehaviour, ISaveable
 
     public UIManager uiManager;
     public ZombieSpawnerManager zSpawnManager;
+    public OrderShower orderShower;
+
+    public UpgradeManager upgradeManager;
 
     public bool forceDayEnd;
 
@@ -80,14 +92,16 @@ public class Director : MonoBehaviour, ISaveable
             {
                 SaveSystem.Load(currentFileIndex);
                 onLoad.Invoke();
-                StartCoroutine(PrepareZSpawnerManager());
+                StartCoroutine(PrepareSceneManagers());
                 LoadFields();
             }
             else
             {
                 if (scene.buildIndex == 2)
                 {
+                    SaveSystem.Load(currentFileIndex);
                     onLoad.Invoke();
+                    StartCoroutine(PrepareUpgradeSceneManagers());
                 }
 
                 ClearFields();
@@ -109,7 +123,6 @@ public class Director : MonoBehaviour, ISaveable
     private void LoadFields()
     {
         zSpawnManager.InitializeForDay(currentGameInfo.currentDay);
-        uiManager = FindObjectOfType<UIManager>();
     }
 
     private void ClearFields()
@@ -135,9 +148,23 @@ public class Director : MonoBehaviour, ISaveable
         currentGameInfo.totalScore = dirLoadInfo.totalScore;
     }
 
-    private IEnumerator PrepareZSpawnerManager()
+    private IEnumerator PrepareSceneManagers()
     {
-        yield return new WaitUntil(() => zSpawnManager != null);
+        while (zSpawnManager != null && orderShower != null && uiManager != null)
+        {
+            yield return null;
+        }
+
+        zSpawnManager.currentGameInfo = currentGameInfo;
+        zSpawnManager.SetGameInfoToZombies();
+    }
+
+    private IEnumerator PrepareUpgradeSceneManagers()
+    {
+        while (upgradeManager != null)
+        {
+            yield return null;
+        }
     }
 
     private void ToUpgradeScene()

@@ -9,11 +9,10 @@ using UnityEngine.Events;
 
 public class OrderShower : MonoBehaviour
 {
-    [SerializeField] private GameObject orderGameObject;
+    [SerializeField] private int numIngredientsInOrder;
     [SerializeField] private TextMeshProUGUI[] orderText;
     [SerializeField] private Order[] orderList;
     [SerializeField] private GameInfo gameInfo;
-    [SerializeField] public FoodValues foodValues;
 
 
     private void Start()
@@ -21,8 +20,9 @@ public class OrderShower : MonoBehaviour
         for (int i = 0; i < orderList.Length; i++)
         {
             orderList[i].text = orderText[i];
-            orderList[i].Fill();
         }
+
+        FillAllOrders();
     }
 
     public void CheckCompletion(Plate plateToCheck)
@@ -35,8 +35,16 @@ public class OrderShower : MonoBehaviour
             if (foodOnPlateString == GetAsText(order))
             {
                 gameInfo.currentDayScore += plateToCheck.plateValue;
-                order.Fill();
+                order.Fill(numIngredientsInOrder);
             }
+        }
+    }
+
+    public void FillAllOrders()
+    {
+        for (int i = 0; i < orderList.Length; i++)
+        {
+            orderList[i].Fill(numIngredientsInOrder);
         }
     }
 

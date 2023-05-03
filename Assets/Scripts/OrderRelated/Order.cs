@@ -7,7 +7,7 @@ using UnityEngine;
 public class Order : ScriptableObject
 {
     [HideInInspector] public TextMeshProUGUI text;
-    public string[] orderIngredients = new string[3];
+    public string[] orderIngredients;
     public IngredientsList ingList;
 
     /// <summary>
@@ -32,9 +32,9 @@ public class Order : ScriptableObject
         return toShow;
     }
 
-    public void Fill()
+    public void Fill(int numIngredients)
     {
-        orderIngredients = new string[3];
+        orderIngredients = new string[numIngredients];
         var i = 0;
         while (i < orderIngredients.Length)
         {
