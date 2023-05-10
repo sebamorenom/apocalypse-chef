@@ -107,7 +107,7 @@ public class Projectile : WeaponTest, IWeapon
 
     private bool CheckHit(Collision collisionToCheck)
     {
-        if ((_newPos - _lastPos).magnitude > hitForceThreshold)
+        if (_rb.velocity.magnitude > hitForceThreshold)
         {
             _lastCollision = collisionToCheck;
             return true;

@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Explosive Apple
   damage: 30
-  hitForceThreshold: 0.01
+  hitForceThreshold: 2
   thrownVelocityThreshold: 3
   destructionTimer: 0
   onHit:
@@ -236,11 +236,13 @@ MonoBehaviour:
   numExplosions: 1
   timeBetweenExplosions: 0
   explosive: 1
+  sticky: 0
   stun: 0
   incendiary: 0
   toxic: 0
   explosionHitTimer: 0
   explosionThrowTimer: 0
+  stuckTime: 0
   stunTime: 0
   burningTime: 0
   affectedLayerMask:
