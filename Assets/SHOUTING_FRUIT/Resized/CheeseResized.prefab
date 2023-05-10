@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2745496729998621067}
   - component: {fileID: 9011797950034110225}
   - component: {fileID: -2093925795054944942}
-  - component: {fileID: -1008896922397571582}
   - component: {fileID: 6942249742532398130}
   - component: {fileID: -7278397593338926197}
+  - component: {fileID: 370724689532522733}
   m_Layer: 0
   m_Name: CheeseResized
   m_TagString: Untagged
@@ -83,28 +83,6 @@ MonoBehaviour:
   isCooked: 0
   rb: {fileID: 0}
   cuttingMode: 0
---- !u!114 &-1008896922397571582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4664192922592864213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c538aafbb1b202746aae3729ce65ad64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSpeedOnHitThreshold: 0
-  minSpeedOnTravelThreshold: 0
-  gunDamage: 10
-  canShoot: 0
-  minDistToUpdatePointer: 1
-  bulletsPerSecond: 0
-  bulletCount: 10
-  thrown: 0
-  wEffect: {fileID: 0}
-  shootingMode: 0
 --- !u!114 &6942249742532398130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,14 +139,25 @@ MonoBehaviour:
   showEvents: 1
   onGrab:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6942249742532398130}
+        m_TargetAssemblyTypeName: IngredientAnimatorManager, Assembly-CSharp
+        m_MethodName: Scream
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -4630044012618928222, guid: 79c570ccae6338d49ba1e1718ca638f3,
-          type: 3}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: CheckThrow
+      - m_Target: {fileID: 370724689532522733}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Throw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -195,6 +184,70 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &370724689532522733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664192922592864213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af6dc5694491e147b5f0a5e2876b853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Cheese Sticky
+  damage: 0
+  hitForceThreshold: 0.01
+  thrownVelocityThreshold: 3
+  destructionTimer: 0
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 370724689532522733}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Sticky
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 370724689532522733}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Destroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onThrow:
+    m_PersistentCalls:
+      m_Calls: []
+  explosionRadius: 3
+  explosionForce: 0
+  numExplosions: 1
+  timeBetweenExplosions: 0
+  explosive: 0
+  sticky: 0
+  stun: 1
+  incendiary: 0
+  toxic: 0
+  explosionHitTimer: 0
+  explosionThrowTimer: 0
+  stuckTime: 0
+  stunTime: 0
+  burningTime: 0
+  affectedLayerMask:
+    serializedVersion: 2
+    m_Bits: 16777216
 --- !u!1001 &6777736400191913397
 PrefabInstance:
   m_ObjectHideFlags: 0

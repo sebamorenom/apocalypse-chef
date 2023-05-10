@@ -14,6 +14,7 @@ public class Explosive : WeaponTest, IWeapon
     [SerializeField] public float timeBetweenExplosions;
 
     [Header("Type")] [SerializeField] public bool explosive;
+    [SerializeField] public bool sticky;
     [SerializeField] public bool stun;
     [SerializeField] public bool incendiary;
     [SerializeField] public bool toxic;
@@ -21,6 +22,7 @@ public class Explosive : WeaponTest, IWeapon
     [Header("Timers")] [SerializeField] public float explosionHitTimer;
     [SerializeField] public float explosionThrowTimer;
 
+    [SerializeField] public float stuckTime;
     [SerializeField] public float stunTime;
     [SerializeField] public float burningTime;
 
@@ -40,6 +42,9 @@ public class Explosive : WeaponTest, IWeapon
     private Rigidbody _hitRb;
     private Explosive _hitExplosive;
 
+    private Collision _lastCollision;
+    private Vector3 _lastPos, _newPos;
+
     private void Start()
     {
         _transform = transform;
@@ -48,6 +53,11 @@ public class Explosive : WeaponTest, IWeapon
         _onThrowTimer = OnThrowTimer();
     }
 
+    private void LateUpdate()
+    {
+        _lastPos = _newPos;
+        _newPos = _transform.position;
+    }
 
     public void OnHit()
     {
@@ -76,10 +86,11 @@ public class Explosive : WeaponTest, IWeapon
     }
 
 
-    private bool CheckHit(Vector3 impulse)
+    private bool CheckHit(Collision collisionToCheck)
     {
-        if ((impulse / Time.fixedDeltaTime).magnitude > hitForceThreshold)
+        if ((_newPos - _lastPos).magnitude > hitForceThreshold)
         {
+            _lastCollision = collisionToCheck;
             return true;
         }
 
@@ -110,7 +121,7 @@ public class Explosive : WeaponTest, IWeapon
             _thrown = false;
         }
 
-        if (CheckHit(collision.impulse))
+        if (CheckHit(collision))
         {
             if (explosionHitTimer == 0)
             {
@@ -155,7 +166,8 @@ public class Explosive : WeaponTest, IWeapon
         _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
         for (int i = 0; i < _hitColliders.Length; i++)
         {
-            if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth) && _hitColliders[i].CompareTag($"Zombie"))
+            if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth) &&
+                _hitColliders[i].CompareTag($"Zombie"))
             {
                 _hitZombieHealth.Hurt(damage);
             }
@@ -203,6 +215,19 @@ public class Explosive : WeaponTest, IWeapon
         }
     }
 
+    public void Sticky()
+    {
+        _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
+        for (int i = 0; i < _hitColliders.Length; i++)
+        {
+            if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
+            {
+                _hitZombieAI.stuckTime = stuckTime;
+                _hitZombieAI.stuck = true;
+            }
+        }
+    }
+
     public void Burn()
     {
         _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
@@ -226,5 +251,10 @@ public class Explosive : WeaponTest, IWeapon
     public void Destroy()
     {
         Destroy(gameObject, destructionTimer);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

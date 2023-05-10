@@ -1071,9 +1071,9 @@ GameObject:
   - component: {fileID: 3613800898394558004}
   - component: {fileID: -4872292660403163594}
   - component: {fileID: -4024179735886583277}
-  - component: {fileID: -7796490869822426911}
   - component: {fileID: 1329492639119664308}
   - component: {fileID: -1836112053257735864}
+  - component: {fileID: 6665303974415846059}
   m_Layer: 0
   m_Name: StarfruitResized
   m_TagString: Untagged
@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodIdentifier: Starfruit
+  foodIdentifier: Starfruit_Whole
   foodValue: 10
   canBeCut: 0
   cutIngredient: {fileID: 0}
@@ -1143,28 +1143,6 @@ MonoBehaviour:
   isCooked: 0
   rb: {fileID: 0}
   cuttingMode: 0
---- !u!114 &-7796490869822426911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5935944378039092153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c538aafbb1b202746aae3729ce65ad64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSpeedOnHitThreshold: 0
-  minSpeedOnTravelThreshold: 0
-  gunDamage: 10
-  canShoot: 0
-  minDistToUpdatePointer: 1
-  bulletsPerSecond: 0
-  bulletCount: 10
-  thrown: 0
-  wEffect: {fileID: 0}
-  shootingMode: 0
 --- !u!114 &1329492639119664308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,14 +1199,25 @@ MonoBehaviour:
   showEvents: 1
   onGrab:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1329492639119664308}
+        m_TargetAssemblyTypeName: IngredientAnimatorManager, Assembly-CSharp
+        m_MethodName: Scream
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -4630044012618928222, guid: 79c570ccae6338d49ba1e1718ca638f3,
-          type: 3}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: CheckThrow
+      - m_Target: {fileID: 6665303974415846059}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: Throw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1255,6 +1244,60 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &6665303974415846059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935944378039092153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c5fbe894851dd448ac46e4dbd31de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Starfruit Panic
+  damage: 1
+  hitForceThreshold: 0.01
+  thrownVelocityThreshold: 3
+  destructionTimer: 0
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6665303974415846059}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: Damage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onThrow:
+    m_PersistentCalls:
+      m_Calls: []
+  stickToThings: 0
+  damageModifier: 1
+  maxHits: 999999999
+  framesBeforeHitDetection: 0
+  boomerangX:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  boomerangZ:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _maxTimeFlying: 0
+  _xModifier: 0
+  _zModifier: 0
 --- !u!1 &6113256062256961277
 GameObject:
   m_ObjectHideFlags: 0

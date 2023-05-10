@@ -48,14 +48,6 @@ public class Projectile : WeaponTest, IWeapon
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            OnThrow();
-        }
-    }
-
     private void LateUpdate()
     {
         _lastPos = _newPos;
@@ -91,7 +83,7 @@ public class Projectile : WeaponTest, IWeapon
             _thrown = false;
         }
 
-        if (CheckHit(collision.impulse, collision))
+        if (CheckHit(collision))
         {
             if (_boomerangCoroutine != null)
             {
@@ -113,10 +105,8 @@ public class Projectile : WeaponTest, IWeapon
         }
     }
 
-    private bool CheckHit(Vector3 impulse, Collision collisionToCheck)
+    private bool CheckHit(Collision collisionToCheck)
     {
-        Debug.Log((_newPos - _lastPos).magnitude);
-        _collisionForce = (impulse / Time.fixedDeltaTime).magnitude;
         if ((_newPos - _lastPos).magnitude > hitForceThreshold)
         {
             _lastCollision = collisionToCheck;
@@ -147,7 +137,7 @@ public class Projectile : WeaponTest, IWeapon
 
     public void Boomerang()
     {
-        //_maxTimeFlying = _rb.velocity.magnitude - hitForceThreshold;
+        _maxTimeFlying = _rb.velocity.magnitude - thrownVelocityThreshold;
         _boomerangCoroutine = StartCoroutine(BoomerangFlying());
     }
 

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3605621680464624537}
   - component: {fileID: 5168297709691939128}
   - component: {fileID: 644619794062239518}
-  - component: {fileID: -4630044012618928222}
   - component: {fileID: -419599678520306666}
   - component: {fileID: 5859036210918774296}
-  m_Layer: 0
+  - component: {fileID: 863338644110426394}
+  m_Layer: 27
   m_Name: AppleResized
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,28 +83,6 @@ MonoBehaviour:
   isCooked: 0
   rb: {fileID: 0}
   cuttingMode: 0
---- !u!114 &-4630044012618928222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008205986226836991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c538aafbb1b202746aae3729ce65ad64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSpeedOnHitThreshold: 0
-  minSpeedOnTravelThreshold: 0
-  gunDamage: 10
-  canShoot: 0
-  minDistToUpdatePointer: 1
-  bulletsPerSecond: 0
-  bulletCount: 10
-  thrown: 0
-  wEffect: {fileID: 0}
-  shootingMode: 0
 --- !u!114 &-419599678520306666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,13 +139,25 @@ MonoBehaviour:
   showEvents: 1
   onGrab:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -419599678520306666}
+        m_TargetAssemblyTypeName: IngredientAnimatorManager, Assembly-CSharp
+        m_MethodName: Scream
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -4630044012618928222}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: CheckThrow
+      - m_Target: {fileID: 863338644110426394}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Throw
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -194,6 +184,68 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &863338644110426394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008205986226836991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af6dc5694491e147b5f0a5e2876b853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Explosive Apple
+  damage: 30
+  hitForceThreshold: 0.01
+  thrownVelocityThreshold: 3
+  destructionTimer: 0
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 863338644110426394}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 863338644110426394}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Destroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onThrow:
+    m_PersistentCalls:
+      m_Calls: []
+  explosionRadius: 2
+  explosionForce: 500
+  numExplosions: 1
+  timeBetweenExplosions: 0
+  explosive: 1
+  stun: 0
+  incendiary: 0
+  toxic: 0
+  explosionHitTimer: 0
+  explosionThrowTimer: 0
+  stunTime: 0
+  burningTime: 0
+  affectedLayerMask:
+    serializedVersion: 2
+    m_Bits: 155189249
 --- !u!1001 &1233836804366392417
 PrefabInstance:
   m_ObjectHideFlags: 0

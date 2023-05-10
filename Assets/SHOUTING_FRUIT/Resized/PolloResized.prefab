@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2800500817966994323}
   - component: {fileID: 4380697601591404095}
   - component: {fileID: 5227015565013717361}
-  - component: {fileID: 7146194730018160524}
   - component: {fileID: 1258137110129163176}
   - component: {fileID: 2937177315317107925}
   m_Layer: 0
@@ -83,28 +82,6 @@ MonoBehaviour:
   isCooked: 0
   rb: {fileID: 0}
   cuttingMode: 0
---- !u!114 &7146194730018160524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3285006512034761001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c538aafbb1b202746aae3729ce65ad64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSpeedOnHitThreshold: 0
-  minSpeedOnTravelThreshold: 0
-  gunDamage: 10
-  canShoot: 0
-  minDistToUpdatePointer: 1
-  bulletsPerSecond: 0
-  bulletCount: 10
-  thrown: 0
-  wEffect: {fileID: 0}
-  shootingMode: 0
 --- !u!114 &1258137110129163176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,14 +138,10 @@ MonoBehaviour:
   showEvents: 1
   onGrab:
     m_PersistentCalls:
-      m_Calls: []
-  onRelease:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -4630044012618928222, guid: 79c570ccae6338d49ba1e1718ca638f3,
-          type: 3}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: CheckThrow
+      - m_Target: {fileID: 1258137110129163176}
+        m_TargetAssemblyTypeName: IngredientAnimatorManager, Assembly-CSharp
+        m_MethodName: Scream
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -178,6 +151,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
   showAdvancedEvents: 0
   onSqueeze:
     m_PersistentCalls:
