@@ -19,6 +19,9 @@ public struct AiStates
     public static int Hurt1 = Animator.StringToHash("Hurt1");
     public static int Hurt2 = Animator.StringToHash("Hurt2");
 
+    public static int Stunned = Animator.StringToHash("Stunned");
+    public static int Stuck = Animator.StringToHash("Stuck");
+
     public static int Die = Animator.StringToHash("Die");
 }
 
@@ -35,7 +38,16 @@ public class ZombieAI : MonoBehaviour
 
     [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
 
-    private float moveTime, scratchTime, attackTime, danceTime, hurt0Time, hurt1Time, hurt2Time, dieTime;
+    private float moveTime,
+        scratchTime,
+        attackTime,
+        danceTime,
+        hurt0Time,
+        hurt1Time,
+        hurt2Time,
+        dieTime,
+        stunnedAnimationTime,
+        stuckAnimationTime;
 
     [Header("Miscellaneous")] private float timeBeforeDisappearance;
 
@@ -45,11 +57,16 @@ public class ZombieAI : MonoBehaviour
     private Animator _animator;
     private Collider _coll;
 
+    [HideInInspector] public bool stunned;
+    [HideInInspector] public float stunnedTime;
+    [HideInInspector] public bool stuck;
+    [HideInInspector] public float stuckTime;
+
     public Transform objective;
     public Health objectiveHealth;
 
     private Transform _distraction;
-    public bool distracted;
+    [HideInInspector] public bool distracted;
     private bool _dancing;
     private bool _hurt;
     private bool _isDying;
@@ -119,6 +136,16 @@ public class ZombieAI : MonoBehaviour
     {
         while (!_ownHealth.dead)
         {
+            if (stunned)
+            {
+                yield return Stunned();
+            }
+
+            if (stuck)
+            {
+                yield return StickToGround();
+            }
+
             if (objective != null)
             {
                 yield return NextAction();
@@ -137,6 +164,11 @@ public class ZombieAI : MonoBehaviour
 
     private IEnumerator NextAction()
     {
+        if (stunned)
+        {
+            return Stunned();
+        }
+
         if (_hurt)
         {
             return PlayHurtAnimation();
@@ -201,26 +233,10 @@ public class ZombieAI : MonoBehaviour
         yield return new WaitForSeconds(attackTime);
     }
 
-    private void HurtObjective()
-    {
-        objectiveHealth.Hurt(attackDamage);
-        if (objectiveHealth.dead)
-        {
-            gameInfo.RemoveFromArrays(objective, objectiveHealth);
-            objective = null;
-            objectiveHealth = null;
-        }
-    }
-
     public void Distract(Transform distractionTransform)
     {
         objective = distractionTransform;
         distracted = true;
-    }
-
-    private void MakeDance()
-    {
-        _dancing = true;
     }
 
     private IEnumerator Dance()
@@ -233,6 +249,34 @@ public class ZombieAI : MonoBehaviour
         _animator?.SetTrigger(AiStates.Dance);
         yield return new WaitForSeconds(danceTime);
         _dancing = false;
+    }
+
+    private IEnumerator Stunned()
+    {
+        if (!_navMeshAgent.isStopped)
+        {
+            _navMeshAgent.isStopped = true;
+        }
+
+        _animator?.SetTrigger(AiStates.Stunned);
+        yield return new WaitForSeconds(Mathf.Max(stunnedTime, stunnedAnimationTime) == stunnedTime
+            ? stunnedTime
+            : stunnedAnimationTime);
+        stunned = false;
+    }
+
+    private IEnumerator StickToGround()
+    {
+        if (_navMeshAgent.isStopped)
+        {
+            _navMeshAgent.isStopped = true;
+        }
+
+        _animator?.SetTrigger(AiStates.Stuck);
+        yield return new WaitForSeconds(Mathf.Max(stuckTime, stuckAnimationTime) == stuckTime
+            ? stuckTime
+            : stuckAnimationTime);
+        stuck = false;
     }
 
     private IEnumerator PlayHurtAnimation()
@@ -262,6 +306,24 @@ public class ZombieAI : MonoBehaviour
         _hurt = false;
     }
 
+    private void HurtObjective()
+    {
+        objectiveHealth.Hurt(attackDamage);
+        if (objectiveHealth.dead)
+        {
+            gameInfo.RemoveFromArrays(objective, objectiveHealth);
+            objective = null;
+            objectiveHealth = null;
+        }
+    }
+
+
+    private void MakeDance()
+    {
+        _dancing = true;
+    }
+
+
     private void GetAnimationTimes()
     {
         _animClips = _animator.runtimeAnimatorController.animationClips;
@@ -289,6 +351,12 @@ public class ZombieAI : MonoBehaviour
                     break;
                 case "Hurt2":
                     hurt2Time = animClip.length;
+                    break;
+                case "Stunned":
+                    stunnedAnimationTime = animClip.length;
+                    break;
+                case "Stuck":
+                    stuckAnimationTime = animClip.length;
                     break;
                 case "Die":
                     dieTime = animClip.length;

@@ -30,6 +30,16 @@ public class IngredientAnimatorManager : MonoBehaviour
     {
         CheckCurrentStatus();
     }
+    
+    private void Scream()
+    {
+    if (!isScreaming)
+                {
+                    animator.SetTrigger(IngredientAnimatorTriggers.ToScream);
+                    audioSource.Play();
+                    isScreaming = true;
+                }
+    }
 
     private void CheckCurrentStatus()
     {

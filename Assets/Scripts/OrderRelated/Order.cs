@@ -6,8 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Order")]
 public class Order : ScriptableObject
 {
-    [HideInInspector] public TextMeshProUGUI text;
+    [HideInInspector] public TextMeshProUGUI[] text;
     public string[] orderIngredients;
+    public bool breadType;
     public IngredientsList ingList;
 
     /// <summary>
@@ -16,32 +17,31 @@ public class Order : ScriptableObject
     /// <returns>
     /// A string containing the identifiers of the ingredients that this order is made of, in the specific order they are placed
     /// </returns>
-    public string ToShow()
+    public void ToShow()
     {
-        string toShow = "";
         for (int i = 0; i < orderIngredients.Length; i++)
         {
-            toShow += "-";
-            toShow += orderIngredients[i];
-            if (i != orderIngredients.Length - 1)
-            {
-                toShow += "\n";
-            }
+            text[i].text = orderIngredients[i];
         }
-
-        return toShow;
     }
 
     public void Fill(int numIngredients)
     {
         orderIngredients = new string[numIngredients];
         var i = 0;
+        breadType = (Random.value > 0.5f) ? true : false;
+        //breadType==true  Bun, Loaf
         while (i < orderIngredients.Length)
         {
-            orderIngredients[i++] = ingList.GetRandomIngredient().foodIdentifier;
+            orderIngredients[i] = ingList.GetRandomIngredient().foodIdentifier;
+            if (i == 0 || i == numIngredients - 1)
+            {
+                orderIngredients[i] = breadType ? "Bun" : "Loaf";
+            }
+
+            i++;
         }
 
-        text.text = ToShow();
-        Debug.Log(text.text);
+        ToShow();
     }
 }

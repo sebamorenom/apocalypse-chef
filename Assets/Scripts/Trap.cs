@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public class Trap : Upgradable
 {
     private struct TrapStates
     {
@@ -23,6 +23,8 @@ public class Trap : MonoBehaviour
     private float _activatedTime;
     private float _deactivatedTime;
 
+    private TemporalUpgradeStorage _temporalUpgradeStorage;
+
     public bool isActive;
 
     // Start is called before the first frame update
@@ -30,6 +32,8 @@ public class Trap : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         GetAnimationClips();
+        _temporalUpgradeStorage = FindObjectOfType<TemporalUpgradeStorage>();
+        CheckForUpgrades();
     }
 
     public void SwitchState()
@@ -62,5 +66,41 @@ public class Trap : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void CheckForUpgrades()
+    {
+        for (int i = 0; i < _temporalUpgradeStorage.spawnersUpgradeInfo.Count; i++)
+        {
+            if (_temporalUpgradeStorage.spawnersUpgradeInfo[i].upgradedObjectName == name)
+            {
+                currentUpgradeLevel = _temporalUpgradeStorage.spawnersUpgradeInfo[i].currentUpgradeLevel;
+                upgradeCosts = _temporalUpgradeStorage.spawnersUpgradeInfo[i].upgradeCosts;
+                _temporalUpgradeStorage.spawnersUpgradeInfo.Remove(_temporalUpgradeStorage.spawnersUpgradeInfo[i]);
+            }
+        }
+    }
+
+    public new object CaptureState()
+    {
+        UpgradeInfo upgradeInfo = new UpgradeInfo
+        {
+            upgradedObjectName = name = this.name,
+            currentUpgradeLevel = this.currentUpgradeLevel,
+            upgradeCosts = this.upgradeCosts
+        };
+        if (_temporalUpgradeStorage != null)
+        {
+            _temporalUpgradeStorage.trapsUpgradeInfo.Add(upgradeInfo);
+        }
+
+        return upgradeInfo;
+    }
+
+    public new void LoadState(object state)
+    {
+        UpgradeInfo upgradeInfo = (UpgradeInfo)state;
+        currentUpgradeLevel = upgradeInfo.currentUpgradeLevel;
+        upgradeCosts = upgradeInfo.upgradeCosts;
     }
 }

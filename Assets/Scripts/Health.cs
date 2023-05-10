@@ -10,6 +10,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private float maxHealth;
     [ReadOnly] public float currentHealth;
     [SerializeField] public bool dead;
+    [HideInInspector] public bool burning;
 
     private void Start()
     {
@@ -30,13 +31,19 @@ public class Health : MonoBehaviour, IDamageable
 
     public IEnumerator Burn(float damagePerTick, float timeOnFlames, float timeBetweenTicks)
     {
-        startingTime = Time.fixedTime;
-        currentTime = startingTime;
-
-        while (currentTime <= startingTime + timeOnFlames)
+        if (!burning)
         {
-            Hurt(damagePerTick);
-            yield return new WaitForSeconds(timeBetweenTicks);
+            burning = true;
+            startingTime = Time.fixedTime;
+            currentTime = startingTime;
+
+            while (currentTime <= startingTime + timeOnFlames)
+            {
+                Hurt(damagePerTick);
+                yield return new WaitForSeconds(timeBetweenTicks);
+            }
+
+            burning = false;
         }
     }
 }

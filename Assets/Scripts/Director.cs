@@ -8,14 +8,6 @@ using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 
-public struct UpgradeInfo
-{
-    public string upgradedObjectName;
-    public int level;
-    public int upgradeCost;
-}
-
-
 [RequireComponent(typeof(SceneChanger))]
 public class Director : MonoBehaviour, ISaveable
 {
@@ -23,6 +15,7 @@ public class Director : MonoBehaviour, ISaveable
     [SerializeField] private GameInfo[] gameInfos;
     public GameInfo currentGameInfo;
 
+    [SerializeField] public float scoreToMoneyModifier;
 
     private SceneChanger _sceneChanger;
     private Fader _fader;
@@ -93,7 +86,6 @@ public class Director : MonoBehaviour, ISaveable
                 SaveSystem.Load(currentFileIndex);
                 onLoad.Invoke();
                 StartCoroutine(PrepareSceneManagers());
-                LoadFields();
             }
             else
             {
@@ -123,6 +115,8 @@ public class Director : MonoBehaviour, ISaveable
     private void LoadFields()
     {
         zSpawnManager.InitializeForDay(currentGameInfo.currentDay);
+        uiManager.gameInfo = currentGameInfo;
+        uiManager.scoreThresholds = currentGameInfo.scoreThresholds;
     }
 
     private void ClearFields()
@@ -150,13 +144,14 @@ public class Director : MonoBehaviour, ISaveable
 
     private IEnumerator PrepareSceneManagers()
     {
-        while (zSpawnManager != null && orderShower != null && uiManager != null)
+        while (zSpawnManager == null && orderShower == null && uiManager == null)
         {
             yield return null;
         }
 
         zSpawnManager.currentGameInfo = currentGameInfo;
         zSpawnManager.SetGameInfoToZombies();
+        LoadFields();
     }
 
     private IEnumerator PrepareUpgradeSceneManagers()
@@ -169,7 +164,14 @@ public class Director : MonoBehaviour, ISaveable
 
     private void ToUpgradeScene()
     {
+        ScoreToMoney();
         _sceneChanger.ChangeScene(2);
+    }
+
+    private void ScoreToMoney()
+    {
+        currentGameInfo.currentMoney += Mathf.RoundToInt(currentGameInfo.currentDayScore * scoreToMoneyModifier);
+        currentGameInfo.currentDayScore = 0;
     }
 
     public void SelectSaveFile(int saveIndex)

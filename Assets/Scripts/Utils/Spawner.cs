@@ -7,18 +7,18 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(SaveableObject))]
-public class Spawner : MonoBehaviour, ISaveable
+public class Spawner : Upgradable
 {
     [SerializeField] public string spawnerName;
     [SerializeField] private GameObject spawnableItem;
     [SerializeField] private float[] spawnerTimers = new float[3];
-    [SerializeField] private int[] upgradeCost = new int[2];
-    public int currentUpgradeLevel;
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;
 
     private Transform _transform;
+
+    private TemporalUpgradeStorage _temporalUpgradeStorage;
 
     private float lastSpawnTime;
     private Director _director;
@@ -30,6 +30,8 @@ public class Spawner : MonoBehaviour, ISaveable
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
         _director = FindObjectOfType<Director>();
+        _temporalUpgradeStorage = FindObjectOfType<TemporalUpgradeStorage>();
+        CheckForUpgrades();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,7 +65,7 @@ public class Spawner : MonoBehaviour, ISaveable
 
     public bool Upgrade()
     {
-        if (currentUpgradeLevel < 2 && _director.currentGameInfo.currentMoney > upgradeCost[currentUpgradeLevel])
+        if (currentUpgradeLevel < 2 && _director.currentGameInfo.currentMoney > upgradeCosts[currentUpgradeLevel])
         {
             currentUpgradeLevel++;
             return true;
@@ -78,21 +80,40 @@ public class Spawner : MonoBehaviour, ISaveable
         itemInside = true;
     }
 
-    private struct UpgradeInfo
+    public void CheckForUpgrades()
     {
-        public int currentUpgradeLevel;
+        for (int i = 0; i < _temporalUpgradeStorage.spawnersUpgradeInfo.Count; i++)
+        {
+            if (_temporalUpgradeStorage.spawnersUpgradeInfo[i].upgradedObjectName == name)
+            {
+                currentUpgradeLevel = _temporalUpgradeStorage.spawnersUpgradeInfo[i].currentUpgradeLevel;
+                upgradeCosts = _temporalUpgradeStorage.spawnersUpgradeInfo[i].upgradeCosts;
+                _temporalUpgradeStorage.spawnersUpgradeInfo.Remove(_temporalUpgradeStorage.spawnersUpgradeInfo[i]);
+            }
+        }
     }
 
-    public object CaptureState()
+
+    public new object CaptureState()
     {
-        UpgradeInfo upgradeInfo = new UpgradeInfo();
-        upgradeInfo.currentUpgradeLevel = currentUpgradeLevel;
+        UpgradeInfo upgradeInfo = new UpgradeInfo
+        {
+            upgradedObjectName = name = this.name,
+            currentUpgradeLevel = this.currentUpgradeLevel,
+            upgradeCosts = this.upgradeCosts
+        };
+        if (_temporalUpgradeStorage != null)
+        {
+            _temporalUpgradeStorage.spawnersUpgradeInfo.Add(upgradeInfo);
+        }
+
         return upgradeInfo;
     }
 
-    public void LoadState(object state)
+    public new void LoadState(object state)
     {
         UpgradeInfo upgradeInfo = (UpgradeInfo)state;
         currentUpgradeLevel = upgradeInfo.currentUpgradeLevel;
+        upgradeCosts = upgradeInfo.upgradeCosts;
     }
 }

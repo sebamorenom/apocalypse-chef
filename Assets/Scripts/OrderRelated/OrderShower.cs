@@ -14,14 +14,9 @@ public class OrderShower : MonoBehaviour
     [SerializeField] private Order[] orderList;
     [SerializeField] private GameInfo gameInfo;
 
-
+    [SerializeField]
     private void Start()
     {
-        for (int i = 0; i < orderList.Length; i++)
-        {
-            orderList[i].text = orderText[i];
-        }
-
         FillAllOrders();
     }
 
@@ -44,6 +39,12 @@ public class OrderShower : MonoBehaviour
     {
         for (int i = 0; i < orderList.Length; i++)
         {
+            orderList[i].text = new TextMeshProUGUI[numIngredientsInOrder];
+            for (int j = 0; j < orderList[i].orderIngredients.Length; j++)
+            {
+                orderList[i].text[j] = orderText[i * orderList[i].orderIngredients.Length + j];
+            }
+
             orderList[i].Fill(numIngredientsInOrder);
         }
     }
@@ -54,12 +55,9 @@ public class OrderShower : MonoBehaviour
         for (int i = 0; i < order.orderIngredients.Length; i++)
         {
             toText += order.orderIngredients[i];
-            if (i != order.orderIngredients.Length - 1)
-            {
-                toText += "\n";
-            }
-        }
 
+            toText += "\n";
+        }
         return toText;
     }
 
@@ -73,7 +71,6 @@ public class OrderShower : MonoBehaviour
             Debug.Log(order.orderIngredients);
         }
         */
-
         for (int i = 0; i < foodOnPlate.Length; i++)
         {
             toText += foodOnPlate[i];
