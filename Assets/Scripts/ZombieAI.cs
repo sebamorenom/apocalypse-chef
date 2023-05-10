@@ -258,11 +258,12 @@ public class ZombieAI : MonoBehaviour
             _navMeshAgent.isStopped = true;
         }
 
-        _animator?.SetTrigger(AiStates.Stunned);
+        _animator?.SetBool(AiStates.Stunned,true);
         yield return new WaitForSeconds(Mathf.Max(stunnedTime, stunnedAnimationTime) == stunnedTime
             ? stunnedTime
             : stunnedAnimationTime);
         stunned = false;
+        _animator?.SetBool(AiStates.Stunned,false);
     }
 
     private IEnumerator StickToGround()
@@ -272,11 +273,12 @@ public class ZombieAI : MonoBehaviour
             _navMeshAgent.isStopped = true;
         }
 
-        _animator?.SetTrigger(AiStates.Stuck);
+        _animator?.SetBool(AiStates.Stuck,true);
         yield return new WaitForSeconds(Mathf.Max(stuckTime, stuckAnimationTime) == stuckTime
             ? stuckTime
             : stuckAnimationTime);
         stuck = false;
+        _animator?.SetBool(AiStates.Stuck,false);
     }
 
     private IEnumerator PlayHurtAnimation()
