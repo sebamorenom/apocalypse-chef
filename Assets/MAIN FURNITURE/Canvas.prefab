@@ -224,7 +224,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323549141066277}
-  m_LocalRotation: {x: -0.0004044549, y: -0.99991924, z: -0.012394078, w: 0.0027899416}
+  m_LocalRotation: {x: -0.00040301145, y: -0.9999127, z: -0.0129114175, w: 0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -654,534 +654,6 @@ MonoBehaviour:
   CurrentLinkTransform: {fileID: 0}
   IsPreviousLinkTransfrom: 0
   Motions: []
---- !u!1 &2467323549250870718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2467323549250870721}
-  - component: {fileID: 2467323549250870722}
-  - component: {fileID: 2467323549250870723}
-  - component: {fileID: 2467323549250870720}
-  m_Layer: 5
-  m_Name: Ingrediente1
-  m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: 161429058f8e4ac46add260a4ad5e7da, type: 3}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2467323549250870721
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323549250870718}
-  m_LocalRotation: {x: -0.00040301046, y: -0.9999127, z: -0.012911477, w: 0.002790151}
-  m_LocalPosition: {x: 0, y: 0, z: -1.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2467323550835309887}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.48, y: -179.681, z: 0.042}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: 33}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2467323549250870722
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323549250870718}
-  m_CullTransparentMesh: 1
---- !u!114 &2467323549250870723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323549250870718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "Ingrediente N\xBA1"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14a31ab12ed900842ae2ac1d9399230c, type: 2}
-  m_sharedMaterial: {fileID: -8337260193579256984, guid: 14a31ab12ed900842ae2ac1d9399230c,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 3607101440
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -55.541996, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2467323549250870720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323549250870718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1189003419, guid: b3fba48c4f8ed2441910c336b04b248c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WrapMode: 0
-  hasOwner: 0
-  OnBegin:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  CustomVariables: []
-  MultiProperties: 0
-  BypassPosition: 0
-  DebugMode: 0
-  AutoKeyframe: 0
-  UseTimeScale: 1
-  IsDragFrame: 0
-  IsAutoplay: 1
-  isCustom: 0
-  AutoplayMode: 1
-  Keyframes:
-  - Position: {x: -27.5, y: 36, z: 0}
-    Rotation: {x: 7.4794455, y: 180.32184, z: 0.092201605}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-    Duration: 0.6
-    Delay: 6
-    Mode: 0
-    Easing: 2
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.03
-        outSlope: 0.03
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.45
-        value: 0.03
-        inSlope: 0.2333333
-        outSlope: 0.2333333
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.7
-        value: 0.13
-        inSlope: 0.7666667
-        outSlope: 0.7666667
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.85
-        value: 0.3
-        inSlope: 2.233334
-        outSlope: 2.233334
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.925
-        value: 0.55
-        inSlope: 4.666665
-        outSlope: 4.666665
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 5.999996
-        outSlope: 5.999996
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 0}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  - Position: {x: 63, y: 33, z: 0}
-    Rotation: {x: 7.4794354, y: 180.32184, z: 0.09220142}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0.84313726}
-    Duration: 0.6
-    Delay: 0
-    Mode: 0
-    Easing: 10
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.0003805831
-        inSlope: 8.990726
-        outSlope: 8.990726
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.35
-        value: 1
-        inSlope: -4.303913
-        outSlope: -4.303913
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.55
-        value: 1
-        inSlope: 1.554695
-        outSlope: 1.554695
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.7730452
-        value: 1
-        inSlope: -2.007816
-        outSlope: -2.007816
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: -1.23451
-        outSlope: -1.23451
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 8300000, guid: 6ea6119abf22a6e4c93cd457689cc8aa, type: 3}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  - Position: {x: 34, y: 33, z: 0}
-    Rotation: {x: 7.4794354, y: 180.32184, z: 0.09220142}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0.84313726}
-    Duration: 0.6
-    Delay: 0
-    Mode: 0
-    Easing: 0
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 13.80198
-        outSlope: 13.80198
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.04670785
-        value: 0.3973127
-        inSlope: 5.873408
-        outSlope: 5.873408
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.1421811
-        value: 0.7066917
-        inSlope: 2.313627
-        outSlope: 2.313627
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.2483539
-        value: 0.8539293
-        inSlope: 0.9141542
-        outSlope: 0.9141542
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.4751028
-        value: 0.954047
-        inSlope: 0.264541
-        outSlope: 0.264541
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0.03
-        outSlope: 0.03
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 0}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  Frame: 3
-  LinkStatus: OFF
-  LinkColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  isLinked: 0
-  IsKM: 1
-  OptionStatus: EXPAND
-  OptionColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsOption: 0
-  MotionControlStatus: OFF
-  MotionControlColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsMotionControl: 0
-  EventStatus: OFF
-  EventColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsEvent: 0
-  IsCalledAllFrames: 0
-  CustomStatus: OFF
-  CustomColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsCustom: 0
-  CurrentDuration: 0.6
-  CurrentDelay: 0
-  CurrentMode: 0
-  CurrentEasing: 0
-  CurrentAnimation:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 13.80198
-      outSlope: 13.80198
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.04670785
-      value: 0.3973127
-      inSlope: 5.873408
-      outSlope: 5.873408
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.1421811
-      value: 0.7066917
-      inSlope: 2.313627
-      outSlope: 2.313627
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.2483539
-      value: 0.8539293
-      inSlope: 0.9141542
-      outSlope: 0.9141542
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.4751028
-      value: 0.954047
-      inSlope: 0.264541
-      outSlope: 0.264541
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.03
-      outSlope: 0.03
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  CurrentSound: {fileID: 0}
-  CurrentPitch: 1
-  CurrentVolume: 1
-  CurrentMaxRange: 1
-  CurrentMinRange: 0
-  CurrentLinkTransform: {fileID: 0}
-  IsPreviousLinkTransfrom: 0
-  Motions: []
 --- !u!1 &2467323549429808189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +680,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323549429808189}
-  m_LocalRotation: {x: -0.0005202294, y: 0.00066106505, z: -0.0042151054, w: 0.99999076}
+  m_LocalRotation: {x: -0.0000028610234, y: 0.00066324574, z: -0.004214763, w: 0.99999094}
   m_LocalPosition: {x: 0, y: 0, z: -18.8}
   m_LocalScale: {x: 0.22307584, y: 0.22307584, z: 0.22307584}
   m_ConstrainProportionsScale: 0
@@ -1801,7 +1273,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2467323549658430855}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1874,13 +1346,12 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323549658430848}
   m_LocalRotation: {x: -0.07810489, y: -0, z: -0, w: 0.99694514}
-  m_LocalPosition: {x: 0, y: 0, z: 317.3605}
+  m_LocalPosition: {x: 0, y: 0, z: -0.06454468}
   m_LocalScale: {x: 0.001, y: 0.0010000002, z: 0.0010000002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2467323550178673488}
   - {fileID: 2467323550332746096}
-  - {fileID: 2467323550835309887}
   - {fileID: 2467323549448754995}
   - {fileID: 2467323550754285445}
   m_Father: {fileID: 0}
@@ -1888,7 +1359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -8.959, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 549968.94, y: 1.1171}
+  m_AnchoredPosition: {x: -0.0009765625, y: 1.1171}
   m_SizeDelta: {x: 511.4587, y: 282.9206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2467323549658430852
@@ -2202,7 +1673,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323549758370948}
-  m_LocalRotation: {x: 0.00040445488, y: 0.99991924, z: 0.0123940855, w: -0.0027899416}
+  m_LocalRotation: {x: 0.00040301142, y: 0.9999127, z: 0.012911425, w: -0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2540,7 +2011,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323549796709844}
-  m_LocalRotation: {x: -0.0005202294, y: 0.00066106505, z: -0.0042151054, w: 0.99999076}
+  m_LocalRotation: {x: -0.0000028610234, y: 0.00066324574, z: -0.004214763, w: 0.99999094}
   m_LocalPosition: {x: 0, y: 0, z: -18.806639}
   m_LocalScale: {x: 0.22307584, y: 0.22307584, z: 0.22307584}
   m_ConstrainProportionsScale: 0
@@ -3128,7 +2599,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323549811634667}
-  m_LocalRotation: {x: -0.0005202294, y: 0.00066106505, z: -0.0042151054, w: 0.99999076}
+  m_LocalRotation: {x: -0.0000028610234, y: 0.00066324574, z: -0.004214763, w: 0.99999094}
   m_LocalPosition: {x: 0, y: 0, z: -18.806639}
   m_LocalScale: {x: 0.22307584, y: 0.22307584, z: 0.22307584}
   m_ConstrainProportionsScale: 0
@@ -3888,534 +3359,6 @@ MonoBehaviour:
   CurrentLinkTransform: {fileID: 0}
   IsPreviousLinkTransfrom: 0
   Motions: []
---- !u!1 &2467323550018892872
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2467323550018892875}
-  - component: {fileID: 2467323550018892876}
-  - component: {fileID: 2467323550018892877}
-  - component: {fileID: 2467323550018892874}
-  m_Layer: 5
-  m_Name: Ingrediente2
-  m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: 161429058f8e4ac46add260a4ad5e7da, type: 3}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2467323550018892875
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323550018892872}
-  m_LocalRotation: {x: -0.00040301046, y: -0.9999127, z: -0.012911477, w: 0.002790151}
-  m_LocalPosition: {x: 0, y: 0, z: -3.3761797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2467323550835309887}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -1.48, y: -179.681, z: 0.042}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -21}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2467323550018892876
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323550018892872}
-  m_CullTransparentMesh: 1
---- !u!114 &2467323550018892877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323550018892872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "Ingrediente N\xBA2"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14a31ab12ed900842ae2ac1d9399230c, type: 2}
-  m_sharedMaterial: {fileID: -8337260193579256984, guid: 14a31ab12ed900842ae2ac1d9399230c,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 3607101440
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -55.541996, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2467323550018892874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323550018892872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1189003419, guid: b3fba48c4f8ed2441910c336b04b248c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WrapMode: 0
-  hasOwner: 0
-  OnBegin:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  CustomVariables: []
-  MultiProperties: 0
-  BypassPosition: 0
-  DebugMode: 0
-  AutoKeyframe: 0
-  UseTimeScale: 1
-  IsDragFrame: 0
-  IsAutoplay: 1
-  isCustom: 0
-  AutoplayMode: 1
-  Keyframes:
-  - Position: {x: -27.483398, y: -18, z: 0}
-    Rotation: {x: 7.4794474, y: 180.32184, z: 0.092201635}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-    Duration: 0.6
-    Delay: 6.5
-    Mode: 0
-    Easing: 2
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.03
-        outSlope: 0.03
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.45
-        value: 0.03
-        inSlope: 0.2333333
-        outSlope: 0.2333333
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.7
-        value: 0.13
-        inSlope: 0.7666667
-        outSlope: 0.7666667
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.85
-        value: 0.3
-        inSlope: 2.233334
-        outSlope: 2.233334
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.925
-        value: 0.55
-        inSlope: 4.666665
-        outSlope: 4.666665
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 5.999996
-        outSlope: 5.999996
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 0}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  - Position: {x: 63, y: -21, z: 0}
-    Rotation: {x: 7.4794354, y: 180.32184, z: 0.09220142}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0.84313726}
-    Duration: 0.6
-    Delay: 0
-    Mode: 0
-    Easing: 10
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.0003805831
-        inSlope: 8.990726
-        outSlope: 8.990726
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.35
-        value: 1
-        inSlope: -4.303913
-        outSlope: -4.303913
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.55
-        value: 1
-        inSlope: 1.554695
-        outSlope: 1.554695
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.7730452
-        value: 1
-        inSlope: -2.007816
-        outSlope: -2.007816
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: -1.23451
-        outSlope: -1.23451
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 8300000, guid: 6ea6119abf22a6e4c93cd457689cc8aa, type: 3}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  - Position: {x: 34, y: -21, z: 0}
-    Rotation: {x: 7.4794354, y: 180.32184, z: 0.09220142}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0.84313726}
-    Duration: 0.6
-    Delay: 0
-    Mode: 0
-    Easing: 0
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 13.80198
-        outSlope: 13.80198
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.04670785
-        value: 0.3973127
-        inSlope: 5.873408
-        outSlope: 5.873408
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.1421811
-        value: 0.7066917
-        inSlope: 2.313627
-        outSlope: 2.313627
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.2483539
-        value: 0.8539293
-        inSlope: 0.9141542
-        outSlope: 0.9141542
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.4751028
-        value: 0.954047
-        inSlope: 0.264541
-        outSlope: 0.264541
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0.03
-        outSlope: 0.03
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 0}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  Frame: 3
-  LinkStatus: OFF
-  LinkColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  isLinked: 0
-  IsKM: 1
-  OptionStatus: EXPAND
-  OptionColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsOption: 0
-  MotionControlStatus: OFF
-  MotionControlColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsMotionControl: 0
-  EventStatus: OFF
-  EventColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsEvent: 0
-  IsCalledAllFrames: 0
-  CustomStatus: OFF
-  CustomColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsCustom: 0
-  CurrentDuration: 0.6
-  CurrentDelay: 0
-  CurrentMode: 0
-  CurrentEasing: 0
-  CurrentAnimation:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 13.80198
-      outSlope: 13.80198
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.04670785
-      value: 0.3973127
-      inSlope: 5.873408
-      outSlope: 5.873408
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.1421811
-      value: 0.7066917
-      inSlope: 2.313627
-      outSlope: 2.313627
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.2483539
-      value: 0.8539293
-      inSlope: 0.9141542
-      outSlope: 0.9141542
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.4751028
-      value: 0.954047
-      inSlope: 0.264541
-      outSlope: 0.264541
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.03
-      outSlope: 0.03
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  CurrentSound: {fileID: 0}
-  CurrentPitch: 1
-  CurrentVolume: 1
-  CurrentMaxRange: 1
-  CurrentMinRange: 0
-  CurrentLinkTransform: {fileID: 0}
-  IsPreviousLinkTransfrom: 0
-  Motions: []
 --- !u!1 &2467323550178673489
 GameObject:
   m_ObjectHideFlags: 0
@@ -4640,7 +3583,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550184516189}
-  m_LocalRotation: {x: 0.00040445488, y: 0.99991924, z: 0.0123940855, w: -0.0027899416}
+  m_LocalRotation: {x: 0.00040301142, y: 0.9999127, z: 0.012911425, w: -0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4919,7 +3862,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550274171312}
-  m_LocalRotation: {x: -0.0004044549, y: -0.99991924, z: -0.012394078, w: 0.0027899416}
+  m_LocalRotation: {x: -0.00040301145, y: -0.9999127, z: -0.0129114175, w: 0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5375,7 +4318,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550280192270}
-  m_LocalRotation: {x: 0.00040445488, y: 0.99991924, z: 0.0123940855, w: -0.0027899416}
+  m_LocalRotation: {x: 0.00040301142, y: 0.9999127, z: 0.012911425, w: -0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -11.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5754,7 +4697,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550346507739}
-  m_LocalRotation: {x: 0.00040445605, y: 0.99991924, z: 0.012394011, w: -0.0027899414}
+  m_LocalRotation: {x: 0.0004030126, y: 0.9999127, z: 0.0129113505, w: -0.0027901505}
   m_LocalPosition: {x: 0, y: 0, z: -3.6293836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6090,7 +5033,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550350579535}
-  m_LocalRotation: {x: -0.0004044549, y: -0.99991924, z: -0.012394078, w: 0.0027899416}
+  m_LocalRotation: {x: -0.00040301145, y: -0.9999127, z: -0.0129114175, w: 0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6744,7 +5687,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550377832632}
-  m_LocalRotation: {x: 0.00040445465, y: 0.99991924, z: 0.0123941, w: -0.0027899416}
+  m_LocalRotation: {x: 0.0004030112, y: 0.9999127, z: 0.01291144, w: -0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -5.8293824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7126,7 +6069,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550425175513}
-  m_LocalRotation: {x: -0.0005202294, y: 0.00066106505, z: -0.0042151054, w: 0.99999076}
+  m_LocalRotation: {x: -0.0000028610234, y: 0.00066324574, z: -0.004214763, w: 0.99999094}
   m_LocalPosition: {x: 0, y: 0, z: -18.806639}
   m_LocalScale: {x: 0.22307584, y: 0.22307584, z: 0.22307584}
   m_ConstrainProportionsScale: 0
@@ -7714,7 +6657,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550444963645}
-  m_LocalRotation: {x: -0.0004044549, y: -0.99991924, z: -0.012394078, w: 0.0027899416}
+  m_LocalRotation: {x: -0.00040301145, y: -0.9999127, z: -0.0129114175, w: 0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8368,7 +7311,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550616012936}
-  m_LocalRotation: {x: -0.00040445468, y: -0.99991924, z: -0.012394093, w: 0.0027899416}
+  m_LocalRotation: {x: -0.00040301122, y: -0.9999127, z: -0.012911432, w: 0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8824,7 +7767,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550649390484}
-  m_LocalRotation: {x: 0.00040445512, y: 0.99991924, z: 0.012394071, w: -0.0027899416}
+  m_LocalRotation: {x: 0.00040301165, y: 0.9999127, z: 0.01291141, w: -0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -9.429382}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9169,50 +8112,11 @@ RectTransform:
   - {fileID: 2467323550350579534}
   - {fileID: 2467323550975497279}
   m_Father: {fileID: 2467323549658430855}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -154.4, y: 9.1}
-  m_SizeDelta: {x: 200, y: 159}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2467323550835309884
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2467323550835309887}
-  m_Layer: 5
-  m_Name: 3_Ingredient_Recipe
-  m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: 161429058f8e4ac46add260a4ad5e7da, type: 3}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &2467323550835309887
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323550835309884}
-  m_LocalRotation: {x: -0.000000007450581, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2467323549250870721}
-  - {fileID: 2467323550018892875}
-  - {fileID: 2467323551012987542}
-  m_Father: {fileID: 2467323549658430855}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -154.4, y: 9.1}
+  m_AnchoredPosition: {x: -203, y: 9.1}
   m_SizeDelta: {x: 200, y: 159}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2467323550975497276
@@ -9241,7 +8145,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323550975497276}
-  m_LocalRotation: {x: -0.0004044549, y: -0.99991924, z: -0.012394078, w: 0.0027899416}
+  m_LocalRotation: {x: -0.00040301145, y: -0.9999127, z: -0.0129114175, w: 0.0027901507}
   m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9671,534 +8575,6 @@ MonoBehaviour:
   CurrentLinkTransform: {fileID: 0}
   IsPreviousLinkTransfrom: 0
   Motions: []
---- !u!1 &2467323551012987543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2467323551012987542}
-  - component: {fileID: 2467323551012987547}
-  - component: {fileID: 2467323551012987544}
-  - component: {fileID: 2467323551012987545}
-  m_Layer: 5
-  m_Name: Ingrediente3
-  m_TagString: Untagged
-  m_Icon: {fileID: 2800000, guid: 161429058f8e4ac46add260a4ad5e7da, type: 3}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2467323551012987542
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323551012987543}
-  m_LocalRotation: {x: -0.00040301145, y: -0.9999127, z: -0.0129114175, w: 0.0027901507}
-  m_LocalPosition: {x: 0, y: 0, z: -3.366168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2467323550835309887}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -1.48, y: -179.681, z: 0.042}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -76}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2467323551012987547
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323551012987543}
-  m_CullTransparentMesh: 1
---- !u!114 &2467323551012987544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323551012987543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "Ingrediente N\xBA3"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14a31ab12ed900842ae2ac1d9399230c, type: 2}
-  m_sharedMaterial: {fileID: -8337260193579256984, guid: 14a31ab12ed900842ae2ac1d9399230c,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 3607101440
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -55.541996, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2467323551012987545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2467323551012987543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1189003419, guid: b3fba48c4f8ed2441910c336b04b248c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WrapMode: 0
-  hasOwner: 0
-  OnBegin:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  CustomVariables: []
-  MultiProperties: 0
-  BypassPosition: 0
-  DebugMode: 0
-  AutoKeyframe: 0
-  UseTimeScale: 1
-  IsDragFrame: 0
-  IsAutoplay: 1
-  isCustom: 0
-  AutoplayMode: 1
-  Keyframes:
-  - Position: {x: -27.483398, y: -73, z: 0}
-    Rotation: {x: 7.479454, y: 180.32184, z: 0.09220174}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-    Duration: 0.6
-    Delay: 7
-    Mode: 0
-    Easing: 2
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.03
-        outSlope: 0.03
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.45
-        value: 0.03
-        inSlope: 0.2333333
-        outSlope: 0.2333333
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.7
-        value: 0.13
-        inSlope: 0.7666667
-        outSlope: 0.7666667
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.85
-        value: 0.3
-        inSlope: 2.233334
-        outSlope: 2.233334
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.925
-        value: 0.55
-        inSlope: 4.666665
-        outSlope: 4.666665
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 5.999996
-        outSlope: 5.999996
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 0}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  - Position: {x: 63, y: -76, z: 0}
-    Rotation: {x: 7.479442, y: 180.32184, z: 0.092201546}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0.84313726}
-    Duration: 0.6
-    Delay: 0
-    Mode: 0
-    Easing: 10
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.0003805831
-        inSlope: 8.990726
-        outSlope: 8.990726
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.35
-        value: 1
-        inSlope: -4.303913
-        outSlope: -4.303913
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.55
-        value: 1
-        inSlope: 1.554695
-        outSlope: 1.554695
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.7730452
-        value: 1
-        inSlope: -2.007816
-        outSlope: -2.007816
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: -1.23451
-        outSlope: -1.23451
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 8300000, guid: 6ea6119abf22a6e4c93cd457689cc8aa, type: 3}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  - Position: {x: 34, y: -76, z: 0}
-    Rotation: {x: 7.479442, y: 180.32184, z: 0.092201546}
-    Scale: {x: 1, y: 1, z: 1}
-    SizeDelta: {x: 200, y: 50}
-    Color: {r: 0, g: 0, b: 0, a: 0.84313726}
-    Duration: 0.6
-    Delay: 0
-    Mode: 0
-    Easing: 0
-    Animation:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 13.80198
-        outSlope: 13.80198
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.04670785
-        value: 0.3973127
-        inSlope: 5.873408
-        outSlope: 5.873408
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.1421811
-        value: 0.7066917
-        inSlope: 2.313627
-        outSlope: 2.313627
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.2483539
-        value: 0.8539293
-        inSlope: 0.9141542
-        outSlope: 0.9141542
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.4751028
-        value: 0.954047
-        inSlope: 0.264541
-        outSlope: 0.264541
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0.03
-        outSlope: 0.03
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Sound: {fileID: 0}
-    Pitch: 1
-    Volume: 1
-    MaxRange: 1
-    MinRange: 0
-    AnchorMin: {x: 0.5, y: 0.5}
-    AnchorMax: {x: 0.5, y: 0.5}
-    Pivot: {x: 0.5, y: 0.5}
-    FontSize: 0
-    TMPFontSize: 36
-    TMPCharacter: 0
-    TMPWord: 0
-    TMPLine: 0
-    TMPParagraph: 0
-    TMPColor: {r: 0, g: 0, b: 0, a: 0.84313726}
-    FillAmount: 0
-    FillMethod: 0
-    FillOrigin: 0
-    FillClockwise: 0
-    BorderWidth: 0
-    FalloffDistance: 1
-    UniformValue: 0
-    LinkTransform: {fileID: 0}
-    Sticky: 0
-  Frame: 3
-  LinkStatus: OFF
-  LinkColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  isLinked: 0
-  IsKM: 1
-  OptionStatus: EXPAND
-  OptionColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsOption: 0
-  MotionControlStatus: OFF
-  MotionControlColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsMotionControl: 0
-  EventStatus: OFF
-  EventColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsEvent: 0
-  IsCalledAllFrames: 0
-  CustomStatus: OFF
-  CustomColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  IsCustom: 0
-  CurrentDuration: 0.6
-  CurrentDelay: 0
-  CurrentMode: 0
-  CurrentEasing: 0
-  CurrentAnimation:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 13.80198
-      outSlope: 13.80198
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.04670785
-      value: 0.3973127
-      inSlope: 5.873408
-      outSlope: 5.873408
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.1421811
-      value: 0.7066917
-      inSlope: 2.313627
-      outSlope: 2.313627
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.2483539
-      value: 0.8539293
-      inSlope: 0.9141542
-      outSlope: 0.9141542
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.4751028
-      value: 0.954047
-      inSlope: 0.264541
-      outSlope: 0.264541
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.03
-      outSlope: 0.03
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  CurrentSound: {fileID: 0}
-  CurrentPitch: 1
-  CurrentVolume: 1
-  CurrentMaxRange: 1
-  CurrentMinRange: 0
-  CurrentLinkTransform: {fileID: 0}
-  IsPreviousLinkTransfrom: 0
-  Motions: []
 --- !u!1 &2467323551026955612
 GameObject:
   m_ObjectHideFlags: 0
@@ -10225,7 +8601,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467323551026955612}
-  m_LocalRotation: {x: -0.0005202294, y: 0.00066106505, z: -0.0042151054, w: 0.99999076}
+  m_LocalRotation: {x: -0.0000028610234, y: 0.00066324574, z: -0.004214763, w: 0.99999094}
   m_LocalPosition: {x: 0, y: 0, z: -18.806639}
   m_LocalScale: {x: 0.22307584, y: 0.22307584, z: 0.22307584}
   m_ConstrainProportionsScale: 0
