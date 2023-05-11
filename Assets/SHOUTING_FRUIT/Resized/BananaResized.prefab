@@ -198,8 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Banana Boomerang
   damage: 20
-  hitForceThreshold: 60
-  thrownVelocityThreshold: 3
+  hitForceThreshold: 1
+  thrownVelocityThreshold: 2
   destructionTimer: 0
   onHit:
     m_PersistentCalls:
@@ -331,7 +331,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _maxTimeFlying: 0
+  _maxTimeFlying: 1
   _xModifier: 2
   _zModifier: 4
 --- !u!1001 &7867750120493326691
