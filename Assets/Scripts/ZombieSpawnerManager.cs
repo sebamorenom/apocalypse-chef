@@ -17,8 +17,6 @@ public class ZombieSpawnerManager : MonoBehaviour
 {
     [SerializeField] public ZombieCost[] zCosts;
     [SerializeField] public List<SpawnPoint> zSpawnPoints;
-    [SerializeField] public AnimationCurve pointsTotal;
-    [SerializeField] public AnimationCurve timeBetweenSpawns;
     [SerializeField] private Vector2 timeVariation = new Vector2(0, 1);
 
     [HideInInspector] public GameInfo currentGameInfo;
@@ -26,11 +24,11 @@ public class ZombieSpawnerManager : MonoBehaviour
     private float _timeLastSpawn;
     private bool _spawningAllowed;
 
-    private int _currentTimeBetweenSpawns;
+    public int currentAvailablePoints;
+    public float currentTimeBetweenSpawns;
 
     private float _timeBeforeNextSpawn;
 
-    public int currentAvailablePoints;
 
     private int _pointsForZombie;
 
@@ -61,21 +59,15 @@ public class ZombieSpawnerManager : MonoBehaviour
     {
         if (_spawningAllowed)
         {
-            if (Time.fixedTime >= _timeLastSpawn + _timeBeforeNextSpawn)
+            if (Time.fixedTime > _timeLastSpawn + _timeBeforeNextSpawn)
             {
                 SpawnZombie();
             }
-        }
-        else
-        {
-            _timeBeforeNextSpawn = 0f;
         }
     }
 
     public void InitializeForDay(int day)
     {
-        currentAvailablePoints = Mathf.RoundToInt(pointsTotal.Evaluate(Math.Clamp(day, 0, 10) / 10f) * 10);
-        _currentTimeBetweenSpawns = Mathf.RoundToInt(timeBetweenSpawns.Evaluate(Math.Clamp(day, 0, 10) / 10f) * 10);
     }
 
     public void CanSpawn(bool spawningStatus)
@@ -91,7 +83,7 @@ public class ZombieSpawnerManager : MonoBehaviour
     public void SpawnZombie()
     {
         int zombieIndex = 0;
-        if (currentAvailablePoints >= zCosts.First().points)
+        if (currentAvailablePoints > zCosts.First().points)
         {
             while (zCosts[zombieIndex].points >= currentAvailablePoints)
             {
@@ -107,7 +99,8 @@ public class ZombieSpawnerManager : MonoBehaviour
             _timeLastSpawn = Time.fixedTime;
             currentAvailablePoints -= zCosts[zombieIndex].points;
 
-            _timeBeforeNextSpawn = _currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
+            _timeBeforeNextSpawn = currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
+            Debug.Log(_timeBeforeNextSpawn + _timeLastSpawn);
         }
     }
 }

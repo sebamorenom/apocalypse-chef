@@ -7,7 +7,7 @@ using UnityEngine;
 public class Order : ScriptableObject
 {
     [HideInInspector] public TextMeshProUGUI[] text;
-    public string[] orderIngredients;
+    public string[] orderIngredients = new string[6];
     public bool breadType;
     public IngredientsList ingList;
 
@@ -27,21 +27,27 @@ public class Order : ScriptableObject
 
     public void Fill(int numIngredients)
     {
+        Initialize();
         orderIngredients = new string[numIngredients];
-        var i = 0;
         breadType = (Random.value > 0.5f) ? true : false;
         //breadType==true  Bun, Loaf
-        while (i < orderIngredients.Length)
+        for (int i = 0; i < orderIngredients.Length; i++)
         {
             orderIngredients[i] = ingList.GetRandomIngredient().foodIdentifier;
             if (i == 0 || i == numIngredients - 1)
             {
                 orderIngredients[i] = breadType ? "Bun" : "Loaf";
             }
-
-            i++;
         }
 
         ToShow();
+    }
+
+    public void Initialize()
+    {
+        for (int i = 0; i < orderIngredients.Length; i++)
+        {
+            orderIngredients[i] = "";
+        }
     }
 }

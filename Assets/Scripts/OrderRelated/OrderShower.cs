@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,7 +16,8 @@ public class OrderShower : MonoBehaviour
 
     [SerializeField]
     private void Start()
-    {
+	{
+		FindObjectOfType<Director>().orderShower=this;
         FillAllOrders();
     }
 

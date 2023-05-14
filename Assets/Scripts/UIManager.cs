@@ -52,8 +52,11 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var director = FindObjectOfType<Director>();
         ResetStars();
-        FindObjectOfType<Director>().uiManager = this;
+        director.uiManager = this;
+        gameInfo = director.currentGameInfo;
+        scoreThresholds = gameInfo.scoreThresholds;
         //scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
         _inPreparationTime = true;
         _timeStartOfPreparation = Time.fixedTime;
@@ -95,7 +98,7 @@ public class UIManager : MonoBehaviour
         {
             ToTimeFormat(_timeStartOfPreparation + preparationDuration - _currentTime);
             _currentTime += Time.fixedDeltaTime;
-            yield return new WaitForSeconds(Time.fixedDeltaTime * 2);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
 
         canSpawnZombies = true;
@@ -105,7 +108,7 @@ public class UIManager : MonoBehaviour
         {
             ToTimeFormat(_timeStartOfDay + dayDuration - _currentTime);
             _currentTime += Time.fixedDeltaTime;
-            yield return new WaitForSeconds(Time.fixedDeltaTime * 2);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
 
         dayNeedsToEnd = true;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -144,7 +144,7 @@ public class Director : MonoBehaviour, ISaveable
 
     private IEnumerator PrepareSceneManagers()
     {
-        while (zSpawnManager == null && orderShower == null && uiManager == null)
+        while (zSpawnManager == null || orderShower == null || uiManager == null)
         {
             yield return null;
         }
