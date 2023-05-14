@@ -19,6 +19,8 @@ public class ZombieSpawnerManager : MonoBehaviour
     [SerializeField] public List<SpawnPoint> zSpawnPoints;
     [SerializeField] private Vector2 timeVariation = new Vector2(0, 1);
 
+    private ObjectivesManager objectivesManager;
+
     [HideInInspector] public GameInfo currentGameInfo;
 
     private float _timeLastSpawn;
@@ -42,16 +44,18 @@ public class ZombieSpawnerManager : MonoBehaviour
     {
         var dir = FindObjectOfType<Director>();
         dir.zSpawnManager = this;
+        objectivesManager = GetComponent<ObjectivesManager>();
+        SetObjectivesManagerToZombie();
         InitializeForDay(dir.currentGameInfo.currentDay);
         zSpawnPoints = new List<SpawnPoint>();
         zSpawnPoints.AddRange(GetComponentsInChildren<SpawnPoint>().ToArray());
     }
 
-    public void SetGameInfoToZombies()
+    public void SetObjectivesManagerToZombie()
     {
         foreach (var zombieCost in zCosts)
         {
-            zombieCost.zombie.GetComponent<ZombieAI>().gameInfo = currentGameInfo;
+            zombieCost.zombie.GetComponent<ZombieAI>().objectivesManager = objectivesManager;
         }
     }
 

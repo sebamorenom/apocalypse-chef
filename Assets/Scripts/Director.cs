@@ -150,7 +150,6 @@ public class Director : MonoBehaviour, ISaveable
         }
 
         zSpawnManager.currentGameInfo = currentGameInfo;
-        zSpawnManager.SetGameInfoToZombies();
         LoadFields();
     }
 

@@ -36,7 +36,7 @@ public class ZombieAI : MonoBehaviour
     [Header("Thresholds")] [SerializeField]
     public float minHitForceThreshold;
 
-    [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
+    [Header("Utilities")] [SerializeField] public ObjectivesManager objectivesManager;
 
     private float moveTime,
         scratchTime,
@@ -113,14 +113,14 @@ public class ZombieAI : MonoBehaviour
 
     private void RandomObjective()
     {
-        _randomInt = Random.Range(0, gameInfo.objectivesTransform.Count);
-        if (gameInfo.objectivesTransform.Count == 1)
+        _randomInt = Random.Range(0, objectivesManager.objectivesTransform.Count);
+        if (objectivesManager.objectivesTransform.Count == 1)
         {
             _randomInt = 0;
         }
 
-        objective = gameInfo.objectivesTransform[_randomInt];
-        objectiveHealth = gameInfo.objectivesHealth[_randomInt];
+        objective = objectivesManager.objectivesTransform[_randomInt];
+        objectiveHealth = objectivesManager.objectivesHealth[_randomInt];
     }
 
     private void FixedUpdate()
@@ -313,7 +313,7 @@ public class ZombieAI : MonoBehaviour
         objectiveHealth.Hurt(attackDamage);
         if (objectiveHealth.dead)
         {
-            gameInfo.RemoveFromArrays(objective, objectiveHealth);
+            objectivesManager.RemoveFromArrays(objective, objectiveHealth);
             objective = null;
             objectiveHealth = null;
         }
