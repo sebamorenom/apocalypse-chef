@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3593b25da47de204f90204d29d73a0e8, type: 3}
+  m_Name: Lettuce
+  m_EditorClassIdentifier: 
+  isExplosive: 0
+  explosionRadius: 0
+  explosionForce: 0
+  explosionDamage: 0
+  explosionVFX: {fileID: 0}
+  isSticky: 0
+  slownessPercent: 0
+  slownessRadius: 0
+  stickyVFX: {fileID: 0}
+  isNoisy: 0
+  noiseRadius: 0
+  noiseDuration: 0
+  noisyObject: {fileID: 0}
+  noiseVFX: {fileID: 0}
+  isFlammable: 0
+  flammableRadius: 0
+  flammableVFX: {fileID: 0}
+  destroyOnHit: 0
+  isBoomerang: 0
+  minStrengthToThrow: 1
+  minAngularYVelocity: 5
+  minDotYToLaunch: 0.5
+  parabolaZ:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  parabolaX:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  projectileVelocity:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spawnPuddle: 0
+  puddleGameObject: {fileID: 0}
+  puddleProperties: {fileID: 0}
+  onThrowClip: {fileID: 0}
+  onDestroyClip: {fileID: 0}
+  onHandClip: {fileID: 0}
+  fTransform: {fileID: 0}
+  fCollider: {fileID: 0}
+  mono: {fileID: 0}

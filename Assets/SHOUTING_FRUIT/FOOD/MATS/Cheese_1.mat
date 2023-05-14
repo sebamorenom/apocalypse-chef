@@ -1,0 +1,228 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7395052503002351881
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cheese_1
+  m_Shader: {fileID: 4800000, guid: 2a230514c860643f69b6a4d1871d3825, type: 3}
+  m_ValidKeywords:
+  - DR_LIGHT_ATTENUATION
+  - DR_OUTLINE_ON
+  - _DETAILMAPBLENDINGMODE_MULTIPLY
+  - _NORMALMAP
+  - _TEXTUREBLENDINGMODE_MULTIPLY
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BakedGIRamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 2bf5ebcf692e13c4384aafc1d4327185, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0.41, y: -0.43}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 366d28b4fa9080b4fa780d1f6a433168, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
+        m_Texture: {fileID: 2800000, guid: 10077be2d4b14014783189b6c8ac6ee6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientRamp:
+        m_Texture: {fileID: 3558712756127833760}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClip: 0
+    - _Blend: 0
+    - _BumpScale: 1
+    - _CameraDistanceImpact: 0
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
+    - _DetailMapBlendingMode: 0
+    - _DetailMapImpact: 1
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EnvironmentReflections: 1
+    - _FlatRimEdgeSmoothness: 0.5
+    - _FlatRimLightAlign: 0
+    - _FlatRimSize: 0.5
+    - _FlatSpecularEdgeSmoothness: 0
+    - _FlatSpecularSize: 0.1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _GradientAngle: 0
+    - _GradientCenterX: 0
+    - _GradientCenterY: 0
+    - _GradientEnabled: 0
+    - _GradientSize: 10
+    - _LightContribution: 1
+    - _LightmapDirectionPitch: 0
+    - _LightmapDirectionYaw: 0
+    - _Metallic: 0
+    - _OcclusionStrength: 1
+    - _OutlineDepthOffset: 0
+    - _OutlineEnabled: 1
+    - _OutlineScale: 1
+    - _OutlineWidth: 2
+    - _OverrideBakedGi: 0
+    - _OverrideLightAttenuation: 1
+    - _OverrideLightmapDir: 0
+    - _Parallax: 0.005
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _RimEnabled: 0
+    - _SelfShadingSize: 0
+    - _Smoothness: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularEnabled: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _TextureBlendingMode: 0
+    - _TextureImpact: 0
+    - _UnityShadowOcclusion: 0
+    - _VertexColorsEnabled: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _DetailMapColor: {r: 0.8773585, g: 0.83064026, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _LightAttenuation: {r: 0, g: 1, b: 0, a: 0}
+    - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShadowColor: {r: 0.4716981, g: 0.4110807, b: 0.20247419, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+  m_BuildTextureStacks: []
+--- !u!28 &3558712756127833760
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: z__GradientRampTex{"mode":0,"colorKeys":[{"color":{"r":0.22641509771347047,"g":0.15785615146160127,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":0.9646992683410645,"g":1.0,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 2
+  m_Width: 256
+  m_Height: 1
+  m_CompleteImageSize: 1024
+  m_MipsStripped: 0
+  m_TextureFormat: 5
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMasterTextureLimit: 0
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 1024
+  _typelessdata: ff3a2800ff3a2900ff3b2a00ff3c2b00ff3d2c00ff3d2c00ff3e2d00ff3f2e00ff402f00ff403000ff413100ff423200ff433200ff433300ff443400ff453500ff463600ff463700ff473700ff483800ff493900ff493a00ff4a3b00ff4b3c00ff4b3c00ff4c3d00ff4d3e00ff4e3f00ff4e4000ff4f4100ff504200ff514200ff514300ff524400ff534500ff544600ff544700ff554700ff564800ff574900ff574a00ff584b00ff594c00ff594c00ff5a4d00ff5b4e00ff5c4f00ff5c5000ff5d5100ff5e5200ff5f5200ff5f5300ff605400ff615500ff625600ff625700ff635700ff645800ff655900ff655a00ff665b00ff675c00ff685c00ff685d00ff695e00ff6a5f00ff6a6000ff6b6100ff6c6200ff6d6200ff6d6300ff6e6400ff6f6500ff706600ff706700ff716700ff726800ff736900ff736a00ff746b00ff756c00ff766c00ff766d00ff776e00ff786f00ff787000ff797100ff7a7200ff7b7200ff7b7300ff7c7400ff7d7500ff7e7600ff7e7700ff7f7700ff807800ff817900ff817a00ff827b00ff837c00ff847c00ff847d00ff857e00ff867f00ff878000ff878100ff888200ff898200ff898300ff8a8400ff8b8500ff8c8600ff8c8700ff8d8700ff8e8800ff8f8900ff8f8a00ff908b00ff918c00ff928c00ff928d00ff938e00ff948f00ff959000ff959100ff969200ff979200ff979300ff989400ff999500ff9a9600ff9a9700ff9b9700ff9c9800ff9d9900ff9d9a00ff9e9b00ff9f9c00ffa09c00ffa09d00ffa19e00ffa29f00ffa3a000ffa3a100ffa4a200ffa5a200ffa6a300ffa6a400ffa7a500ffa8a600ffa8a700ffa9a700ffaaa800ffaba900ffabaa00ffacab00ffadac00ffaeac00ffaead00ffafae00ffb0af00ffb1b000ffb1b100ffb2b200ffb3b200ffb4b300ffb4b400ffb5b500ffb6b600ffb7b700ffb7b700ffb8b800ffb9b900ffb9ba00ffbabb00ffbbbc00ffbcbc00ffbcbd00ffbdbe00ffbebf00ffbfc000ffbfc100ffc0c200ffc1c200ffc2c300ffc2c400ffc3c500ffc4c600ffc5c700ffc5c700ffc6c800ffc7c900ffc7ca00ffc8cb00ffc9cc00ffcacc00ffcacd00ffcbce00ffcccf00ffcdd000ffcdd100ffced200ffcfd200ffd0d300ffd0d400ffd1d500ffd2d600ffd3d700ffd3d700ffd4d800ffd5d900ffd6da00ffd6db00ffd7dc00ffd8dc00ffd8dd00ffd9de00ffdadf00ffdbe000ffdbe100ffdce200ffdde200ffdee300ffdee400ffdfe500ffe0e600ffe1e700ffe1e700ffe2e800ffe3e900ffe4ea00ffe4eb00ffe5ec00ffe6ec00ffe6ed00ffe7ee00ffe8ef00ffe9f000ffe9f100ffeaf200ffebf200ffecf300ffecf400ffedf500ffeef600ffeff700ffeff700fff0f800fff1f900fff2fa00fff2fb00fff3fc00fff4fc00fff5fd00fff5fe00fff6ff00
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
