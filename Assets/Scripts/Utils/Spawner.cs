@@ -29,7 +29,7 @@ public class Spawner : Upgradable
         _transform = transform;
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
-        _director = FindObjectOfType<Director>();
+        _director = Director.director;
         _temporalUpgradeStorage = FindObjectOfType<TemporalUpgradeStorage>();
         CheckForUpgrades();
     }
