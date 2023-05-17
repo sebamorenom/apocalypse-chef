@@ -63,7 +63,7 @@ public class ZombieAI : MonoBehaviour
     [HideInInspector] public bool stuck;
     [HideInInspector] public float stuckTime;
 
-    public Objective? objective;
+    [SerializeField] public Objective? objective;
 
     private Transform _distraction;
     [HideInInspector] public bool distracted;
@@ -111,6 +111,15 @@ public class ZombieAI : MonoBehaviour
         StartCoroutine(behaviourCoroutine);
     }
 
+    public void Update()
+    {
+        LookTowardsPath();
+    }
+
+    private void LookTowardsPath()
+    {
+        _transform.LookAt(_navMeshAgent.steeringTarget, Vector3.up);
+    }
 
     private void FixedUpdate()
     {

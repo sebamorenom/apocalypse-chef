@@ -16,8 +16,9 @@ public class OrderShower : MonoBehaviour
 
     [SerializeField]
     private void Start()
-	{
-		FindObjectOfType<Director>().orderShower=this;
+    {
+        Director.Instance.orderShower = this;
+        Invoke("FillAllOrders", 0.5f);
         FillAllOrders();
     }
 
@@ -27,7 +28,7 @@ public class OrderShower : MonoBehaviour
         Debug.Log("Food on plate: " + foodOnPlateString);
         foreach (Order order in orderList)
         {
-            Debug.Log(GetAsText(order));
+            //Debug.Log(GetAsText(order));
             if (foodOnPlateString == GetAsText(order))
             {
                 gameInfo.currentDayScore += plateToCheck.plateValue;
@@ -59,6 +60,7 @@ public class OrderShower : MonoBehaviour
 
             toText += "\n";
         }
+
         return toText;
     }
 

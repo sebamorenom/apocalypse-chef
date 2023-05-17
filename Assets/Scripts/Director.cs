@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 [RequireComponent(typeof(SceneChanger))]
 public class Director : MonoBehaviour, ISaveable
 {
-    [HideInInspector] public static Director director;
+    [HideInInspector] public static Director Instance;
     [SerializeField] private GameInfo[] gameInfos;
     public GameInfo currentGameInfo;
 
@@ -42,9 +42,9 @@ public class Director : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        if (director == null)
+        if (Instance == null)
         {
-            director = this;
+            Instance = this;
             _fader = GetComponent<Fader>();
             _sceneChanger = GetComponent<SceneChanger>();
             DontDestroyOnLoad(gameObject);
@@ -95,13 +95,7 @@ public class Director : MonoBehaviour, ISaveable
                     onLoad.Invoke();
                     StartCoroutine(PrepareUpgradeSceneManagers());
                 }
-
-                ClearFields();
             }
-        }
-        else
-        {
-            ClearFields();
         }
     }
 
@@ -117,12 +111,6 @@ public class Director : MonoBehaviour, ISaveable
         zSpawnManager.InitializeForDay(currentGameInfo.currentDay);
         uiManager.gameInfo = currentGameInfo;
         uiManager.scoreThresholds = currentGameInfo.scoreThresholds;
-    }
-
-    private void ClearFields()
-    {
-        zSpawnManager.CanSpawn(false);
-        uiManager = null;
     }
 
     public object CaptureState()

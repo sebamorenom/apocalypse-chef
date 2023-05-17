@@ -42,10 +42,10 @@ public class ZombieSpawnerManager : MonoBehaviour
 
     private void Start()
     {
-        Director.director.zSpawnManager = this;
+        Director.Instance.zSpawnManager = this;
         _objectivesManager = GetComponent<ObjectivesManager>();
         SetObjectivesManagerToZombie();
-        InitializeForDay(Director.director.currentGameInfo.currentDay);
+        InitializeForDay(Director.Instance.currentGameInfo.currentDay);
         zSpawnPoints = new List<SpawnPoint>();
         zSpawnPoints.AddRange(GetComponentsInChildren<SpawnPoint>().ToArray());
     }
@@ -94,7 +94,7 @@ public class ZombieSpawnerManager : MonoBehaviour
             }
 
             _zombieToGive = zCosts[zombieIndex].zombie;
-            _chosenSpawnPoint = zSpawnPoints[Random.Range(0, zSpawnPoints.Count - 1)];
+            _chosenSpawnPoint = zSpawnPoints[Random.Range(0, zSpawnPoints.Count)];
 
             Instantiate(_zombieToGive, _chosenSpawnPoint.transform.position,
                 _chosenSpawnPoint.transform.rotation);
@@ -103,7 +103,7 @@ public class ZombieSpawnerManager : MonoBehaviour
             currentAvailablePoints -= zCosts[zombieIndex].points;
 
             _timeBeforeNextSpawn = currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
-            Debug.Log(_timeBeforeNextSpawn + _timeLastSpawn);
+            //Debug.Log(_timeBeforeNextSpawn + _timeLastSpawn);
         }
     }
 }

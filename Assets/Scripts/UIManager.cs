@@ -53,8 +53,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         ResetStars();
-        Director.director.uiManager = this;
-        gameInfo = Director.director.currentGameInfo;
+        Director.Instance.uiManager = this;
+        gameInfo = Director.Instance.currentGameInfo;
         scoreThresholds = gameInfo.scoreThresholds;
         //scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
         _inPreparationTime = true;
