@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] public int[] scoreThresholds;
 
-    [Header("Data inputs")] [SerializeField]
+    [Header("Data Inputs")] [SerializeField]
     public GameInfo gameInfo;
 
 
@@ -52,10 +52,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var director = FindObjectOfType<Director>();
         ResetStars();
-        director.uiManager = this;
-        gameInfo = director.currentGameInfo;
+        Director.Instance.uiManager = this;
+        gameInfo = Director.Instance.currentGameInfo;
         scoreThresholds = gameInfo.scoreThresholds;
         //scoreThresholds = gameInfo.difficultySettings.scoreThresholds;
         _inPreparationTime = true;

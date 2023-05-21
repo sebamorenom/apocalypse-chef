@@ -36,7 +36,7 @@ public class ZombieAI : MonoBehaviour
     [Header("Thresholds")] [SerializeField]
     public float minHitForceThreshold;
 
-    [Header("Utilities")] [SerializeField] public GameInfo gameInfo;
+    [Header("Utilities")] [SerializeField] public ObjectivesManager objectivesManager;
 
     private float moveTime,
         scratchTime,
@@ -57,13 +57,13 @@ public class ZombieAI : MonoBehaviour
     private Animator _animator;
     private Collider _coll;
 
+
     [HideInInspector] public bool stunned;
     [HideInInspector] public float stunnedTime;
     [HideInInspector] public bool stuck;
     [HideInInspector] public float stuckTime;
 
-    public Transform objective;
-    public Health objectiveHealth;
+    [SerializeField] public Objective? objective;
 
     private Transform _distraction;
     [HideInInspector] public bool distracted;
@@ -83,6 +83,7 @@ public class ZombieAI : MonoBehaviour
     private IEnumerator behaviourCoroutine;
 
     private int currentHurtAnimation = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -106,21 +107,18 @@ public class ZombieAI : MonoBehaviour
 
     public void Initiate()
     {
-        RandomObjective();
+        objective = objectivesManager.GetRandomObjective();
         StartCoroutine(behaviourCoroutine);
     }
 
-
-    private void RandomObjective()
+    public void Update()
     {
-        _randomInt = Random.Range(0, gameInfo.objectivesTransform.Count);
-        if (gameInfo.objectivesTransform.Count == 1)
-        {
-            _randomInt = 0;
-        }
+        LookTowardsPath();
+    }
 
-        objective = gameInfo.objectivesTransform[_randomInt];
-        objectiveHealth = gameInfo.objectivesHealth[_randomInt];
+    private void LookTowardsPath()
+    {
+        _transform.LookAt(_navMeshAgent.steeringTarget, Vector3.up);
     }
 
     private void FixedUpdate()
@@ -146,7 +144,7 @@ public class ZombieAI : MonoBehaviour
                 yield return StickToGround();
             }
 
-            if (objective != null)
+            if (objective.Value.objectiveHealth.dead != false)
             {
                 yield return NextAction();
             }
@@ -184,12 +182,13 @@ public class ZombieAI : MonoBehaviour
             return Think();
         }
 
-        if ((objective.position - _transform.position).magnitude > attackRange)
+        if ((objective.Value.objectiveTransform.position - _transform.position).magnitude > attackRange)
         {
             return Move();
         }
 
-        if (((objective.position - _transform.position).magnitude <= attackRange))
+        if (((objective.Value.objectiveTransform.position - _transform.position).magnitude <=
+             attackRange))
         {
             return Attack();
         }
@@ -205,7 +204,7 @@ public class ZombieAI : MonoBehaviour
             _navMeshAgent.isStopped = false;
         }
 
-        _navMeshAgent.destination = objective.position;
+        _navMeshAgent.destination = objective.Value.objectiveTransform.position;
         _animator?.SetTrigger(AiStates.Move);
         yield return new WaitForSeconds(moveTime - 0.2f);
     }
@@ -218,7 +217,7 @@ public class ZombieAI : MonoBehaviour
         }
 
         _animator.SetTrigger(AiStates.Scratch);
-        RandomObjective();
+        objective = objectivesManager.GetRandomObjective();
         yield return new WaitForSeconds(scratchTime);
     }
 
@@ -233,9 +232,9 @@ public class ZombieAI : MonoBehaviour
         yield return new WaitForSeconds(attackTime);
     }
 
-    public void Distract(Transform distractionTransform)
+    public void Distract(Objective distractionObjective)
     {
-        objective = distractionTransform;
+        objective = distractionObjective;
         distracted = true;
     }
 
@@ -258,12 +257,12 @@ public class ZombieAI : MonoBehaviour
             _navMeshAgent.isStopped = true;
         }
 
-        _animator?.SetBool(AiStates.Stunned,true);
+        _animator?.SetBool(AiStates.Stunned, true);
         yield return new WaitForSeconds(Mathf.Max(stunnedTime, stunnedAnimationTime) == stunnedTime
             ? stunnedTime
             : stunnedAnimationTime);
         stunned = false;
-        _animator?.SetBool(AiStates.Stunned,false);
+        _animator?.SetBool(AiStates.Stunned, false);
     }
 
     private IEnumerator StickToGround()
@@ -273,12 +272,12 @@ public class ZombieAI : MonoBehaviour
             _navMeshAgent.isStopped = true;
         }
 
-        _animator?.SetBool(AiStates.Stuck,true);
+        _animator?.SetBool(AiStates.Stuck, true);
         yield return new WaitForSeconds(Mathf.Max(stuckTime, stuckAnimationTime) == stuckTime
             ? stuckTime
             : stuckAnimationTime);
         stuck = false;
-        _animator?.SetBool(AiStates.Stuck,false);
+        _animator?.SetBool(AiStates.Stuck, false);
     }
 
     private IEnumerator PlayHurtAnimation()
@@ -310,12 +309,11 @@ public class ZombieAI : MonoBehaviour
 
     private void HurtObjective()
     {
-        objectiveHealth.Hurt(attackDamage);
-        if (objectiveHealth.dead)
+        objective.Value.objectiveHealth.Hurt(attackDamage);
+        if (objective.Value.objectiveHealth.dead)
         {
-            gameInfo.RemoveFromArrays(objective, objectiveHealth);
+            objectivesManager.RemoveFromArrays((Objective)objective);
             objective = null;
-            objectiveHealth = null;
         }
     }
 

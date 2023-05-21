@@ -116,7 +116,7 @@ public class WeaponEffect : ScriptableObject
             {
                 if (coll.TryGetComponent(out _tryZombieAI))
                 {
-                    _tryZombieAI.Distract(fTransform);
+                    //_tryZombieAI.Distract(fTransform);
                 }
             }
 

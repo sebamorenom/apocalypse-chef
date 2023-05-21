@@ -19,6 +19,8 @@ public class ZombieSpawnerManager : MonoBehaviour
     [SerializeField] public List<SpawnPoint> zSpawnPoints;
     [SerializeField] private Vector2 timeVariation = new Vector2(0, 1);
 
+    private ObjectivesManager _objectivesManager;
+
     [HideInInspector] public GameInfo currentGameInfo;
 
     private float _timeLastSpawn;
@@ -40,18 +42,19 @@ public class ZombieSpawnerManager : MonoBehaviour
 
     private void Start()
     {
-        var dir = FindObjectOfType<Director>();
-        dir.zSpawnManager = this;
-        InitializeForDay(dir.currentGameInfo.currentDay);
+        Director.Instance.zSpawnManager = this;
+        _objectivesManager = GetComponent<ObjectivesManager>();
+        SetObjectivesManagerToZombie();
+        InitializeForDay(Director.Instance.currentGameInfo.currentDay);
         zSpawnPoints = new List<SpawnPoint>();
         zSpawnPoints.AddRange(GetComponentsInChildren<SpawnPoint>().ToArray());
     }
 
-    public void SetGameInfoToZombies()
+    public void SetObjectivesManagerToZombie()
     {
         foreach (var zombieCost in zCosts)
         {
-            zombieCost.zombie.GetComponent<ZombieAI>().gameInfo = currentGameInfo;
+            zombieCost.zombie.GetComponent<ZombieAI>().objectivesManager = _objectivesManager;
         }
     }
 
@@ -91,7 +94,7 @@ public class ZombieSpawnerManager : MonoBehaviour
             }
 
             _zombieToGive = zCosts[zombieIndex].zombie;
-            _chosenSpawnPoint = zSpawnPoints[Random.Range(0, zSpawnPoints.Count - 1)];
+            _chosenSpawnPoint = zSpawnPoints[Random.Range(0, zSpawnPoints.Count)];
 
             Instantiate(_zombieToGive, _chosenSpawnPoint.transform.position,
                 _chosenSpawnPoint.transform.rotation);
@@ -100,7 +103,7 @@ public class ZombieSpawnerManager : MonoBehaviour
             currentAvailablePoints -= zCosts[zombieIndex].points;
 
             _timeBeforeNextSpawn = currentTimeBetweenSpawns + Random.Range(timeVariation.x, timeVariation.y);
-            Debug.Log(_timeBeforeNextSpawn + _timeLastSpawn);
+            //Debug.Log(_timeBeforeNextSpawn + _timeLastSpawn);
         }
     }
 }
