@@ -144,7 +144,7 @@ public class ZombieAI : MonoBehaviour
                 yield return StickToGround();
             }
 
-            if (objective != null)
+            if (objective.Value.objectiveHealth.dead != false)
             {
                 yield return NextAction();
             }
@@ -187,7 +187,8 @@ public class ZombieAI : MonoBehaviour
             return Move();
         }
 
-        if (((objective.Value.objectiveTransform.position - _transform.position).magnitude <= attackRange))
+        if (((objective.Value.objectiveTransform.position - _transform.position).magnitude <=
+             attackRange))
         {
             return Attack();
         }
