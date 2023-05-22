@@ -134,6 +134,7 @@ public class ZombieAI : MonoBehaviour
     {
         while (!_ownHealth.dead)
         {
+            Debug.Log(objective.Value.objectiveTransform.gameObject.name);
             if (stunned)
             {
                 yield return Stunned();
@@ -144,7 +145,7 @@ public class ZombieAI : MonoBehaviour
                 yield return StickToGround();
             }
 
-            if (objective.Value.objectiveHealth.dead != false)
+            if (!objective.Value.objectiveHealth.dead)
             {
                 yield return NextAction();
             }
