@@ -678,6 +678,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 6552923405084088786}
+    - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6489266161146628831, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: OnBeforeGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -697,6 +712,16 @@ PrefabInstance:
         type: 3}
       propertyPath: OnBeforeGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 6552923405084088786}
+    - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7837884624812433599, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
@@ -718,8 +743,81 @@ PrefabInstance:
       propertyPath: squeezeButton
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 6552923405084088786}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
+    - {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
+--- !u!1 &1599618248991692443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2307980213653368822, guid: d3adb08f46900c246b3e2988cfcea998,
+    type: 3}
+  m_PrefabInstance: {fileID: 3906146535952464237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3908122290109353705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599618248991692443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782cb9720318e0c4ab7353bfc2181ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6552923405084088786}
+  button: 2
+  bendOffsets:
+  - 0.2
+  - 0
+  - 0
+  - 0
+  - 0
+--- !u!114 &8601031577480115377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599618248991692443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782cb9720318e0c4ab7353bfc2181ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6552923405084088786}
+  button: 2
+  bendOffsets:
+  - 0.5
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &2181778833327484759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2914488520911541818, guid: d3adb08f46900c246b3e2988cfcea998,

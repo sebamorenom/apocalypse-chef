@@ -505,8 +505,8 @@ GameObject:
   - component: {fileID: 2717644376730603992}
   - component: {fileID: 8321549854091702995}
   - component: {fileID: 5325186577686314141}
-  - component: {fileID: 7415308444001255897}
-  - component: {fileID: 1682183775728912409}
+  - component: {fileID: 7742589728160155646}
+  - component: {fileID: 2844328606340118159}
   m_Layer: 0
   m_Name: FingerBendingCARTOON
   m_TagString: Untagged
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855e1c3bb96607b46842d2505034e037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 7837884624812433599}
   axis: 1
   bendOffsets: []
 --- !u!114 &5325186577686314141
@@ -556,10 +556,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855e1c3bb96607b46842d2505034e037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 7837884624812433599}
   axis: 0
   bendOffsets: []
---- !u!114 &7415308444001255897
+--- !u!114 &7742589728160155646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -568,13 +568,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2307980213653368822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855e1c3bb96607b46842d2505034e037, type: 3}
+  m_Script: {fileID: 11500000, guid: 782cb9720318e0c4ab7353bfc2181ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  axis: 0
+  controller: {fileID: 7837884624812433599}
+  button: 2
   bendOffsets: []
---- !u!114 &1682183775728912409
+--- !u!114 &2844328606340118159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -583,11 +583,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2307980213653368822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855e1c3bb96607b46842d2505034e037, type: 3}
+  m_Script: {fileID: 11500000, guid: 782cb9720318e0c4ab7353bfc2181ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  axis: 0
+  controller: {fileID: 7837884624812433599}
+  button: 2
   bendOffsets: []
 --- !u!1 &2390216176997048519
 GameObject:
