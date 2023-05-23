@@ -32,13 +32,7 @@ public class Director : MonoBehaviour, ISaveable
 
     public delegate void OnLoad();
 
-    public delegate void StartDay();
-
-    public delegate void EndDay();
-
     public event OnLoad onLoad;
-    public event StartDay startDay;
-    public event EndDay endDay;
 
     private void Awake()
     {

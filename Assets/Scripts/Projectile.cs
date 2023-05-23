@@ -151,13 +151,16 @@ public class Projectile : WeaponTest, IWeapon
         _zModifierVelocity = Mathf.Max(Vector3.Dot(_rbDirection, _transform.forward) * _rb.velocity.magnitude /
             thrownVelocityThreshold * _rb.velocity.magnitude % thrownVelocityThreshold, 1);
         _startFlyingPos = _transform.position;
+        _rb.velocity = Vector3.zero;
         _isFlying = true;
+        var initialForward = _transform.forward;
+        var initialRight = _transform.right;
         while (_currentFlyingTime < _maxTimeFlying && maxHits > 0 && _thrown)
         {
             _flyingOffset = boomerangX.Evaluate(_currentFlyingTime / _maxTimeFlying) * _xModifierVelocity *
-                            _transform.right +
+                            initialRight +
                             boomerangZ.Evaluate(_currentFlyingTime / _maxTimeFlying) * _zModifierVelocity *
-                            _transform.forward;
+                            initialForward;
             _transform.position = _startFlyingPos + _flyingOffset;
             _currentFlyingTime += Time.deltaTime;
             yield return null;
