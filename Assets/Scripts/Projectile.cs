@@ -182,6 +182,7 @@ public class Projectile : WeaponTest, IWeapon
         _transform.parent = _lastCollision.transform;
         _rb.useGravity = false;
         _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
     }
 
     public void Destroy()

@@ -145,7 +145,7 @@ public class ZombieAI : MonoBehaviour
                 yield return StickToGround();
             }
 
-            if (!objective.Value.objectiveHealth.dead)
+            if (!objective.Value.objectiveHealth.dead || objective != null)
             {
                 yield return NextAction();
             }
@@ -311,7 +311,7 @@ public class ZombieAI : MonoBehaviour
     private void HurtObjective()
     {
         objective.Value.objectiveHealth.Hurt(attackDamage);
-        if (objective.Value.objectiveHealth.dead)
+        if (objective.Value.objectiveHealth.dead && objectivesManager.Contains(objective.Value))
         {
             objectivesManager.RemoveFromArrays((Objective)objective);
             objective = null;

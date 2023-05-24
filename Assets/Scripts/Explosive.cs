@@ -28,8 +28,12 @@ public class Explosive : WeaponTest, IWeapon
 
     [Header("LayerMask")] [SerializeField] private LayerMask affectedLayerMask;
 
+    [Header("Utilities")] [SerializeField] private int maxNumAffected;
+
+
     private Transform _transform;
     private Rigidbody _rb;
+    private Health _ownHealth;
 
     private float _startingTimer;
     private IEnumerator _onHitTimer, _onThrowTimer;
@@ -45,12 +49,20 @@ public class Explosive : WeaponTest, IWeapon
     private Collision _lastCollision;
     private Vector3 _lastPos, _newPos;
 
+    private Objective _asObjective;
+
     private void Start()
     {
         _transform = transform;
         _rb = GetComponent<Rigidbody>();
         _onHitTimer = OnHitTimer();
         _onThrowTimer = OnThrowTimer();
+        _hitColliders = new Collider[maxNumAffected];
+        _asObjective = new Objective
+        {
+            objectiveHealth = _ownHealth,
+            objectiveTransform = _transform
+        };
     }
 
     private void LateUpdate()
@@ -163,7 +175,7 @@ public class Explosive : WeaponTest, IWeapon
 
     private void ExplodeSingle()
     {
-        _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
+        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
         for (int i = 0; i < _hitColliders.Length; i++)
         {
             if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth) &&
@@ -244,6 +256,25 @@ public class Explosive : WeaponTest, IWeapon
                     _hitExplosive.OnHit();
                 }
             }
+        }
+    }
+
+    private void Distract()
+    {
+        StartCoroutine(DistractingCoroutine());
+    }
+
+    private IEnumerator DistractingCoroutine()
+    {
+        while (!_ownHealth.dead)
+        {
+            Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+            for (int i = 0; i < _hitColliders.Length; i++)
+            {
+                _hitColliders[i].GetComponent<ZombieAI>().Distract(this._asObjective);
+            }
+
+            yield return new WaitForSeconds(1);
         }
     }
 

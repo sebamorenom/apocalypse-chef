@@ -23,12 +23,12 @@ public class Spawner : Upgradable
 
     private TemporalUpgradeStorage _temporalUpgradeStorage;
 
-    private float lastSpawnTime;
+    private float _lastSpawnTime = float.MinValue;
     private Director _director;
 
     private void Start()
     {
-        lastSpawnTime = Time.fixedTime;
+        _lastSpawnTime = Time.fixedTime;
         _transform = transform;
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
@@ -51,10 +51,10 @@ public class Spawner : Upgradable
         if (!itemInside && other.TryGetComponent<Hand>(out tryHand))
         {
             if (Time.fixedTime >=
-                lastSpawnTime + spawnerTimers[currentUpgradeLevel])
+                _lastSpawnTime + spawnerTimers[currentUpgradeLevel])
             {
                 Spawn();
-                lastSpawnTime = Time.fixedTime;
+                _lastSpawnTime = Time.fixedTime;
             }
         }
     }
@@ -75,7 +75,9 @@ public class Spawner : Upgradable
         }
         else
         {
-            _currentArrayIndex = (-_currentArrayIndex - 1) % spawnableList.ingredientList.Length;
+            _currentArrayIndex = _currentArrayIndex - 1 >= 0
+                ? _currentArrayIndex - 1
+                : spawnableList.ingredientList.Length - 1;
         }
 
         ChangeText();

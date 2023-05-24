@@ -37,4 +37,9 @@ public class ObjectivesManager : MonoBehaviour
 
         return null;
     }
+
+    public bool Contains(Objective objectiveToCheck)
+    {
+        return (priorityObjectives.Contains(objectiveToCheck) || objectives.Contains(objectiveToCheck));
+    }
 }
