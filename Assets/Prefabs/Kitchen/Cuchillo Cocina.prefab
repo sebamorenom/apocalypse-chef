@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4797443355667917223}
   - component: {fileID: 7754261350243552802}
   - component: {fileID: 1245169166681731361}
+  - component: {fileID: 2643281691607907030}
   m_Layer: 0
   m_Name: Filo
   m_TagString: Blade
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2643281691607907030
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2562688953452288029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0005904423, y: 0.0066174315, z: 0.026886966}
+  m_Center: {x: 8.915745e-11, y: -0.00045558557, z: 0.002668475}
 --- !u!1 &8008099243366199260
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +111,7 @@ GameObject:
   - component: {fileID: 7197616440590439049}
   - component: {fileID: 7197616440590439048}
   - component: {fileID: 7197616440590439055}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Cuchillo Cocina
   m_TagString: Untagged
   m_Icon: {fileID: 0}

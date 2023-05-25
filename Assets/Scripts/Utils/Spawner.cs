@@ -28,7 +28,6 @@ public class Spawner : Upgradable
 
     private void Start()
     {
-        _lastSpawnTime = Time.fixedTime;
         _transform = transform;
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
