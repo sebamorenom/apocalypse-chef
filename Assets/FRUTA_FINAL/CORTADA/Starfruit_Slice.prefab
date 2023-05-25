@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 7697590687733940373}
   - component: {fileID: 1792495191963540924}
   - component: {fileID: 7209870762648558245}
-  - component: {fileID: -582792977864077761}
-  - component: {fileID: 3784137638251846468}
+  - component: {fileID: -1072688886218995124}
+  - component: {fileID: 5946835104793958711}
+  - component: {fileID: 4352420196378906311}
+  - component: {fileID: 4223265685506371533}
   m_Layer: 0
   m_Name: Starfruit_Slice
   m_TagString: Untagged
@@ -99,7 +101,114 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.009211596, y: 0.008760758, z: 0.0005430874}
   m_Center: {x: 0.00051586353, y: 0.0008969432, z: 0.0000000020227158}
---- !u!54 &-582792977864077761
+--- !u!114 &-1072688886218995124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976172352268541573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: Starfruit Slice
+  foodValue: 10
+  canBeCut: 0
+  cutIngredient: {fileID: 0}
+  cutVFX: {fileID: 0}
+  minCuttingThreshold: 0
+  canBeFried: 0
+  canBeMicrowaved: 0
+  canBeRoasted: 0
+  cookingState: 
+  cookingTime: 0
+  fryingTime: 0
+  microwavingTime: 0
+  roastingTime: 0
+  isCooked: 0
+  rb: {fileID: 0}
+  cuttingMode: 0
+--- !u!114 &5946835104793958711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976172352268541573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c5fbe894851dd448ac46e4dbd31de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Starfruit Shuriken
+  damage: 20
+  hitForceThreshold: 1
+  thrownVelocityThreshold: 2
+  destructionTimer: 3
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5946835104793958711}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: Damage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5946835104793958711}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: Stick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5946835104793958711}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: Destroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onThrow:
+    m_PersistentCalls:
+      m_Calls: []
+  stickToThings: 0
+  damageModifier: 2
+  maxHits: 1
+  framesBeforeHitDetection: 0
+  boomerangX:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  boomerangZ:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _maxTimeFlying: 0
+  _xModifier: 0
+  _zModifier: 0
+--- !u!54 &4352420196378906311
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +224,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3784137638251846468
+--- !u!114 &4223265685506371533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

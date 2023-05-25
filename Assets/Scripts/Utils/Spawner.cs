@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Autohand;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,8 +11,10 @@ using UnityEngine.Serialization;
 public class Spawner : Upgradable
 {
     [SerializeField] public string spawnerName;
-    [SerializeField] private GameObject spawnableItem;
+    [SerializeField] private IngredientsList spawnableList;
     [SerializeField] private float[] spawnerTimers = new float[3];
+    [SerializeField] private TextMeshProUGUI spawnableName;
+    private int _currentArrayIndex = 0;
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;
@@ -20,7 +23,7 @@ public class Spawner : Upgradable
 
     private TemporalUpgradeStorage _temporalUpgradeStorage;
 
-    private float lastSpawnTime;
+    private float lastSpawnTime = float.MinValue;
     private Director _director;
 
     private void Start()
@@ -32,6 +35,7 @@ public class Spawner : Upgradable
         _director = Director.Instance;
         _temporalUpgradeStorage = FindObjectOfType<TemporalUpgradeStorage>();
         CheckForUpgrades();
+        ChangeText();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,6 +67,22 @@ public class Spawner : Upgradable
         }
     }
 
+    public void MoveNextPrevious(bool dir)
+    {
+        if (dir)
+        {
+            _currentArrayIndex = (_currentArrayIndex + 1) % spawnableList.ingredientList.Length;
+        }
+        else
+        {
+            _currentArrayIndex = _currentArrayIndex - 1 >= 0
+                ? _currentArrayIndex - 1
+                : spawnableList.ingredientList.Length - 1;
+        }
+
+        ChangeText();
+    }
+
     public bool Upgrade()
     {
         if (currentUpgradeLevel < 2 && _director.currentGameInfo.currentMoney > upgradeCosts[currentUpgradeLevel])
@@ -76,7 +96,8 @@ public class Spawner : Upgradable
 
     public void Spawn()
     {
-        Instantiate(spawnableItem, _transform.position + _transform.up * halfHeight, Quaternion.identity);
+        Instantiate(spawnableList.ingredientList[_currentArrayIndex], _transform.position + _transform.up * halfHeight,
+            Quaternion.identity);
         itemInside = true;
     }
 
@@ -93,6 +114,10 @@ public class Spawner : Upgradable
         }
     }
 
+    private void ChangeText()
+    {
+        spawnableName.text = spawnableList.ingredientList[_currentArrayIndex].GetFoodIdentifier();
+    }
 
     public new object CaptureState()
     {

@@ -93,9 +93,15 @@ public class CuttingHelper : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Ingredient tryIng;
-        if (collision.collider.TryGetComponent(out tryIng) && tryIng.canBeCut)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Food"))
         {
-            tryIng.ActivateCuttingMode();
+            tryIng = collision.gameObject.GetComponent<Ingredient>();
+            if (tryIng.canBeCut)
+            {
+                tryIng.ActivateCuttingMode();
+            }
         }
     }
+
+
 }

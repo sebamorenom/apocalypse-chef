@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Ingredients List")]
 public class IngredientsList : ScriptableObject
 {
-    [SerializeField] private Ingredient[] ingredientList;
+    [SerializeField] public Ingredient[] ingredientList;
 
     public Ingredient GetRandomIngredient()
     {

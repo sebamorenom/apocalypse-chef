@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public abstract class Upgradable : MonoBehaviour, ISaveable
     [SerializeField] public int[] upgradeCosts = new int[2];
     public int currentUpgradeLevel;
 
+    [Serializable]
     public struct UpgradeInfo
     {
         public string upgradedObjectName;
