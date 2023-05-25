@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906146535218031897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7154193, y: -0.1118815, z: -0.08010129, w: 0.68501216}
+  m_LocalPosition: {x: 0.05, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3906146536306233497}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 105.8, y: 79.7, z: 82.3}
 --- !u!1 &3906146535476208697
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906146535761917577}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
   snapTurning: 1
   snapTurnAngle: 30
   smoothTurnSpeed: 10
-  ignoreMe2: 1
+  ignoreMe2: 0
   heightOffset: 0
   crouching: 0
   crouchHeight: 0.6
@@ -569,14 +569,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906146537019648619}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.71234614, y: 0.048771076, z: 0.09051817, w: 0.69425565}
+  m_LocalPosition: {x: -0.05, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3906146535971059455}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 101.4, y: -84.3, z: -80.9}
 --- !u!1 &3906146537287906960
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +622,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RIGHT_CartoonHands_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844328606340118159, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2914488520911541818, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
@@ -678,6 +683,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: follow
+      value: 
+      objectReference: {fileID: 3906146535218031898}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: showAdvanced
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: controller
@@ -719,6 +759,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6552923405084088786}
     - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742589728160155646, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: bendOffsets.Array.size
       value: 5
@@ -865,6 +910,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LEFT_CartoonHands_2
       objectReference: {fileID: 0}
+    - target: {fileID: 2844328606340118159, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844328606340118159, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[0]
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2914488520911541818, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: m_RootOrder
@@ -930,6 +985,51 @@ PrefabInstance:
       propertyPath: left
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: follow
+      value: 
+      objectReference: {fileID: 3906146537019648612}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: showAdvanced
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027505338417567019, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: grabCurve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6489266161146628831, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: OnBeforeGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -955,6 +1055,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR_LEFT_Hand
       objectReference: {fileID: 0}
+    - target: {fileID: 7742589728160155646, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742589728160155646, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7837884624812433599, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: hand
@@ -974,6 +1084,26 @@ PrefabInstance:
         type: 3}
       propertyPath: squeezeButton
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[4]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
