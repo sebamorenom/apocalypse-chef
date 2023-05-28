@@ -176,7 +176,7 @@ public class Explosive : WeaponTest, IWeapon
     private void ExplodeSingle()
     {
         Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
-        for (int i = 0; i < _hitColliders.Length; i++)
+        for (int i = 0; i < maxNumAffected	; i++)
         {
             if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth) &&
                 _hitColliders[i].CompareTag($"Zombie"))
@@ -209,8 +209,8 @@ public class Explosive : WeaponTest, IWeapon
 
     public void Stun()
     {
-        _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
-        for (int i = 0; i < _hitColliders.Length; i++)
+        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < maxNumAffected; i++)
         {
             if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
             {
@@ -229,8 +229,8 @@ public class Explosive : WeaponTest, IWeapon
 
     public void Sticky()
     {
-        _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
-        for (int i = 0; i < _hitColliders.Length; i++)
+        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < maxNumAffected; i++)
         {
             if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
             {
@@ -242,8 +242,8 @@ public class Explosive : WeaponTest, IWeapon
 
     public void Burn()
     {
-        _hitColliders = Physics.OverlapSphere(_transform.position, explosionRadius, affectedLayerMask);
-        for (int i = 0; i < _hitColliders.Length; i++)
+        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < maxNumAffected; i++)
         {
             if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth))
             {
