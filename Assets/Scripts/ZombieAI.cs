@@ -53,7 +53,7 @@ public class ZombieAI : MonoBehaviour
 
     private Transform _transform;
     private NavMeshAgent _navMeshAgent;
-    private Health _ownHealth;
+    [HideInInspector] public Health ownHealth;
     private Animator _animator;
     private Collider _coll;
 
@@ -70,6 +70,7 @@ public class ZombieAI : MonoBehaviour
     private bool _dancing;
     private bool _hurt;
     private bool _isDying;
+    private float _lastHealth;
 
 
     private Rigidbody _rb;
@@ -89,7 +90,7 @@ public class ZombieAI : MonoBehaviour
     void Start()
     {
         _transform = transform;
-        _ownHealth = GetComponent<Health>();
+        ownHealth = GetComponent<Health>();
         _coll = GetComponent<Collider>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.enabled = true;
@@ -113,6 +114,12 @@ public class ZombieAI : MonoBehaviour
 
     public void Update()
     {
+        if (ownHealth.currentHealth != _lastHealth)
+        {
+            _hurt = true;
+            _lastHealth = ownHealth.currentHealth;
+        }
+
         LookTowardsPath();
     }
 
@@ -123,7 +130,7 @@ public class ZombieAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_ownHealth.dead)
+        if (ownHealth.dead)
         {
             StopAllCoroutines();
             Die();
@@ -132,7 +139,7 @@ public class ZombieAI : MonoBehaviour
 
     private IEnumerator Behaviour()
     {
-        while (!_ownHealth.dead)
+        while (!ownHealth.dead)
         {
             if (stunned)
             {
@@ -379,7 +386,7 @@ public class ZombieAI : MonoBehaviour
                 _collidedRb = contact.otherCollider.attachedRigidbody;
                 if (_collidedRb != null && _collidedRb.velocity.magnitude >= minHitForceThreshold)
                 {
-                    _ownHealth.Hurt(_collidedRb.velocity.magnitude);
+                    ownHealth.Hurt(_collidedRb.velocity.magnitude);
                     _hurt = true;
                 }
             }

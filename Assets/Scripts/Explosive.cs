@@ -42,7 +42,7 @@ public class Explosive : WeaponTest, IWeapon
 
     private Collider[] _hitColliders;
     private ZombieAI _hitZombieAI;
-    private Health _hitZombieHealth;
+    private ZombieAI _hitZombie;
     private Rigidbody _hitRb;
     private Explosive _hitExplosive;
 
@@ -175,23 +175,29 @@ public class Explosive : WeaponTest, IWeapon
 
     private void ExplodeSingle()
     {
-        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
-        for (int i = 0; i < maxNumAffected	; i++)
+        var numColliders =
+            Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < numColliders; i++)
         {
-            if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth) &&
-                _hitColliders[i].CompareTag($"Zombie"))
+            if (_hitColliders[i].TryGetComponent(out _hitZombie))
             {
-                _hitZombieHealth.Hurt(damage);
+                _hitZombie.ownHealth.Hurt(damage);
             }
             else
             {
-                if (_hitColliders[i].TryGetComponent<Explosive>(out _hitExplosive) && _hitExplosive.explosive)
+                if (_hitColliders[i].TryGetComponent<Explosive>(out _hitExplosive))
                 {
-                    _hitExplosive.OnHit();
+                    if (_hitExplosive.explosive)
+                    {
+                        _hitExplosive.OnHit();
+                    }
                 }
-                else if (_hitColliders[i].TryGetComponent<Rigidbody>(out _hitRb))
+                else
                 {
-                    _hitRb.AddExplosionForce(explosionForce, _transform.position, explosionRadius);
+                    if (_hitColliders[i].TryGetComponent<Rigidbody>(out _hitRb))
+                    {
+                        _hitRb.AddExplosionForce(explosionForce, _transform.position, explosionRadius);
+                    }
                 }
             }
         }
@@ -209,8 +215,9 @@ public class Explosive : WeaponTest, IWeapon
 
     public void Stun()
     {
-        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
-        for (int i = 0; i < maxNumAffected; i++)
+        var numColliders =
+            Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < numColliders; i++)
         {
             if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
             {
@@ -229,8 +236,9 @@ public class Explosive : WeaponTest, IWeapon
 
     public void Sticky()
     {
-        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
-        for (int i = 0; i < maxNumAffected; i++)
+        var numColliders =
+            Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < numColliders; i++)
         {
             if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
             {
@@ -242,12 +250,13 @@ public class Explosive : WeaponTest, IWeapon
 
     public void Burn()
     {
-        Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
-        for (int i = 0; i < maxNumAffected; i++)
+        var numColliders =
+            Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
+        for (int i = 0; i < numColliders; i++)
         {
-            if (_hitColliders[i].TryGetComponent<Health>(out _hitZombieHealth))
+            if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombie))
             {
-                _hitZombieHealth.Burn(damage / burningTime, burningTime, 1);
+                _hitZombieAI.ownHealth.Burn(damage / burningTime, burningTime, 1);
             }
             else
             {
