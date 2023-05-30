@@ -57,7 +57,7 @@ public class Plate : MonoBehaviour
             Vector3 yOffset = new Vector3(0f, (other.bounds.max.y - other.bounds.min.y) / 2, 0f);
             placementPosition += yOffset;
             otherTransform.position = placementPosition;
-            otherTransform.rotation = placementTransform.rotation;
+            //otherTransform.rotation = placementTransform.rotation;
             otherTransform.parent = placementTransform;
 
             /*Vector3 newPlacementMaxBound = new Vector3(placementTrigger.bounds.max.x,
