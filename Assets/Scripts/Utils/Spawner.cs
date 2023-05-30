@@ -6,6 +6,7 @@ using Autohand;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(SaveableObject))]
 public class Spawner : Upgradable
@@ -18,6 +19,7 @@ public class Spawner : Upgradable
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;
+    private VisualEffect _vfx;
 
     private Transform _transform;
 
@@ -29,6 +31,7 @@ public class Spawner : Upgradable
     private void Start()
     {
         _transform = transform;
+        _vfx = GetComponentInChildren<VisualEffect>();
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
         _director = Director.Instance;
@@ -95,6 +98,7 @@ public class Spawner : Upgradable
 
     public void Spawn()
     {
+        _vfx.Play();
         Instantiate(spawnableList.ingredientList[_currentArrayIndex], _transform.position + _transform.up * halfHeight,
             Quaternion.identity);
         itemInside = true;

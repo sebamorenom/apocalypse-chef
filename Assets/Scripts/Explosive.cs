@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Autohand;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Explosive : WeaponTest, IWeapon
 {
@@ -29,6 +30,7 @@ public class Explosive : WeaponTest, IWeapon
     [Header("LayerMask")] [SerializeField] private LayerMask affectedLayerMask;
 
     [Header("Utilities")] [SerializeField] private int maxNumAffected;
+    [SerializeField] private GameObject vfx;
 
 
     private Transform _transform;
@@ -287,6 +289,10 @@ public class Explosive : WeaponTest, IWeapon
         }
     }
 
+    public void PlayVFX()
+    {
+        Instantiate(vfx, _transform.position, Quaternion.identity, null);
+    }
 
     public void Destroy()
     {
