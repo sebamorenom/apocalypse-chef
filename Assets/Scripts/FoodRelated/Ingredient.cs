@@ -16,7 +16,7 @@ public class Ingredient : MonoBehaviour, ICook
     [Header("Cut parameters")] public bool canBeCut;
     public GameObject cutIngredient;
     [ReadOnly] Health cuttingHealth;
-    public VisualEffect cutVFX;
+    public GameObject cutVFX;
     public float minCuttingThreshold;
 
     [Header("Cooking Type")] public bool canBeFried;
@@ -26,7 +26,8 @@ public class Ingredient : MonoBehaviour, ICook
     public string cookingState;
     public float cookingTime;
 
-    [Header("Cooking Time")] [Range(0, 10f)]
+    [Header("Cooking Time")]
+    [Range(0, 10f)]
     public float fryingTime;
 
     [Range(0, 10f)] public float microwavingTime;
@@ -139,8 +140,7 @@ public class Ingredient : MonoBehaviour, ICook
                 cuttingHealth.Hurt(20);
                 if (cuttingHealth.currentHealth == 0)
                 {
-                    Instantiate(cutIngredient, _transform.position, _transform.rotation);
-                    Destroy(gameObject);
+                    Cut();
                 }
             }
         }
@@ -172,10 +172,10 @@ public class Ingredient : MonoBehaviour, ICook
 
     public void Cut()
     {
+        Instantiate(cutVFX, _transform.position, Quaternion.identity, null);
         Instantiate(cutIngredient, transform.position, Quaternion.identity);
-        cutVFX?.Play();
         //yield return WaitUntil();
-        Destroy((this));
+        Destroy((gameObject));
     }
 
     public void ActivateCuttingMode()

@@ -17,6 +17,7 @@ public class Projectile : WeaponTest, IWeapon
     public AnimationCurve boomerangX;
 
     [SerializeField] public AnimationCurve boomerangZ;
+    [SerializeField] private GameObject vfx;
 
     public float _maxTimeFlying;
     public float _xModifier, _zModifier;
@@ -59,6 +60,12 @@ public class Projectile : WeaponTest, IWeapon
         Debug.Log("OnHit");
         onHit.Invoke();
     }
+
+    public void PlayVFX()
+    {
+        Instantiate(vfx, _transform.position, Quaternion.identity, null);
+    }
+
 
     public void OnThrow()
     {

@@ -27,7 +27,7 @@ public class Explosive : WeaponTest, IWeapon
     [SerializeField] public float burningTime;
 
     [Header("LayerMask")] [SerializeField] private LayerMask affectedLayerMask;
-
+    [SerializeField] private GameObject vfx;
     private Transform _transform;
     private Rigidbody _rb;
 
@@ -132,6 +132,11 @@ public class Explosive : WeaponTest, IWeapon
                 StartCoroutine(_onHitTimer);
             }
         }
+    }
+
+    public void PlayVFX()
+    {
+        Instantiate(vfx, _transform.position, Quaternion.identity, null);
     }
 
     public void Throw()
