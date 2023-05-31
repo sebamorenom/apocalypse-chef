@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906146535218031897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7154193, y: -0.1118815, z: -0.08010129, w: 0.68501216}
+  m_LocalPosition: {x: 0.05, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3906146536306233497}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 105.8, y: 79.7, z: 82.3}
 --- !u!1 &3906146535476208697
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3906146535761917579}
   - component: {fileID: 3906146535761917575}
   - component: {fileID: 3906146535761917574}
+  - component: {fileID: 4091232458076698163}
   m_Layer: 0
   m_Name: AutoHandPlayer_CARTOON
   m_TagString: Untagged
@@ -210,6 +211,22 @@ MonoBehaviour:
   player: {fileID: 3906146535761917579}
   moveAxis: 0
   turnAxis: 0
+--- !u!114 &4091232458076698163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906146535761917577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980823ee57669974d86751c1cdc07ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  dead: 0
+  burning: 0
 --- !u!1 &3906146535862802017
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,14 +586,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906146537019648619}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.71234614, y: 0.048771076, z: 0.09051817, w: 0.69425565}
+  m_LocalPosition: {x: -0.05, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3906146535971059455}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 101.4, y: -84.3, z: -80.9}
 --- !u!1 &3906146537287906960
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,25 +635,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3906146535476208698}
     m_Modifications:
-    - target: {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 6552923405084088786}
-    - target: {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: bendOffsets.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: bendOffsets.Array.data[0]
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2538208791452880000, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: m_Name
       value: RIGHT_CartoonHands_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844328606340118159, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2914488520911541818, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
@@ -773,10 +780,10 @@ PrefabInstance:
       propertyPath: bendOffsets.Array.size
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
+    - target: {fileID: 7742589728160155646, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
-      propertyPath: bendOffsets.Array.data[0]
-      value: 0.5
+      propertyPath: bendOffsets.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7837884624812433599, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
@@ -823,8 +830,56 @@ PrefabInstance:
       propertyPath: bendOffsets.Array.data[4]
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
+    - {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3adb08f46900c246b3e2988cfcea998, type: 3}
+--- !u!1 &1599618248991692443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2307980213653368822, guid: d3adb08f46900c246b3e2988cfcea998,
+    type: 3}
+  m_PrefabInstance: {fileID: 3906146535952464237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3908122290109353705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599618248991692443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782cb9720318e0c4ab7353bfc2181ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6552923405084088786}
+  button: 2
+  bendOffsets:
+  - 0.2
+  - 0
+  - 0
+  - 0
+  - 0
+--- !u!114 &8601031577480115377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599618248991692443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782cb9720318e0c4ab7353bfc2181ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6552923405084088786}
+  button: 2
+  bendOffsets:
+  - 0.5
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &2181778833327484759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2914488520911541818, guid: d3adb08f46900c246b3e2988cfcea998,
@@ -862,21 +917,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3906146535476208698}
     m_Modifications:
-    - target: {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 6552923405114886032}
-    - target: {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: bendOffsets.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1682183775728912409, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: bendOffsets.Array.data[0]
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2298228865690351911, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: m_Name
@@ -886,6 +926,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LEFT_CartoonHands_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844328606340118159, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844328606340118159, guid: d3adb08f46900c246b3e2988cfcea998,
+        type: 3}
+      propertyPath: bendOffsets.Array.data[0]
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2914488520911541818, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
@@ -989,11 +1039,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 6552923405114886032}
-    - target: {fileID: 5325186577686314141, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
       propertyPath: bendOffsets.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -1027,17 +1072,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR_LEFT_Hand
       objectReference: {fileID: 0}
-    - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 6552923405114886032}
-    - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
+    - target: {fileID: 7742589728160155646, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: bendOffsets.Array.size
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 7415308444001255897, guid: d3adb08f46900c246b3e2988cfcea998,
+    - target: {fileID: 7742589728160155646, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: bendOffsets.Array.data[0]
       value: 0.5
@@ -1062,11 +1102,6 @@ PrefabInstance:
       propertyPath: squeezeButton
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
-        type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 6552923405114886032}
     - target: {fileID: 8321549854091702995, guid: d3adb08f46900c246b3e2988cfcea998,
         type: 3}
       propertyPath: bendOffsets.Array.size

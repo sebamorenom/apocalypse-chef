@@ -73,7 +73,7 @@ MonoBehaviour:
   canBeCut: 1
   cutIngredient: {fileID: 6153764866017753224, guid: 896487b3378888349b7a2b4087791581,
     type: 3}
-  cutVFX: {fileID: 0}
+  cutVFX: {fileID: 4852418328484840097, guid: 697681fb30471cb45a05c69b212e12b3, type: 3}
   minCuttingThreshold: 0
   canBeFried: 0
   canBeMicrowaved: 0
@@ -219,6 +219,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5539544659638099824}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7228674308212141717}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4459444834890290217}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: PlayVFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4459444834890290217}
         m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
         m_MethodName: Destroy
@@ -251,6 +287,8 @@ MonoBehaviour:
   affectedLayerMask:
     serializedVersion: 2
     m_Bits: 16777216
+  maxNumAffected: 0
+  vfx: {fileID: 8325265667619803193, guid: 9f5364ecbe32bb148bbd5a0f16c4a820, type: 3}
 --- !u!114 &1855325948111973105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +555,12 @@ PrefabInstance:
 --- !u!4 &7081536505780053989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3431821843660898388, guid: a3b41708ff517394ca4f8c119208997f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5613433635415697329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7228674308212141717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3006017363177146660, guid: a3b41708ff517394ca4f8c119208997f,
     type: 3}
   m_PrefabInstance: {fileID: 5613433635415697329}
   m_PrefabAsset: {fileID: 0}
@@ -833,6 +877,12 @@ Transform:
 --- !u!95 &4909155326503364440 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3181967177843346215, guid: 01a6fcdb2224d7a47829aad20113ada3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7496325728590179455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5539544659638099824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2659417416334390031, guid: 01a6fcdb2224d7a47829aad20113ada3,
     type: 3}
   m_PrefabInstance: {fileID: 7496325728590179455}
   m_PrefabAsset: {fileID: 0}

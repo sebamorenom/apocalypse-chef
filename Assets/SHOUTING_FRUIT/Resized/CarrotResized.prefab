@@ -73,7 +73,7 @@ MonoBehaviour:
   canBeCut: 1
   cutIngredient: {fileID: 6158172679469769017, guid: 01c0e93f72b6e2b4e8daf68e15d484f6,
     type: 3}
-  cutVFX: {fileID: 0}
+  cutVFX: {fileID: 4852418328484840097, guid: 697681fb30471cb45a05c69b212e12b3, type: 3}
   minCuttingThreshold: 0
   canBeFried: 0
   canBeMicrowaved: 0
@@ -231,6 +231,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8151706132125659169}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 400321667284267912}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2880608082316128189}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: PlayVFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2880608082316128189}
         m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
         m_MethodName: Destroy
@@ -252,17 +288,45 @@ MonoBehaviour:
   framesBeforeHitDetection: 0
   boomerangX:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   boomerangZ:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _maxTimeFlying: 0
+  vfx: {fileID: 183453251275444785, guid: 79fbfdb05dd32214e9006bdc07aca32c, type: 3}
+  _maxTimeFlying: 1
   _xModifier: 0
   _zModifier: 0
 --- !u!114 &1767593044620163035
@@ -755,6 +819,12 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 6181343893332689710}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8151706132125659169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2659417416334390031, guid: 01a6fcdb2224d7a47829aad20113ada3,
+    type: 3}
+  m_PrefabInstance: {fileID: 6181343893332689710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &8782043253499103241 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3181967177843346215, guid: 01a6fcdb2224d7a47829aad20113ada3,
@@ -875,6 +945,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb2ca72fd611f354dab2734f5d0fdde4, type: 3}
+--- !u!1 &400321667284267912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6542641242277518139, guid: cb2ca72fd611f354dab2734f5d0fdde4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6864079451699505331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &789518643991587938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6176393194145694929, guid: cb2ca72fd611f354dab2734f5d0fdde4,

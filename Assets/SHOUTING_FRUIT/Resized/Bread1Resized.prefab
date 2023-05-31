@@ -72,7 +72,7 @@ MonoBehaviour:
   canBeCut: 1
   cutIngredient: {fileID: 7775692300522054852, guid: 44a763f103e4f9a47b391fe249af674c,
     type: 3}
-  cutVFX: {fileID: 0}
+  cutVFX: {fileID: 4852418328484840097, guid: 697681fb30471cb45a05c69b212e12b3, type: 3}
   minCuttingThreshold: 0
   canBeFried: 0
   canBeMicrowaved: 0
@@ -755,6 +755,16 @@ PrefabInstance:
     - target: {fileID: 5122918115416073644, guid: f3e8d8d57dfec2a4bac31a0ffa4c8cc2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947373041519559940, guid: f3e8d8d57dfec2a4bac31a0ffa4c8cc2,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0002239458
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947373041519559940, guid: f3e8d8d57dfec2a4bac31a0ffa4c8cc2,
+        type: 3}
+      propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

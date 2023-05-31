@@ -73,7 +73,7 @@ MonoBehaviour:
   canBeCut: 1
   cutIngredient: {fileID: 5047262337776174268, guid: 494dd8136d71cb445a2c1ddb5efb3ab0,
     type: 3}
-  cutVFX: {fileID: 0}
+  cutVFX: {fileID: 4852418328484840097, guid: 697681fb30471cb45a05c69b212e12b3, type: 3}
   minCuttingThreshold: 0
   canBeFried: 0
   canBeMicrowaved: 0
@@ -334,6 +334,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  vfx: {fileID: 0}
   _maxTimeFlying: 1
   _xModifier: 2
   _zModifier: 4
@@ -766,17 +767,17 @@ PrefabInstance:
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0311
+      value: 0.0478
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0103
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.02
+      value: 0.0456
       objectReference: {fileID: 0}
     - target: {fileID: 9135888332577002319, guid: 01a6fcdb2224d7a47829aad20113ada3,
         type: 3}
@@ -863,17 +864,17 @@ PrefabInstance:
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0060380036
+      value: 0.010661997
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.010858273
+      value: -0.010558273
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.02534541
+      value: 0.050945412
       objectReference: {fileID: 0}
     - target: {fileID: 8944463425452592927, guid: 2d71ce07e3cd60c419f8662e9d5e73b4,
         type: 3}

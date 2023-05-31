@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Projectile : WeaponTest, IWeapon
 {
@@ -16,9 +17,13 @@ public class Projectile : WeaponTest, IWeapon
     [Header("Animation Curves")] [SerializeField]
     public AnimationCurve boomerangX;
 
-    [SerializeField] public AnimationCurve boomerangZ;
+    public AnimationCurve boomerangZ;
 
+    [Header("Utilities")] [SerializeField] private GameObject vfx;
+
+    [Header("Boomerang Related")] [SerializeField]
     public float _maxTimeFlying;
+
     public float _xModifier, _zModifier;
 
     //
@@ -133,6 +138,11 @@ public class Projectile : WeaponTest, IWeapon
         {
             _hitZombieHealth.Hurt(_collisionForce > 2 * hitForceThreshold ? damageModifier * damage : damage);
         }
+    }
+
+    public void PlayVFX()
+    {
+        Instantiate(vfx, _transform.position, Quaternion.identity, null);
     }
 
     public void Boomerang()
