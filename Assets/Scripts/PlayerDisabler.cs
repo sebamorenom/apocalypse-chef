@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Autohand;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDisabler : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerDisabler : MonoBehaviour
         {
             _hasBeenDisabled = true;
             autoHandPlayer.enabled = false;
+            SceneManager.LoadScene(0);
+
         }
     }
 }

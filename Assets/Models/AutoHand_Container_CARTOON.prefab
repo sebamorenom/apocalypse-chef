@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 3906146535761917575}
   - component: {fileID: 3906146535761917574}
   - component: {fileID: 4091232458076698163}
+  - component: {fileID: 6057216071026085303}
   m_Layer: 0
   m_Name: AutoHandPlayer_CARTOON
   m_TagString: Untagged
@@ -227,6 +228,20 @@ MonoBehaviour:
   currentHealth: 0
   dead: 0
   burning: 0
+--- !u!114 &6057216071026085303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906146535761917577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824fb419f9711c542a3e88c72fd810ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoHandPlayer: {fileID: 3906146535761917579}
+  playerHealth: {fileID: 4091232458076698163}
 --- !u!1 &3906146535862802017
 GameObject:
   m_ObjectHideFlags: 0

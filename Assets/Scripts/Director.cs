@@ -73,7 +73,6 @@ public class Director : MonoBehaviour, ISaveable
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-#if UNITY_EDITOR
         if (scene.buildIndex != 0)
         {
             if (scene.buildIndex == 1)
@@ -92,24 +91,6 @@ public class Director : MonoBehaviour, ISaveable
                 }
             }
         }
-#elif UNITY_STANDALONE
-            if (scene.buildIndex == 0)
-            {
-                SaveSystem.Load(currentFileIndex);
-                onLoad.Invoke();
-                StartCoroutine(PrepareSceneManagers());
-            }
-            else
-            {
-                if (scene.buildIndex == 1)
-                {
-                    SaveSystem.Load(currentFileIndex);
-                    onLoad.Invoke();
-                    StartCoroutine(PrepareUpgradeSceneManagers());
-                }
-            }
-
-#endif
     }
 
 

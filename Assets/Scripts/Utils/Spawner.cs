@@ -15,11 +15,12 @@ public class Spawner : Upgradable
     [SerializeField] private IngredientsList spawnableList;
     [SerializeField] private float[] spawnerTimers = new float[3];
     [SerializeField] private TextMeshProUGUI spawnableName;
+    [SerializeField] private GameObject _vfx;
+    [SerializeField] private Vector3 spawningOffset;
     private int _currentArrayIndex = 0;
     private Hand tryHand;
     private bool itemInside;
     private float halfHeight;
-    private VisualEffect _vfx;
 
     private Transform _transform;
 
@@ -31,7 +32,6 @@ public class Spawner : Upgradable
     private void Start()
     {
         _transform = transform;
-        _vfx = GetComponentInChildren<VisualEffect>();
         var boxBounds = GetComponent<Collider>().bounds;
         halfHeight = (boxBounds.max.y - boxBounds.min.y) / 2f;
         _director = Director.Instance;
@@ -98,9 +98,10 @@ public class Spawner : Upgradable
 
     public void Spawn()
     {
-        _vfx.Play();
-        Instantiate(spawnableList.ingredientList[_currentArrayIndex], _transform.position + _transform.up * halfHeight,
-            Quaternion.identity);
+        Instantiate(_vfx, _transform.position + spawningOffset, Quaternion.identity);
+        Instantiate(spawnableList.ingredientList[_currentArrayIndex], 
+            _transform.position + _transform.up * halfHeight + spawningOffset,
+        Quaternion.identity);
         itemInside = true;
     }
 

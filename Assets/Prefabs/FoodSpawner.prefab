@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6922793697723135513, guid: 80b52bf0fa390da43ab1a066bf450ed4, type: 3}
+  - {fileID: 2100000, guid: bb33c13880013ce46808e24e64a7b52c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTriggerEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3088279047934333111}
+        m_TargetAssemblyTypeName: Spawner, Assembly-CSharp
+        m_MethodName: MoveNextPrevious
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onCollisionEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -197,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6922793697723135513, guid: 80b52bf0fa390da43ab1a066bf450ed4, type: 3}
+  - {fileID: 2100000, guid: bb33c13880013ce46808e24e64a7b52c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -262,7 +274,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTriggerEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3088279047934333111}
+        m_TargetAssemblyTypeName: Spawner, Assembly-CSharp
+        m_MethodName: MoveNextPrevious
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCollisionEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -283,6 +307,8 @@ GameObject:
   - component: {fileID: 487822518258200672}
   - component: {fileID: 487822518258200673}
   - component: {fileID: 487822518258200678}
+  - component: {fileID: 1683700719902840693}
+  - component: {fileID: 3088279047934333111}
   m_Layer: 0
   m_Name: Food_Inator
   m_TagString: Untagged
@@ -333,10 +359,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6922793697723135513, guid: 80b52bf0fa390da43ab1a066bf450ed4, type: 3}
-  - {fileID: 3648352575269516109, guid: 80b52bf0fa390da43ab1a066bf450ed4, type: 3}
-  - {fileID: 8556262120643298411, guid: 80b52bf0fa390da43ab1a066bf450ed4, type: 3}
-  - {fileID: -6162040990019074719, guid: 80b52bf0fa390da43ab1a066bf450ed4, type: 3}
+  - {fileID: 2100000, guid: bb33c13880013ce46808e24e64a7b52c, type: 2}
+  - {fileID: 2100000, guid: c6d00027e932b46418a96bb0bead3f52, type: 2}
+  - {fileID: 2100000, guid: fe2de6316d9a24f46af35b55a4d80a2b, type: 2}
+  - {fileID: 2100000, guid: 2c0823aa7a7b68f499dfeb64714cb308, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -369,8 +395,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0065149926, y: 0.00441388, z: 0.0010554565}
-  m_Center: {x: 0.000038694117, y: -0.0018675744, z: -0.0023633526}
+  m_Size: {x: 0.0065149926, y: 0.0038386453, z: 0.0010554565}
+  m_Center: {x: 0.000038694117, y: -0.0021552013, z: -0.0023633684}
 --- !u!65 &487822518258200674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -436,6 +462,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0065193614, y: 0.00045802502, z: 0.0043147122}
   m_Center: {x: -0.000013083093, y: 0.00025079865, z: 0.0010173446}
+--- !u!114 &1683700719902840693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660634669852656103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d1b4e00e8ba0b4c9a57df038b38427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3088279047934333111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660634669852656103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ee6f7271fcbd44a80518b1f277fba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeCosts: 0000000000000000
+  currentUpgradeLevel: 0
+  spawnerName: 
+  spawnableList: {fileID: 11400000, guid: fdd3427a83907864b984319046a098c1, type: 2}
+  spawnerTimers:
+  - 3
+  - 2
+  - 1
+  spawnableName: {fileID: 8170213563726683450}
+  _vfx: {fileID: 4852418328484840097, guid: 697681fb30471cb45a05c69b212e12b3, type: 3}
 --- !u!1 &5692924919591377308
 GameObject:
   m_ObjectHideFlags: 0
