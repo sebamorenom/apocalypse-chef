@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6257588158471412116
+--- !u!1 &2575273290152143653
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6257588158471412119}
-  - component: {fileID: 6257588158471412118}
+  - component: {fileID: 5384224821987263846}
+  - component: {fileID: 3150323319186963663}
   m_Layer: 0
-  m_Name: Spawn 2
+  m_Name: Spawn 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6257588158471412119
+--- !u!4 &5384224821987263846
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6257588158471412116}
+  m_GameObject: {fileID: 2575273290152143653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.85, y: -0.58, z: -5.05}
+  m_LocalPosition: {x: 6.31, y: -0.21, z: -7.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6257588158475522637}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6257588158471412118
+--- !u!114 &3150323319186963663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6257588158471412116}
+  m_GameObject: {fileID: 2575273290152143653}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9530f085d084aab46b6435fbf9fb0950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnName: 2
+  spawnName: 1
 --- !u!1 &6257588158475522738
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6257588159514998134}
-  - {fileID: 6257588158471412119}
+  - {fileID: 5384224821987263846}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21813028d4ca4db4ca0997e02330eaad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectivesTransform: []
-  objectivesHealth: []
+  priorityObjectives: []
+  objectives: []
 --- !u!1 &6257588159514998135
 GameObject:
   m_ObjectHideFlags: 0
