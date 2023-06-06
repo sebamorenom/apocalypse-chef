@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: -6416518520173676143}
   - component: {fileID: 1035235201878432231}
   - component: {fileID: -2871755031249686113}
-  - component: {fileID: -990431631105677471}
   - component: {fileID: 4459444834890290217}
+  - component: {fileID: -990431631105677471}
   - component: {fileID: 1855325948111973105}
   - component: {fileID: -8325344182208104039}
   m_Layer: 27
@@ -101,6 +101,108 @@ MonoBehaviour:
   isScreaming: 0
   animator: {fileID: 4909155326503364440}
   audioSource: {fileID: 7068482595746549742}
+--- !u!114 &4459444834890290217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968530568388521756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af6dc5694491e147b5f0a5e2876b853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Onion Toxic
+  damage: 25
+  hitForceThreshold: 0.8
+  thrownVelocityThreshold: 2
+  destructionTimer: 2
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4459444834890290217}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Burn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5539544659638099824}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7228674308212141717}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4459444834890290217}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: PlayVFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4459444834890290217}
+        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
+        m_MethodName: Destroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onThrow:
+    m_PersistentCalls:
+      m_Calls: []
+  explosionRadius: 3
+  explosionForce: 500
+  numExplosions: 1
+  timeBetweenExplosions: 0
+  explosive: 0
+  sticky: 0
+  stun: 0
+  incendiary: 0
+  toxic: 1
+  explosionHitTimer: 0
+  explosionThrowTimer: 0
+  stuckTime: 0
+  stunTime: 0
+  burningTicks: 2
+  affectedLayerMask:
+    serializedVersion: 2
+    m_Bits: 16777216
+  maxNumAffected: 10
+  vfx: {fileID: 8325265667619803193, guid: 9f5364ecbe32bb148bbd5a0f16c4a820, type: 3}
 --- !u!114 &-990431631105677471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,108 +289,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
---- !u!114 &4459444834890290217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4968530568388521756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af6dc5694491e147b5f0a5e2876b853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: Onion Toxic
-  damage: 25
-  hitForceThreshold: 1
-  thrownVelocityThreshold: 2
-  destructionTimer: 0
-  onHit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4459444834890290217}
-        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
-        m_MethodName: Burn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5539544659638099824}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7228674308212141717}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4459444834890290217}
-        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
-        m_MethodName: PlayVFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4459444834890290217}
-        m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
-        m_MethodName: Destroy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onThrow:
-    m_PersistentCalls:
-      m_Calls: []
-  explosionRadius: 3
-  explosionForce: 0
-  numExplosions: 1
-  timeBetweenExplosions: 0
-  explosive: 0
-  sticky: 0
-  stun: 0
-  incendiary: 0
-  toxic: 1
-  explosionHitTimer: 0
-  explosionThrowTimer: 0
-  stuckTime: 0
-  stunTime: 0
-  burningTime: 0
-  affectedLayerMask:
-    serializedVersion: 2
-    m_Bits: 16777216
-  maxNumAffected: 10
-  vfx: {fileID: 8325265667619803193, guid: 9f5364ecbe32bb148bbd5a0f16c4a820, type: 3}
 --- !u!114 &1855325948111973105
 MonoBehaviour:
   m_ObjectHideFlags: 0

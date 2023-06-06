@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: -419599678520306666}
   - component: {fileID: 863338644110426394}
   - component: {fileID: -5250963818234171150}
-  - component: {fileID: 3799629203413470039}
   - component: {fileID: 3640098293458968069}
+  - component: {fileID: 3799629203413470039}
   m_Layer: 27
   m_Name: AppleResized
   m_TagString: Untagged
@@ -289,6 +289,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &3640098293458968069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008205986226836991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980823ee57669974d86751c1cdc07ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 60
+  currentHealth: 0
+  dead: 0
+  burning: 0
 --- !u!114 &3799629203413470039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,22 +472,6 @@ MonoBehaviour:
   minRange: 0
   testAngle: 0
   testRange: 0
---- !u!114 &3640098293458968069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008205986226836991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 980823ee57669974d86751c1cdc07ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 60
-  currentHealth: 0
-  dead: 0
-  burning: 0
 --- !u!1001 &1233836804366392417
 PrefabInstance:
   m_ObjectHideFlags: 0

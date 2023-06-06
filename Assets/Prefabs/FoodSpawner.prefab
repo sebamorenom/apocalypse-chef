@@ -396,7 +396,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.0065149926, y: 0.0038386453, z: 0.0010554565}
-  m_Center: {x: 0.000038694117, y: -0.0021552013, z: -0.0023633684}
+  m_Center: {x: 0.000038694117, y: -0.0015, z: -0.0023633684}
 --- !u!65 &487822518258200674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -496,6 +496,7 @@ MonoBehaviour:
   - 1
   spawnableName: {fileID: 8170213563726683450}
   _vfx: {fileID: 4852418328484840097, guid: 697681fb30471cb45a05c69b212e12b3, type: 3}
+  spawningOffset: {x: 0, y: 0.15, z: 0}
 --- !u!1 &5692924919591377308
 GameObject:
   m_ObjectHideFlags: 0

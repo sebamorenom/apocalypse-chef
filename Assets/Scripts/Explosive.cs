@@ -25,7 +25,7 @@ public class Explosive : WeaponTest, IWeapon
 
     [SerializeField] public float stuckTime;
     [SerializeField] public float stunTime;
-    [SerializeField] public float burningTime;
+    [SerializeField] public int burningTicks;
 
     [Header("LayerMask")] [SerializeField] private LayerMask affectedLayerMask;
 
@@ -43,7 +43,6 @@ public class Explosive : WeaponTest, IWeapon
     private bool _thrown;
 
     private Collider[] _hitColliders;
-    private ZombieAI _hitZombieAI;
     private ZombieAI _hitZombie;
     private Rigidbody _hitRb;
     private Explosive _hitExplosive;
@@ -221,10 +220,10 @@ public class Explosive : WeaponTest, IWeapon
             Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
         for (int i = 0; i < numColliders; i++)
         {
-            if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
+            if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombie))
             {
-                _hitZombieAI.stunnedTime = stunTime;
-                _hitZombieAI.stunned = true;
+                _hitZombie.stunnedTime = stunTime;
+                _hitZombie.stunned = true;
             }
             else
             {
@@ -242,10 +241,10 @@ public class Explosive : WeaponTest, IWeapon
             Physics.OverlapSphereNonAlloc(_transform.position, explosionRadius, _hitColliders, affectedLayerMask);
         for (int i = 0; i < numColliders; i++)
         {
-            if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombieAI))
+            if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombie))
             {
-                _hitZombieAI.stuckTime = stuckTime;
-                _hitZombieAI.stuck = true;
+                _hitZombie.stuckTime = stuckTime;
+                _hitZombie.stuck = true;
             }
         }
     }
@@ -258,7 +257,8 @@ public class Explosive : WeaponTest, IWeapon
         {
             if (_hitColliders[i].TryGetComponent<ZombieAI>(out _hitZombie))
             {
-                _hitZombieAI.ownHealth.Burn(damage / burningTime, burningTime, 1);
+                Debug.Log("Me quemo");
+                _hitZombie.ownHealth.StartBurning(damage / burningTicks, burningTicks, 1);
             }
             else
             {

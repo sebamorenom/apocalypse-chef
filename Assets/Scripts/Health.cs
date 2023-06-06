@@ -26,10 +26,15 @@ public class Health : MonoBehaviour, IDamageable
     }
 
 
+    public void StartBurning(float damagePerTick, int numTicks, float timeBetweenTicks)
+    {
+        StartCoroutine(Burn(damagePerTick, numTicks, timeBetweenTicks));
+    }
+
     private float startingTime;
     private float currentTime;
 
-    public IEnumerator Burn(float damagePerTick, float timeOnFlames, float timeBetweenTicks)
+    private IEnumerator Burn(float damagePerTick, int numTicks, float timeBetweenTicks)
     {
         if (!burning)
         {
@@ -37,9 +42,11 @@ public class Health : MonoBehaviour, IDamageable
             startingTime = Time.fixedTime;
             currentTime = startingTime;
 
-            while (currentTime <= startingTime + timeOnFlames)
+            while (numTicks > 0)
             {
                 Hurt(damagePerTick);
+                numTicks = numTicks - 1;
+                currentTime += Time.fixedDeltaTime + timeBetweenTicks;
                 yield return new WaitForSeconds(timeBetweenTicks);
             }
 

@@ -41,7 +41,7 @@ public class Director : MonoBehaviour, ISaveable
             Instance = this;
             _fader = GetComponent<Fader>();
             _sceneChanger = GetComponent<SceneChanger>();
-            QualitySettings.vSyncCount = 1;
+            //QualitySettings.vSyncCount = 1;
             DontDestroyOnLoad(gameObject);
             onLoad += Save;
         }

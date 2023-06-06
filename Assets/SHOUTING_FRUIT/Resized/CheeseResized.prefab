@@ -200,16 +200,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Cheese Sticky
-  damage: 0
+  damage: 30
   hitForceThreshold: 2
   thrownVelocityThreshold: 2
-  destructionTimer: 0
+  destructionTimer: 5
   onHit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 370724689532522733}
         m_TargetAssemblyTypeName: Explosive, Assembly-CSharp
-        m_MethodName: Sticky
+        m_MethodName: Burn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -276,18 +276,18 @@ MonoBehaviour:
   timeBetweenExplosions: 0
   explosive: 0
   sticky: 0
-  stun: 1
-  incendiary: 0
+  stun: 0
+  incendiary: 1
   toxic: 0
   explosionHitTimer: 0
   explosionThrowTimer: 0
   stuckTime: 0
   stunTime: 0
-  burningTime: 0
+  burningTicks: 3
   affectedLayerMask:
     serializedVersion: 2
     m_Bits: 16777216
-  maxNumAffected: 0
+  maxNumAffected: 10
   vfx: {fileID: 6140171434532340063, guid: a31371b3606d04a4cab5c4c8d051c329, type: 3}
 --- !u!114 &-5159459559839936165
 MonoBehaviour:
