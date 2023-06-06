@@ -65,6 +65,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreInUI.text = gameInfo.currentDayScore.ToString();
         if (gameInfo.currentDayScore >= scoreThresholds[_numStarsActive])
         {
             _numStarsActive++;

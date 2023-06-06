@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,12 +25,14 @@ public class OrderShower : MonoBehaviour
 
     public void CheckCompletion(Plate plateToCheck)
     {
+        Regex rgx = new Regex("[^a-zA-Z0-9 -]");
         string foodOnPlateString = GetAsText(plateToCheck);
+        foodOnPlateString = rgx.Replace(foodOnPlateString, "");
         Debug.Log("Food on plate: " + foodOnPlateString);
         foreach (Order order in orderList)
         {
-            //Debug.Log(GetAsText(order));
-            if (foodOnPlateString == GetAsText(order))
+            Debug.Log("Plate: " + foodOnPlateString + "\n" + "Order :" + rgx.Replace(GetAsText(order), ""));
+            if (foodOnPlateString == rgx.Replace(GetAsText(order), ""))
             {
                 gameInfo.currentDayScore += plateToCheck.plateValue;
                 order.Fill(numIngredientsInOrder);
