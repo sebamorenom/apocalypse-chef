@@ -11,6 +11,7 @@ public class KnifeVFX : MonoBehaviour
     private Transform _transform;
     private Rigidbody _rb;
     private VisualEffect _vfx;
+    private AudioSource _sfx;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +27,17 @@ public class KnifeVFX : MonoBehaviour
         if (_rb.GetPointVelocity(_transform.position).magnitude > minSpeedToVFX)
         {
             PlayVFX();
+            PlaySFX();
         }
     }
 
     private void PlayVFX()
     {
         _vfx.Play();
+    }
+
+    private void PlaySFX()
+    {
+        _sfx.Play();
     }
 }
