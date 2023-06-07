@@ -155,9 +155,9 @@ MonoBehaviour:
   moveAcceleration: 10
   groundedDrag: 4
   heightSmoothSpeed: 20
-  snapTurning: 1
+  snapTurning: 0
   snapTurnAngle: 30
-  smoothTurnSpeed: 10
+  smoothTurnSpeed: 120
   ignoreMe2: 0
   heightOffset: 0
   crouching: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
