@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7219584640831563015}
   - component: {fileID: -7924261750150671496}
   - component: {fileID: 1779313648995448666}
+  - component: {fileID: -7459705578550748293}
   m_Layer: 0
   m_Name: Cheese_Slice
   m_TagString: Ingredient
@@ -177,3 +178,32 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &-7459705578550748293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765271107606365707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e28217f4d8ddf4c896a0889e95ce50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: Cheese_Slice
+  foodValue: 10
+  canBeCut: 0
+  cutIngredient: {fileID: 0}
+  cutVFX: {fileID: 0}
+  minCuttingThreshold: 0
+  canBeFried: 0
+  canBeMicrowaved: 0
+  canBeRoasted: 0
+  cookingState: 
+  cookingTime: 0
+  fryingTime: 0
+  microwavingTime: 0
+  roastingTime: 0
+  isCooked: 0
+  rb: {fileID: 0}
+  cuttingMode: 0

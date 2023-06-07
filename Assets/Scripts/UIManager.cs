@@ -66,9 +66,9 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         scoreInUI.text = gameInfo.currentDayScore.ToString();
-        if (gameInfo.currentDayScore >= scoreThresholds[_numStarsActive])
+        if (gameInfo.currentDayScore >= scoreThresholds[Mathf.Max(0, _numStarsActive - 1)])
         {
-            _numStarsActive++;
+            _numStarsActive = Mathf.Min(_numStarsActive + 1, 5);
             UpdateStarsState();
         }
     }
@@ -78,7 +78,10 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < _numStarsActive; i++)
         {
-            starsAnimators[i].gameObject.SetActive(true);
+            if (i <= starsAnimators.Length - 1)
+            {
+                starsAnimators[i].gameObject.SetActive(true);
+            }
         }
     }
 

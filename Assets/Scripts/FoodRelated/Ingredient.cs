@@ -179,7 +179,7 @@ public class Ingredient : MonoBehaviour, ICook
 
     public void ActivateCuttingMode()
     {
-        if (cuttingMode == false)
+        if (cuttingMode == false&&canBeCut)
         {
             foreach (var coll in _colliders)
             {

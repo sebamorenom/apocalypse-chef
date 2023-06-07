@@ -19,6 +19,7 @@ public class OrderShower : MonoBehaviour
     private void Start()
     {
         Director.Instance.orderShower = this;
+        gameInfo = Director.Instance.currentGameInfo;
         Invoke("FillAllOrders", 0.5f);
         FillAllOrders();
     }
@@ -77,10 +78,10 @@ public class OrderShower : MonoBehaviour
             Debug.Log(order.orderIngredients);
         }
         */
-        for (int i = 0; i < foodOnPlate.Length; i++)
+        for (int i = foodOnPlate.Length - 1; i >= 0; i--)
         {
             toText += foodOnPlate[i];
-            if (i != foodOnPlate.Length - 1)
+            if (i != 0)
             {
                 toText += "\n";
             }

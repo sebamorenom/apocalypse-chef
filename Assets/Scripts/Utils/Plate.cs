@@ -28,7 +28,7 @@ public class Plate : MonoBehaviour
     {
         if (other.CompareTag("Ingredient"))
         {
-            other.GetComponent<Grabbable>().isGrabbable = false;
+            other.GetComponentInParent<Grabbable>().isGrabbable = false;
             var otherTransform = other.transform;
             var otherRigidbody = other.attachedRigidbody;
             otherRigidbody.isKinematic = true;
@@ -69,10 +69,10 @@ public class Plate : MonoBehaviour
             placementTrigger.transform.position = placementPosition + yOffset;
             //MoveTriggerBounds(other);
             //placementTrigger.bounds.SetMinMax(placementTrigger.bounds.min, newPlacementMaxBound);
-            DisableAndMakeGrabbable(otherRigidbody);
             var auxIngredient = other.GetComponent<Ingredient>();
             plateValue += auxIngredient.foodValue;
             foodStacked.Insert(0, auxIngredient.foodIdentifier);
+            DisableAndMakeGrabbable(otherRigidbody);
         }
     }
 
