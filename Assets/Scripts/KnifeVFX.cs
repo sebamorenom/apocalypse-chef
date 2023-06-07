@@ -19,6 +19,7 @@ public class KnifeVFX : MonoBehaviour
         _transform = transform;
         _rb = GetComponent<Rigidbody>();
         _vfx = GetComponentInChildren<VisualEffect>();
+        _sfx = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
