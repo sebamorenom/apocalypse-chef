@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color preparationTimerColor;
     [SerializeField] private Color dayTimerColor;
 
-
+    
     [SerializeField] public int[] scoreThresholds;
 
     [Header("Data Inputs")] [SerializeField]

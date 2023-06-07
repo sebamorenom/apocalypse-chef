@@ -14,6 +14,8 @@ public class OrderShower : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] orderText;
     [SerializeField] private Order[] orderList;
     [SerializeField] private GameInfo gameInfo;
+    [SerializeField] private TextMeshProUGUI numDishesUI;
+    private int numDishes;
 
     [SerializeField]
     private void Start()
@@ -35,6 +37,8 @@ public class OrderShower : MonoBehaviour
             Debug.Log("Plate: " + foodOnPlateString + "\n" + "Order :" + rgx.Replace(GetAsText(order), ""));
             if (foodOnPlateString == rgx.Replace(GetAsText(order), ""))
             {
+                numDishes++;
+                numDishesUI.text = numDishes + "/10";
                 gameInfo.currentDayScore += plateToCheck.plateValue;
                 order.Fill(numIngredientsInOrder);
             }
