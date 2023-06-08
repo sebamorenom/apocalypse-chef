@@ -126,7 +126,8 @@ public class Director : MonoBehaviour, ISaveable
     }
 
     private IEnumerator PrepareSceneManagers()
-    {
+	{
+		currentGameInfo.currentDayScore=0;
         while (zSpawnManager == null || orderShower == null || uiManager == null)
         {
             yield return null;
