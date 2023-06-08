@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 9207966406696423299}
   - component: {fileID: 1952743257543041619}
   - component: {fileID: 2025809807539532754}
+  - component: {fileID: 3622511406102458720}
   m_Layer: 30
   m_Name: KnifeModel
   m_TagString: Blade
@@ -498,6 +499,19 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0, w: 1}
     - {x: 0, y: 0, z: 0, w: 1}
   leftPoseSet: 1
+--- !u!65 &3622511406102458720
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884067673043170707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0020485944, y: 0.0013342359, z: 0.0036086761}
+  m_Center: {x: -6.2088175e-11, y: 0.0039882483, z: 0.0000929275}
 --- !u!1 &8313867341082739143
 GameObject:
   m_ObjectHideFlags: 0
