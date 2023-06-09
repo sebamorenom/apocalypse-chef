@@ -49,7 +49,10 @@ public class ZombieAI : MonoBehaviour
         stunnedAnimationTime,
         stuckAnimationTime;
 
-    [Header("Miscellaneous")] private float timeBeforeDisappearance;
+    [Header("Miscellaneous")] [SerializeField]
+    private AudioSource _sfx;
+
+    private float timeBeforeDisappearance;
 
     private Transform _transform;
     private NavMeshAgent _navMeshAgent;
@@ -116,6 +119,7 @@ public class ZombieAI : MonoBehaviour
     {
         if (ownHealth.currentHealth != _lastHealth)
         {
+            PlaySFX();
             _hurt = true;
             _lastHealth = ownHealth.currentHealth;
         }
@@ -312,6 +316,11 @@ public class ZombieAI : MonoBehaviour
         }
 
         _hurt = false;
+    }
+
+    public void PlaySFX()
+    {
+        _sfx.Play();
     }
 
     private void HurtObjective()
