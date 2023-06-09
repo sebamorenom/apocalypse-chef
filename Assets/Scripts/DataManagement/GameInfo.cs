@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +21,6 @@ public class GameInfo : ScriptableObject
 {
     [SerializeField] public int id;
 
-    [Header("AI Related")] [DoNotSerialize] [ReadOnly]
-    public List<Transform> objectivesTransform;
-
-    [DoNotSerialize] [ReadOnly] public List<Health> objectivesHealth;
-
     [Header("Playtime Related")] [SerializeField]
     public int currentDay;
 
@@ -47,24 +42,11 @@ public class GameInfo : ScriptableObject
         currentDayScore = 0;
     }
 
-
-    public void CreateArrays()
-    {
-        objectivesTransform = new List<Transform>();
-        objectivesHealth = new List<Health>();
-    }
-
     private void ResetFile()
     {
         currentDay = 0;
         zombieKills.normalZombies = 0;
         zombieKills.specialZombies = 0;
         zombieKills.totalZombieKills = 0;
-    }
-
-    public void RemoveFromArrays(Transform objTransform, Health objHealth)
-    {
-        objectivesTransform.Remove(objTransform);
-        objectivesHealth.Remove(objHealth);
     }
 }
