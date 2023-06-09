@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ModularMotion;
 using TMPro;
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color preparationTimerColor;
     [SerializeField] private Color dayTimerColor;
 
-    
+
     [SerializeField] public int[] scoreThresholds;
 
     [Header("Data Inputs")] [SerializeField]
@@ -66,17 +66,20 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         scoreInUI.text = gameInfo.currentDayScore.ToString();
-        if (gameInfo.currentDayScore >= scoreThresholds[Mathf.Max(0, _numStarsActive - 1)])
+        if (_numStarsActive <= scoreThresholds.Length)
         {
-            _numStarsActive = Mathf.Min(_numStarsActive + 1, 5);
-            UpdateStarsState();
+            if (gameInfo.currentDayScore >= scoreThresholds[_numStarsActive])
+            {
+                UpdateStarsState();
+	            _numStarsActive++;
+            }
         }
     }
 
 
     public void UpdateStarsState()
     {
-        for (int i = 0; i < _numStarsActive; i++)
+	    for (int i = 0; i <= _numStarsActive; i++)
         {
             if (i <= starsAnimators.Length - 1)
             {
