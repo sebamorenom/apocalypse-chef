@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5390809714589555678}
   - component: {fileID: 9043187691681404027}
   - component: {fileID: 6528860476297322673}
+  - component: {fileID: 775109262226454330}
+  - component: {fileID: 2631943782708887903}
   m_Layer: 0
   m_Name: DobleSofa_Retro
   m_TagString: Untagged
@@ -83,3 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &775109262226454330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727601427057574244}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.009846496, y: 0.0107138585, z: 0.0034212098}
+  m_Center: {x: 0.00003722284, y: 0.000077423836, z: 0.0017105988}
+--- !u!65 &2631943782708887903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727601427057574244}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0020760875, y: 0.010401907, z: 0.0050790086}
+  m_Center: {x: 0.000008857833, y: -0.000021832664, z: 0.0060182135}
