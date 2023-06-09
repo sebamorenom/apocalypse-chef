@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 7
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,16 +10,16 @@ Material:
   m_Name: NatureScene_Grass_Long
   m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8,
     type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ShaderKeywords: _ALPHATEST_ON _RECEIVE_SHADOWS_OFF
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHATEST_ON
+  - _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -70,6 +70,8 @@ Material:
     - _PatchesSharpness: 1
     - _PatchesSize: 0.722
     - _PatchesThreshold: 0.478
+    - _QueueControl: -1
+    - _QueueOffset: 0
     - _ShadowStrength: 0.056
     - _WindDirection: -1
     - _WindEnabled: 1
@@ -80,10 +82,10 @@ Material:
     m_Colors:
     - Color_8625870c808d4f1b93a120fb2366b73e: {r: 0, g: 0, b: 0, a: 0}
     - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorBottom: {r: 0.04516733, g: 0.3301887, b: 0.11332463, a: 1}
-    - _ColorTop: {r: 0.42121837, g: 0.869, b: 0.15937991, a: 1}
-    - _GustColor: {r: 0.3076924, g: 1, b: 0, a: 0.4}
-    - _PatchesColor: {r: 0.88936174, g: 1, b: 0, a: 1}
+    - _ColorBottom: {r: 0.24498427, g: 0.04705882, b: 0.32941177, a: 1}
+    - _ColorTop: {r: 0.87058824, g: 0.571949, b: 0.16078432, a: 1}
+    - _GustColor: {r: 1, g: 0, b: 0.90028477, a: 0.4}
+    - _PatchesColor: {r: 1, g: 0.8634265, b: 0, a: 1}
     - _PatchesOffset: {r: -9, g: 9.4, b: 0, a: 0}
     - _SecondaryColor: {r: 0.937255, g: 0.7568628, b: 0.24705875, a: 1}
   m_BuildTextureStacks: []
