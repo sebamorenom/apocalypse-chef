@@ -28,6 +28,7 @@ public class Plate : MonoBehaviour
     {
         if (other.CompareTag("Ingredient"))
         {
+            other.tag = "IngredientStacked";
             other.GetComponentInParent<Grabbable>().isGrabbable = false;
             var otherTransform = other.transform;
             var otherRigidbody = other.attachedRigidbody;
@@ -80,8 +81,8 @@ public class Plate : MonoBehaviour
     {
         Destroy(otherRigidbody.GetComponent<Grabbable>());
         Destroy(otherRigidbody);
-        GrabbableChild otherGrabbChild = otherRigidbody.AddComponent<GrabbableChild>();
-        otherGrabbChild.grabParent = GetComponent<Grabbable>();
+        //GrabbableChild otherGrabbChild = otherRigidbody.AddComponent<GrabbableChild>();
+        //otherGrabbChild.grabParent = GetComponent<Grabbable>();
         Destroy(otherRigidbody.GetComponent<Ingredient>());
         /*otherRigidbody.isKinematic = false;
         otherRigidbody.useGravity = false;
